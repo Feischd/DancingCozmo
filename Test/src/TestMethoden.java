@@ -7,6 +7,7 @@ public class TestMethoden {
 	public static ArrayList<File> searchFile(File dir, String find) {
 
 		int zaehler = 0;
+		String name = "";
 		
 		File[] files = dir.listFiles();
 		ArrayList<File> matches = new ArrayList<File>();
@@ -19,6 +20,13 @@ public class TestMethoden {
 //					System.out.println("Treffer");
 //				} 
 				if(files[i].getName().endsWith(find)) {
+					
+					//3Testzeilen von mir
+					name = name + files[i].getName();
+					System.out.println("Dateiname: " + name);
+					name = "";
+					
+					
 					matches.add(files[i]);
 					zaehler = zaehler + 1;
 //					System.out.println("Treffer");
@@ -33,11 +41,11 @@ public class TestMethoden {
 				}
 			}
 		}
-		//Achtung! Ausgabe auch für jedes Verzeichnis, die letzte Ausgabe ist das 
-		//Hauptverzeichnis
-		if(zaehler > 0) {
-		System.out.println("Anzahl gefundene Dateien im Ordner: " + zaehler);
-		}
+//		//Achtung! Ausgabe auch für jedes Verzeichnis, die letzte Ausgabe ist das 
+//		//Hauptverzeichnis
+//		if(zaehler > 0) {
+//		System.out.println("Anzahl gefundene Dateien im Ordner: " + zaehler);
+//		}
 		return matches;
 	}
 
