@@ -12,7 +12,7 @@ public class TestMain {
 		//Benutzername muss jeweils geändert werden
 		File dir = new File("C:\\Users\\Alexander Feist\\Desktop");
 //		String find = "Akku!.txt";
-		String find = ".txt";
+		String find = ".txt";		//Endung anpassen
 		TestMethoden.searchFile(dir, find);
 		
 	}
