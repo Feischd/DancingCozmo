@@ -8,6 +8,7 @@ public class TestMethoden {
 
 		int zaehler = 0;
 		String name = "";
+		String pfad = "";
 		
 		File[] files = dir.listFiles();
 		ArrayList<File> matches = new ArrayList<File>();
@@ -23,8 +24,12 @@ public class TestMethoden {
 					
 					//3Testzeilen von mir
 					name = name + files[i].getName();
+					pfad = pfad + files[i].getPath();
 					System.out.println("Dateiname: " + name);
+					System.out.println("Dateipfad: " + pfad);
+					System.out.println();
 					name = "";
+					pfad = "";
 					
 					
 					matches.add(files[i]);
