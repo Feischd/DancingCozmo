@@ -35,7 +35,9 @@ public class TestMethoden {
 		}
 		//Achtung! Ausgabe auch für jedes Verzeichnis, die letzte Ausgabe ist das 
 		//Hauptverzeichnis
-		System.out.println("Anzahl gefundene Dateien: " + zaehler);
+		if(zaehler > 0) {
+		System.out.println("Anzahl gefundene Dateien im Ordner: " + zaehler);
+		}
 		return matches;
 	}
 

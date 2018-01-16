@@ -1,5 +1,7 @@
 import java.io.File;
 
+//		String[] namen = new String[0];
+
 public class TestMain {
 
 	public static void main(String[] args) {
