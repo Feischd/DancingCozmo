@@ -8,12 +8,15 @@ public class TestMain {
 
 	public static void main(String[] args) {
 		
-		//Nach einem File suchen in einem Verzeichnis 
+		//Ab hier Variablen
+		
 		//Benutzername muss jeweils geändert werden
 		File dir = new File("C:\\Users\\Alexander Feist\\Desktop");
-//		String find = "Akku!.txt";
 		String find = ".txt";		//Endung anpassen
+		
+		//Ab hier Methoden aufrufen
 		TestMethoden.searchFile(dir, find);
+		TestMethoden.öffneDatei(pfad);
 		
 	}
 

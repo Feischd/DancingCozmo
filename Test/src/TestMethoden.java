@@ -43,13 +43,17 @@ public class TestMethoden {
 		return matches;
 	}
 
-	// Noch ausprogrammieren
 	public static void saveName(String text) {
 		TestMain.name.add(text);
 	}
 
 	public static void savePfad(String text) {
 		TestMain.pfad.add(text);
+	}
+	
+	//Noch ausprogrammieren
+	public static void öffneDatei(ArrayList<String> text) {
+		
 	}
 
 }
