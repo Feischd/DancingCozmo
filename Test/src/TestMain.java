@@ -1,6 +1,10 @@
 import java.io.File;
+import java.util.ArrayList;
 
 public class TestMain {
+	
+	public static ArrayList<String> name = new ArrayList<>(0);
+	public static ArrayList<String> pfad = new ArrayList<>(0);
 
 	public static void main(String[] args) {
 		
@@ -10,6 +14,7 @@ public class TestMain {
 //		String find = "Akku!.txt";
 		String find = ".txt";
 		TestMethoden.searchFile(dir, find);
+		
 	}
 
 }

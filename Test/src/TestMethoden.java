@@ -45,11 +45,11 @@ public class TestMethoden {
 
 	// Noch ausprogrammieren
 	public static void saveName(String text) {
-
+		TestMain.name.add(text);
 	}
 
 	public static void savePfad(String text) {
-
+		TestMain.pfad.add(text);
 	}
 
 }
