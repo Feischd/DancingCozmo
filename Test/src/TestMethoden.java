@@ -28,8 +28,13 @@ public class TestMethoden {
 					System.out.println("Dateiname: " + name);
 					System.out.println("Dateipfad: " + pfad);
 					System.out.println();
+					
+					saveName(name);
+					savePfad(pfad);
+					
 					name = "";
 					pfad = "";
+					
 					
 					
 					matches.add(files[i]);
@@ -52,6 +57,15 @@ public class TestMethoden {
 //		System.out.println("Anzahl gefundene Dateien im Ordner: " + zaehler);
 //		}
 		return matches;
+	}
+	
+	//Noch ausprogrammieren
+	public static void saveName(String text) {
+		
+	}
+	
+	public static void savePfad(String text) {
+		
 	}
 
 }
