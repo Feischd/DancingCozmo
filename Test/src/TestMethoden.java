@@ -7,36 +7,49 @@ public class TestMethoden {
 	public static ArrayList<File> searchFile(File dir, String find) {
 
 		int zaehler = 0;
-		
+		String name = "";
+		String pfad = "";
+
 		File[] files = dir.listFiles();
 		ArrayList<File> matches = new ArrayList<File>();
 		if (files != null) {
 			for (int i = 0; i < files.length; i++) {
-//				if (files[i].getName().equalsIgnoreCase(find)) { // überprüft ob der Dateiname mit dem Suchstring
-//					// übereinstimmt. Groß-/Kleinschreibung wird
-//					// ignoriert.
-//					matches.add(files[i]);
-//					System.out.println("Treffer");
-//				} 
-				if(files[i].getName().endsWith(find)) {
+
+				if (files[i].getName().endsWith(find)) {
+
+					name = name + files[i].getName();
+					pfad = pfad + files[i].getPath();
+					System.out.println("Dateiname: " + name);
+					System.out.println("Dateipfad: " + pfad);
+					System.out.println();
+
+					saveName(name);
+					savePfad(pfad);
+
+					name = "";
+					pfad = "";
+
 					matches.add(files[i]);
 					zaehler = zaehler + 1;
-//					System.out.println("Treffer");
 				}
-				
-//				else {
-//					System.out.println("kein Treffer");
-//				}
+
 				if (files[i].isDirectory()) {
-					matches.addAll(searchFile(files[i], find)); // fügt der ArrayList die ArrayList mit den
-					// Treffern aus dem Unterordner hinzu
+					// fügt der ArrayList die ArrayList mit den Treffern aus dem Unterordner hinzu
+					matches.addAll(searchFile(files[i], find));
 				}
 			}
 		}
-		//Achtung! Ausgabe auch für jedes Verzeichnis, die letzte Ausgabe ist das 
-		//Hauptverzeichnis
-		System.out.println("Anzahl gefundene Dateien: " + zaehler);
+
 		return matches;
+	}
+
+	// Noch ausprogrammieren
+	public static void saveName(String text) {
+
+	}
+
+	public static void savePfad(String text) {
+
 	}
 
 }
