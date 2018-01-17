@@ -11,11 +11,29 @@ public class TestMain {
 		//Ab hier Variablen
 		
 		//Benutzername muss jeweils geändert werden
-		File dir = new File("C:\\Users\\Alexander Feist\\Desktop");
-		String find = ".txt";		//Endung anpassen
+//		File dir = new File("C:\\Users\\Alexander Feist\\Desktop");
+		
+		//Test ob Dateien gefunden werden
+//		String find = ".txt";
+		
+		//Geht
+		File dir = new File("C:\\Users\\Alexander Feist\\Music");
+		
+		//Test
+//		File dir = new File("C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De Strijdlust is geboren");
+		
+		//mp3, wma, m4a, aac
+		String findwma = ".wma";
+		String findmp3 = ".mp3";
+		String findm4a = ".m4a";
+		String findaac = ".aac";
 		
 		//Ab hier Methoden aufrufen
-		TestMethoden.searchFile(dir, find);
+		TestMethoden.searchFile(dir, findwma);
+		TestMethoden.searchFile(dir, findmp3);
+		TestMethoden.searchFile(dir, findm4a);
+		TestMethoden.searchFile(dir, findaac);
+		
 		TestMethoden.öffneDatei(pfad);
 		
 	}
