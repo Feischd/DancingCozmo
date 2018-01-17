@@ -1,15 +1,20 @@
 import java.io.File;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
+
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class TestMethoden {
+	
+	static int i = 0;
 
 	// Methode um nach einem bestimmten File in einem bestimmten Verzeichnis suchen
 	public static ArrayList<File> searchFile(File dir, String find) {
 
-		int zaehler = 0;
 		String name = "";
 		String pfad = "";
-
+		
 		File[] files = dir.listFiles();
 		ArrayList<File> matches = new ArrayList<File>();
 		if (files != null) {
@@ -23,14 +28,13 @@ public class TestMethoden {
 					System.out.println("Dateipfad: " + pfad);
 					System.out.println();
 
-					saveName(name);
+//					saveName(name);
 					savePfad(pfad);
 
 					name = "";
 					pfad = "";
 
 					matches.add(files[i]);
-					zaehler = zaehler + 1;
 				}
 
 				if (files[i].isDirectory()) {
@@ -43,16 +47,40 @@ public class TestMethoden {
 		return matches;
 	}
 
-	public static void saveName(String text) {
-		TestMain.name.add(text);
-	}
+//	public static void saveName(String text) {
+//		TestMain.name.add(text);
+//	}
 
 	public static void savePfad(String text) {
-		TestMain.pfad.add(text);
+		TestMain.pfadSpeichern = verlängere(TestMain.pfadSpeichern);
+		TestMain.pfadSpeichern[i] = text;
+		i = i + 1;
+
+				
+		
+//		TestMain.pfad.add(text);
 	}
 	
-	//Noch ausprogrammieren
-	public static void öffneDatei(ArrayList<String> text) {
+	//vorher ArrayList<String> text
+	public static void öffneDatei(String[] pfadtext) {
+		
+		//Kopie
+//		String bip = "bip.mp3";
+//		Media hit = new Media(new File(bip).toURI().toString());
+//		MediaPlayer mediaPlayer = new MediaPlayer(hit);
+//		mediaPlayer.play();
+	}
+	
+	public static String[] verlängere(String[] array) {
+		String[] hilfe = new String[array.length + 1];
+		
+		for(int i = 0; i < array.length; i++) {
+			hilfe[i] = array[i];
+		}
+		hilfe[array.length] = "";
+		
+		
+		return hilfe;
 		
 	}
 

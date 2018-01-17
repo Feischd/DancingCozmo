@@ -3,8 +3,9 @@ import java.util.ArrayList;
 
 public class TestMain {
 	
-	public static ArrayList<String> name = new ArrayList<>(0);
-	public static ArrayList<String> pfad = new ArrayList<>(0);
+//	public static ArrayList<String> name = new ArrayList<>(0);
+//	public static ArrayList<String> pfad = new ArrayList<>(0);
+	public static String[] pfadSpeichern = new String[1];
 
 	public static void main(String[] args) {
 		
@@ -34,7 +35,9 @@ public class TestMain {
 		TestMethoden.searchFile(dir, findm4a);
 		TestMethoden.searchFile(dir, findaac);
 		
-		TestMethoden.öffneDatei(pfad);
+//		TestMethoden.öffneDatei(pfad);
+		
+
 		
 	}
 
