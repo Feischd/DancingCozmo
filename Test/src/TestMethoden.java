@@ -1,6 +1,5 @@
 import java.io.File;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -28,7 +27,6 @@ public class TestMethoden {
 					System.out.println("Dateipfad: " + pfad);
 					System.out.println();
 
-//					saveName(name);
 					savePfad(pfad);
 
 					name = "";
@@ -47,18 +45,10 @@ public class TestMethoden {
 		return matches;
 	}
 
-//	public static void saveName(String text) {
-//		TestMain.name.add(text);
-//	}
-
 	public static void savePfad(String text) {
 		TestMain.pfadSpeichern = verlängere(TestMain.pfadSpeichern);
 		TestMain.pfadSpeichern[i] = text;
 		i = i + 1;
-
-				
-		
-//		TestMain.pfad.add(text);
 	}
 	
 	//vorher ArrayList<String> text
