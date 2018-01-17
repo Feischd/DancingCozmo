@@ -55,10 +55,10 @@ public class TestMethoden {
 	public static void öffneDatei(String[] pfadtext) {
 		
 		//Kopie
-//		String bip = "bip.mp3";
-//		Media hit = new Media(new File(bip).toURI().toString());
-//		MediaPlayer mediaPlayer = new MediaPlayer(hit);
-//		mediaPlayer.play();
+		String bip = pfadtext[1];
+		Media hit = new Media(new File(bip).toURI().toString());
+		MediaPlayer mediaPlayer = new MediaPlayer(hit);
+		mediaPlayer.play();
 	}
 	
 	public static String[] verlängere(String[] array) {
