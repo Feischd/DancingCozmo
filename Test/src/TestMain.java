@@ -24,7 +24,7 @@ public class TestMain {
 		TestMethoden.searchFile(dir, findm4a);
 		TestMethoden.searchFile(dir, findaac);
 		
-//		TestMethoden.öffneDatei(pfad);
+		TestMethoden.öffneDatei(pfadSpeichern);
 		
 
 		
