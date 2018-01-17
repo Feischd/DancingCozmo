@@ -54,6 +54,10 @@ public class TestMethoden {
 	//vorher ArrayList<String> text
 	public static void öffneDatei(String[] pfadtext) {
 		
+		
+		
+		
+		//Bin dabei
 		//Kopie
 		String bip = pfadtext[1];
 		Media hit = new Media(new File(bip).toURI().toString());
