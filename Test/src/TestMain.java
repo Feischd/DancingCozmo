@@ -7,7 +7,7 @@ public class TestMain {
 
 	public static void main(String[] args) {
 		
-		//Benutzername muss jeweils geändert werden
+		//Benutzername muss jeweils geï¿½ndert werden
 //		File dir = new File("C:\\Users\\Alexander Feist\\Desktop");
 		
 		File dir = new File("C:\\Users\\Alexander Feist\\Music");
@@ -24,7 +24,7 @@ public class TestMain {
 		TestMethoden.searchFile(dir, findm4a);
 		TestMethoden.searchFile(dir, findaac);
 		
-		TestMethoden.öffneDatei(pfadSpeichern);
+		TestMethoden.oeffneDatei(pfadSpeichern);
 		
 
 		

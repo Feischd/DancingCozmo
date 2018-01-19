@@ -36,7 +36,7 @@ public class TestMethoden {
 				}
 
 				if (files[i].isDirectory()) {
-					// fügt der ArrayList die ArrayList mit den Treffern aus dem Unterordner hinzu
+					// fï¿½gt der ArrayList die ArrayList mit den Treffern aus dem Unterordner hinzu
 					matches.addAll(searchFile(files[i], find));
 				}
 			}
@@ -46,13 +46,13 @@ public class TestMethoden {
 	}
 
 	public static void savePfad(String text) {
-		TestMain.pfadSpeichern = verlängere(TestMain.pfadSpeichern);
+		TestMain.pfadSpeichern = verlaengere(TestMain.pfadSpeichern);
 		TestMain.pfadSpeichern[i] = text;
 		i = i + 1;
 	}
 	
 	//vorher ArrayList<String> text
-	public static void öffneDatei(String[] pfadtext) {
+	public static void oeffneDatei(String[] pfadtext) {
 		
 		
 		//Bin dabei
@@ -63,7 +63,7 @@ public class TestMethoden {
 //		mediaPlayer.play();
 	}
 	
-	public static String[] verlängere(String[] array) {
+	public static String[] verlaengere(String[] array) {
 		String[] hilfe = new String[array.length + 1];
 		
 		for(int i = 0; i < array.length; i++) {
