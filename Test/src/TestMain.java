@@ -7,10 +7,11 @@ public class TestMain {
 
 	public static void main(String[] args) {
 		
-		//Benutzername muss jeweils geändert werden
-//		File dir = new File("C:\\Users\\Alexander Feist\\Desktop");
+		//Funktioniert nur für mich
+//		File dir = new File("C:\\Users\\Alexander Feist\\Music");
 		
-		File dir = new File("C:\\Users\\Alexander Feist\\Music");
+		//Angemeldeter Benutzer
+		File dir = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Music");
 		
 		//mp3, wma, m4a, aac
 		String findwma = ".wma";
