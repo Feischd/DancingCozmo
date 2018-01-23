@@ -36,7 +36,7 @@ public class TestMethoden {
 				}
 
 				if (files[i].isDirectory()) {
-					// fügt der ArrayList die ArrayList mit den Treffern aus dem Unterordner hinzu
+					// fuegt der ArrayList die ArrayList mit den Treffern aus dem Unterordner hinzu
 					matches.addAll(searchFile(files[i], find));
 				}
 			}
