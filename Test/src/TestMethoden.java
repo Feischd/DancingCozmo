@@ -1,13 +1,6 @@
 import java.io.File;
 import java.util.ArrayList;
 
-//Hier test
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.DataLine;
-
 //import javafx.scene.media.Media;
 //import javafx.scene.media.MediaPlayer;
 
@@ -30,9 +23,9 @@ public class TestMethoden {
 
 					name = name + files[i].getName();
 					pfad = pfad + files[i].getPath();
-//					System.out.println("Dateiname: " + name);
-//					System.out.println("Dateipfad: " + pfad);
-//					System.out.println();
+					// System.out.println("Dateiname: " + name);
+					// System.out.println("Dateipfad: " + pfad);
+					// System.out.println();
 
 					savePfad(pfad);
 
@@ -70,37 +63,24 @@ public class TestMethoden {
 
 	}
 
-	//Ist noch in arbeit
+	// Ist noch in arbeit
 	public static void soundDateiAbspielen(String[] pfadtext) {
 
-		try {
-			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(pfadtext[1]));
-			AudioFormat af = audioInputStream.getFormat();
-			int size = (int) (af.getFrameSize() * audioInputStream.getFrameLength());
-			byte[] audio = new byte[size];
-			DataLine.Info info = new DataLine.Info(Clip.class, af, size);
-			audioInputStream.read(audio, 0, size);
-
-			Clip clip = (Clip) AudioSystem.getLine(info);
-			clip.open(af, audio, 0, size);
-
-			clip.start();
-		} catch (Exception e) {
-			// Falls Musik nicht da ist
-			e.printStackTrace();
-			System.out.println("[Soundfile nicht vorhanden]");
-			System.exit(0);
-
-		}
-
-		// Ging nicht so
-
 		// String bip = pfadtext[1];
-		// Media hit = new Media(new File(bip).toURI().toString());
+		// Media hit = new Media(new File(pfadtext[1]).toURI().toString());
 		// MediaPlayer mediaPlayer = new MediaPlayer(hit);
 		// mediaPlayer.play();
+
+		// String path = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De Strijdlust is
+		// geboren\\03 Het Gelders Volkslied.wma";
+		// Media media = new Media(new File(path).toURI().toString());
+		// //.toURI().toString()
+		// MediaPlayer mediaPlayer = new MediaPlayer(media);
+		// mediaPlayer.setAutoPlay(true);
+		// MediaView mediaView = new MediaView(mediaPlayer);
+
 	}
-	
+
 	public static void testausgabe(String pfadtext[]) {
 		for (int i = 0; i < pfadtext.length - 1; i++) {
 			System.out.println("Der Pfad lautet: " + pfadtext[i]);
