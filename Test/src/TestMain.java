@@ -1,5 +1,5 @@
 import java.io.File;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 public class TestMain {
 	
@@ -7,10 +7,11 @@ public class TestMain {
 
 	public static void main(String[] args) {
 		
-		//Benutzername muss jeweils geï¿½ndert werden
-//		File dir = new File("C:\\Users\\Alexander Feist\\Desktop");
+		//Funktioniert nur für mich
+//		File dir = new File("C:\\Users\\Alexander Feist\\Music");
 		
-		File dir = new File("C:\\Users\\Alexander Feist\\Music");
+		//Angemeldeter Benutzer
+		File dir = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Music");
 		
 		//mp3, wma, m4a, aac
 		String findwma = ".wma";
@@ -24,7 +25,9 @@ public class TestMain {
 		TestMethoden.searchFile(dir, findm4a);
 		TestMethoden.searchFile(dir, findaac);
 		
-		TestMethoden.oeffneDatei(pfadSpeichern);
+		TestMethoden.testausgabe(pfadSpeichern);
+		
+//		TestMethoden.soundDateiAbspielen(pfadSpeichern);
 		
 
 		
