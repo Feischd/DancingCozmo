@@ -6,7 +6,7 @@ public class TestMain {
 
 	public static void main(String[] args) {
 
-		// Funktioniert nur für mich
+		// Funktioniert nur fuer mich
 		// File dir = new File("C:\\Users\\Alexander Feist\\Music");
 
 		// Angemeldeter Benutzer
