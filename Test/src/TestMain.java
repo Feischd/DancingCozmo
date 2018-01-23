@@ -1,5 +1,5 @@
 import java.io.File;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 public class TestMain {
 	
@@ -25,7 +25,9 @@ public class TestMain {
 		TestMethoden.searchFile(dir, findm4a);
 		TestMethoden.searchFile(dir, findaac);
 		
-		TestMethoden.oeffneDatei(pfadSpeichern);
+		TestMethoden.testausgabe(pfadSpeichern);
+		
+//		TestMethoden.soundDateiAbspielen(pfadSpeichern);
 		
 
 		
