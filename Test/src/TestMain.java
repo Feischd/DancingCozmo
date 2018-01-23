@@ -7,7 +7,7 @@ public class TestMain {
 
 	public static void main(String[] args) {
 		
-		//Benutzername muss jeweils geï¿½ndert werden
+		//Benutzername muss jeweils geändert werden
 //		File dir = new File("C:\\Users\\Alexander Feist\\Desktop");
 		
 		File dir = new File("C:\\Users\\Alexander Feist\\Music");
