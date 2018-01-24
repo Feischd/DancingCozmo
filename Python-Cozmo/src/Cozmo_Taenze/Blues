@@ -1,0 +1,19 @@
+Cozmo steht
+
+-> dreht sich um 45° nach links
+-> H geht hoch und wieder runter
+-> dreht sich um 90° nach rechts
+-> H geht hoch und wieder runter
+-> dreht sich um 45° nach links
+-> H geht hoch und wieder runter
+-> faehrt rueckwaerts
+
+-> dreht sich um 45° nach links
+-> H geht hoch und wieder runter
+-> dreht sich um 90° nach rechts
+-> H geht hoch und wieder runter
+-> dreht sich um 45° nach links
+-> H geht hoch und wieder runter
+-> faehrt vorwaerts
+
+Info: der erste Block wiederholt sich nur faehrt Cozmo beim zweiten Mal vorwaerts und nicht rueckwaerts
