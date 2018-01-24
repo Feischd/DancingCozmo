@@ -1,8 +1,0 @@
-Cozmo steht
-
--> dreht sich um 360° nach rechts
--> dreht sich um 360° nach links
--> faehrt ein Kreis linksherum
--> faehrt ein Kreis rechtsherum
-
-Info: fuer die Kreise siehe Cozmo Tutorials -> 01_basics -> 05_motors -> robot.drive_wheels
