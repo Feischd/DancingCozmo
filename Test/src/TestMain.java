@@ -6,9 +6,6 @@ public class TestMain {
 
 	public static void main(String[] args) {
 
-		// Funktioniert nur fuer mich
-		// File dir = new File("C:\\Users\\Alexander Feist\\Music");
-
 		// Angemeldeter Benutzer
 		File dir = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Music");
 
@@ -18,7 +15,7 @@ public class TestMain {
 		String findm4a = ".m4a";
 		String findaac = ".aac";
 
-		// Ab hier Methoden aufrufenme
+		// Ab hier Methoden aufrufen
 		TestMethoden.searchFile(dir, findwma);
 		TestMethoden.searchFile(dir, findmp3);
 		TestMethoden.searchFile(dir, findm4a);

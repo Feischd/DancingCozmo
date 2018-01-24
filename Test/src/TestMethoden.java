@@ -2,9 +2,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-//import javafx.scene.media.Media;
-//import javafx.scene.media.MediaPlayer;
-
 public class TestMethoden {
 
 	static int i = 0;
@@ -67,34 +64,20 @@ public class TestMethoden {
 	// Ist noch in arbeit
 	public static void soundDateiAbspielen(String[] pfadtext) {
 
-		// String bip = pfadtext[1];
-		// Media hit = new Media(new File(pfadtext[1]).toURI().toString());
-		// MediaPlayer mediaPlayer = new MediaPlayer(hit);
-		// mediaPlayer.play();
+		// Pfad fuer MediaPlayer wird aktuell vorrausgesetzt ohne dass Pfadaenderungen
+		// vorgenommen wurden
 
-		// String path = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De Strijdlust is
-		// geboren\\03 Het Gelders Volkslied.wma";
-		// Media media = new Media(new File(path).toURI().toString());
-		// //.toURI().toString()
-		// MediaPlayer mediaPlayer = new MediaPlayer(media);
-		// mediaPlayer.setAutoPlay(true);
-		// MediaView mediaView = new MediaView(mediaPlayer);
-		
-		
-
-		//Pfad meines MediaPlayers
-		//Player wird geöffnet und das Lied wiedergegeben (egal welche Endung)
-		//Unterschiedliche Player, Pfade, ....
+		// Player wird geoeffnet und das Lied wiedergegeben (egal welche Endung)
+		// Unterschiedliche Player, Pfade, ....
 		try {
-			Process a = Runtime.getRuntime().exec(new String[]{"C:\\Program Files (x86)\\Windows Media Player\\wmplayer.exe", pfadtext[1]});
+			Process a = Runtime.getRuntime()
+					.exec(new String[] { "C:\\Program Files (x86)\\Windows Media Player\\wmplayer.exe", pfadtext[1] });
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-
 	}
-
 
 	public static void testausgabe(String pfadtext[]) {
 		for (int i = 0; i < pfadtext.length - 1; i++) {
