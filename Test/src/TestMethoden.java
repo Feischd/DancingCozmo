@@ -61,7 +61,6 @@ public class TestMethoden {
 
 	}
 
-	// Ist noch in arbeit
 	public static void soundDateiAbspielen(String[] pfadtext) {
 
 		// Pfad fuer MediaPlayer wird aktuell vorrausgesetzt ohne dass Pfadaenderungen
@@ -73,10 +72,8 @@ public class TestMethoden {
 			Process a = Runtime.getRuntime()
 					.exec(new String[] { "C:\\Program Files (x86)\\Windows Media Player\\wmplayer.exe", pfadtext[1] });
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 
 	public static void testausgabe(String pfadtext[]) {
@@ -84,5 +81,4 @@ public class TestMethoden {
 			System.out.println("Der Pfad lautet: " + pfadtext[i]);
 		}
 	}
-
 }
