@@ -2,7 +2,7 @@ import java.io.File;
 
 public class TestMain {
 
-	public static String[] pfadSpeichern = new String[1];
+	public static String[] pfadSpeicher = new String[1];
 
 	public static void main(String[] args) {
 
@@ -18,15 +18,15 @@ public class TestMain {
 		String findm4a = ".m4a";
 		String findaac = ".aac";
 
-		// Ab hier Methoden aufrufen
+		// Ab hier Methoden aufrufenme
 		TestMethoden.searchFile(dir, findwma);
 		TestMethoden.searchFile(dir, findmp3);
 		TestMethoden.searchFile(dir, findm4a);
 		TestMethoden.searchFile(dir, findaac);
 
-		TestMethoden.testausgabe(pfadSpeichern);
+		TestMethoden.testausgabe(pfadSpeicher);
 
-		TestMethoden.soundDateiAbspielen(pfadSpeichern);
+		TestMethoden.soundDateiAbspielen(pfadSpeicher);
 
 	}
 

@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 //import javafx.scene.media.Media;
@@ -46,8 +47,8 @@ public class TestMethoden {
 	}
 
 	public static void savePfad(String text) {
-		TestMain.pfadSpeichern = verlaengere(TestMain.pfadSpeichern);
-		TestMain.pfadSpeichern[i] = text;
+		TestMain.pfadSpeicher = verlaengere(TestMain.pfadSpeicher);
+		TestMain.pfadSpeicher[i] = text;
 		i = i + 1;
 	}
 
@@ -78,8 +79,22 @@ public class TestMethoden {
 		// MediaPlayer mediaPlayer = new MediaPlayer(media);
 		// mediaPlayer.setAutoPlay(true);
 		// MediaView mediaView = new MediaView(mediaPlayer);
+		
+		
+
+		//Pfad meines MediaPlayers
+		//Player wird geöffnet und das Lied wiedergegeben (egal welche Endung)
+		//Unterschiedliche Player, Pfade, ....
+		try {
+			Process a = Runtime.getRuntime().exec(new String[]{"C:\\Program Files (x86)\\Windows Media Player\\wmplayer.exe", pfadtext[1]});
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 
 	}
+
 
 	public static void testausgabe(String pfadtext[]) {
 		for (int i = 0; i < pfadtext.length - 1; i++) {
