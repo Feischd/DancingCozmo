@@ -33,7 +33,7 @@ public class Java_Cozmo {
         }
 
         // run python program
-        String program = "01_hello_world.py";
+        String program = "cozmoDance.py";
         Runtime.getRuntime().exec("cmd /c start " + program);
 
     }
