@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class TestMethoden {
 
+	//Übergeordnete Zaehlvariable
 	static int i = 0;
 
 	// Methode um nach einem bestimmten File in einem bestimmten Verzeichnis suchen
@@ -12,6 +13,7 @@ public class TestMethoden {
 		String name = "";
 		String pfad = "";
 
+		//Dateien werden gesucht, gefunden und die Pfade gespeichert
 		File[] files = dir.listFiles();
 		ArrayList<File> matches = new ArrayList<File>();
 		if (files != null) {
@@ -43,12 +45,14 @@ public class TestMethoden {
 		return matches;
 	}
 
+	//Pfad speichern
 	public static void savePfad(String text) {
 		TestMain.pfadSpeicher = verlaengere(TestMain.pfadSpeicher);
 		TestMain.pfadSpeicher[i] = text;
 		i = i + 1;
 	}
 
+	//Das Array zum Speichern der Pfade um 1 Stelle verlaengern, Array ist flexibel
 	public static String[] verlaengere(String[] array) {
 		String[] hilfe = new String[array.length + 1];
 
@@ -61,6 +65,7 @@ public class TestMethoden {
 
 	}
 
+	//Musik wird abgespielt
 	public static void soundDateiAbspielen(String[] pfadtext) {
 
 		// Pfad fuer MediaPlayer wird aktuell vorrausgesetzt ohne dass Pfadaenderungen
@@ -76,6 +81,7 @@ public class TestMethoden {
 		}
 	}
 
+	//Die einzelnen Pfade werden ausgegeben (Ueberpruefung ob alle Dateien gefunden wurden)
 	public static void testausgabe(String pfadtext[]) {
 		for (int i = 0; i < pfadtext.length - 1; i++) {
 			System.out.println("Der Pfad lautet: " + pfadtext[i]);
