@@ -3,13 +3,19 @@ Cozmo steht
 -> faehrt rueckwaerts
 -> dreht sich um 90° nach links
 -> faehrt vorwaerts
--> dreht sich um 90° nach rechts
--> faehrt Kreis linksherum
--> dreht sich um 90° nach rechts
+
+-> dreht sich um 360° nach rechts
+(-> dreht sich um 90° nach rechts)
+(-> faehrt Kreis linksherum)
+(-> dreht sich um 90° nach rechts)
+
 -> 2x faehrt vorwaerts
--> dreht sich um 90° nach links
--> faehrt Kreis rechtsherum
--> dreht sich um 90° nach links
+
+-> dreht sich um 360° nach links
+(-> dreht sich um 90° nach links)
+(-> faehrt Kreis rechtsherum)
+(-> dreht sich um 90° nach links)
+
 -> faehrt vorwaerts
 -> dreht sich um 90° nach rechts
 -> faehrt vorwaerts
