@@ -12,5 +12,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="spotify-web-api-java-1.4.5-javadoc" level="project" />
+    <orderEntry type="library" name="spotify-web-api-java-1.4.5-sources" level="project" />
+    <orderEntry type="library" name="spotify-web-api-java-1.4.5" level="project" />
+    <orderEntry type="library" name="java" level="project" />
   </component>
 </module>
