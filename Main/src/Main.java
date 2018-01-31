@@ -8,7 +8,7 @@ public class Main {
 	static int i = 0;
 
 	// Hilfsarray um die einzelnen Pfade der Musikdateien zu speichern
-	public static String[] pfadSpeicher = new String[1];
+	private static String[] pfadSpeicher = new String[1];
 
 	public static void main(String[] args) {
 
@@ -37,7 +37,7 @@ public class Main {
 	// Ab hier stehen alle Methoden, die spaeter aufgerufen werden
 
 	// Methode um nach einem bestimmten File in einem bestimmten Verzeichnis suchen
-	public static ArrayList<File> searchFile(File dir, String find) {
+	private static ArrayList<File> searchFile(File dir, String find) {
 
 		String name = "";
 		String pfad = "";
@@ -74,14 +74,14 @@ public class Main {
 	}
 
 	// Pfad speichern
-	public static void savePfad(String text) {
+	private static void savePfad(String text) {
 		pfadSpeicher = verlaengere(pfadSpeicher);
 		pfadSpeicher[i] = text;
 		i = i + 1;
 	}
 
 	// Das Array zum Speichern der Pfade um 1 Stelle verlaengern, Array ist flexibel
-	public static String[] verlaengere(String[] array) {
+	private static String[] verlaengere(String[] array) {
 		String[] hilfe = new String[array.length + 1];
 
 		for (int i = 0; i < array.length; i++) {
@@ -94,7 +94,7 @@ public class Main {
 	}
 
 	// Musik wird abgespielt
-	public static void soundDateiAbspielen(String[] pfadtext) {
+	private static void soundDateiAbspielen(String[] pfadtext) {
 
 		// Pfad fuer MediaPlayer wird aktuell vorrausgesetzt ohne dass Pfadaenderungen
 		// vorgenommen wurden
@@ -110,7 +110,7 @@ public class Main {
 
 	// Die einzelnen Pfade werden ausgegeben (Ueberpruefung ob alle Dateien gefunden
 	// wurden)
-	public static void testausgabe(String pfadtext[]) {
+	private static void testausgabe(String pfadtext[]) {
 		for (int i = 0; i < pfadtext.length - 1; i++) {
 			System.out.println("Der Pfad lautet: " + pfadtext[i]);
 		}
