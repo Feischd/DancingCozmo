@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TestMethoden {
 
-	//Übergeordnete Zaehlvariable
+	//Uebergeordnete Zaehlvariable
 	static int i = 0;
 
 	// Methode um nach einem bestimmten File in einem bestimmten Verzeichnis suchen
@@ -17,12 +17,12 @@ public class TestMethoden {
 		File[] files = dir.listFiles();
 		ArrayList<File> matches = new ArrayList<File>();
 		if (files != null) {
-			for (int i = 0; i < files.length; i++) {
+			for (int j = 0; j < files.length; j++) {
 
-				if (files[i].getName().endsWith(find)) {
+				if (files[j].getName().endsWith(find)) {
 
-					name = name + files[i].getName();
-					pfad = pfad + files[i].getPath();
+					name = name + files[j].getName();
+					pfad = pfad + files[j].getPath();
 					// System.out.println("Dateiname: " + name);
 					// System.out.println("Dateipfad: " + pfad);
 					// System.out.println();
@@ -32,12 +32,12 @@ public class TestMethoden {
 					name = "";
 					pfad = "";
 
-					matches.add(files[i]);
+					matches.add(files[j]);
 				}
 
-				if (files[i].isDirectory()) {
+				if (files[j].isDirectory()) {
 					// fuegt der ArrayList die ArrayList mit den Treffern aus dem Unterordner hinzu
-					matches.addAll(searchFile(files[i], find));
+					matches.addAll(searchFile(files[j], find));
 				}
 			}
 		}
