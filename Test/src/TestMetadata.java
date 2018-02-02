@@ -32,6 +32,7 @@ public class TestMetadata {
         Metadata metadata = new Metadata();
         Parser parser = new Mp3Parser();
         
+        
         //Für andere Typen, ging nicht
 //        Parser parser = new Parser() {
 //			
