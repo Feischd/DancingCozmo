@@ -33,7 +33,7 @@ public class TestMetadata {
         Parser parser = new Mp3Parser();
         
         
-        //Für andere Typen, Ausgabe bei allem: "null"
+        //Fuer andere Typen, Ausgabe bei allem: "null"
 //        Parser parser = new Parser() {
 //			
 //			@Override
