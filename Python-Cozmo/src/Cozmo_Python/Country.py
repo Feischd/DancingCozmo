@@ -9,41 +9,41 @@ def cozmo_program(robot: cozmo.robot.Robot):
     robot.turn_in_place(degrees(-360)).wait_for_completed()
     # Lift geht hoch und wieder runter (at 5 radians per second)
     robot.move_lift(5)
-    time.sleep(3)
+    time.sleep(0.5)
     robot.move_lift(-5)
-    time.sleep(3)
+    time.sleep(0.5)
     # dreht sich um 360° nach links
     robot.turn_in_place(degrees(360)).wait_for_completed()
     # Lift geht hoch und wieder runter (at 5 radians per second)
     robot.move_lift(5)
-    time.sleep(3)
+    time.sleep(0.5)
     robot.move_lift(-5)
-    time.sleep(3)
+    time.sleep(0.5)
     # faehrt 150 millimeters rueckwaerts mit 50 millimeters-per-second.
-    robot.drive_straight(distance_mm(-150), speed_mmps(50)).wait_for_completed()
+    robot.drive_straight(distance_mm(-150), speed_mmps(150)).wait_for_completed()
     # dreht sich um 360° nach links
     robot.turn_in_place(degrees(360)).wait_for_completed()
     # Lift geht hoch und wieder runter (at 5 radians per second)
     robot.move_lift(5)
-    time.sleep(3)
+    time.sleep(0.5)
     robot.move_lift(-5)
-    time.sleep(3)
+    time.sleep(0.5)
     # faehrt 150 millimeters rueckwaerts mit 50 millimeters-per-second.
-    robot.drive_straight(distance_mm(-150), speed_mmps(50)).wait_for_completed()
+    robot.drive_straight(distance_mm(-150), speed_mmps(150)).wait_for_completed()
     # dreht sich um 90° nach rechts
     robot.turn_in_place(degrees(-90)).wait_for_completed()
     # Lift geht hoch und wieder runter (at 5 radians per second)
     robot.move_lift(5)
-    time.sleep(3)
+    time.sleep(0.5)
     robot.move_lift(-5)
-    time.sleep(3)
+    time.sleep(0.5)
     # dreht sich um 270° nach links
     robot.turn_in_place(degrees(270)).wait_for_completed()
     # Lift geht hoch und wieder runter (at 5 radians per second)
     robot.move_lift(5)
-    time.sleep(3)
+    time.sleep(0.5)
     robot.move_lift(-5)
-    time.sleep(3)
+    time.sleep(0.5)
 
 
 
