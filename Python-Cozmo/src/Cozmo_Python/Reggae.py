@@ -14,12 +14,12 @@ robot.set_lift_height(0.0).wait_for_completed()
 
 # faehrt rueckwaerts & H geht hoch
 robot.move_lift(5)
-robot.drive_wheels(-50, -50)
-time.sleep(3)
+robot.drive_wheels(-150, -150)
+time.sleep(1)
 # faehrt vorwaerts & H geht runter
 robot.move_lift(-5)
-robot.drive_wheels(50, 50)
-time.sleep(3)
+robot.drive_wheels(150, 150)
+time.sleep(1)
 
 
 
