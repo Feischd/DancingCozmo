@@ -16,8 +16,6 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-	private ArrayList<Song> songs = new ArrayList<>();
-
 	// Alles FXML Sachen
 	@FXML
 	AnchorPane AnchorP;
@@ -266,18 +264,6 @@ public class Main extends Application {
 		} catch (IOException e) {
 		}
 	}
-
-
-	private void fillSongArray(){
-		String apiKey = "e0499e4c41404deb64230e4881e2eb27";
-		for(int i=0; i<songs.size(); i++){
-
-		}
-	}
-
-
-
-
-
-
 }
+
+//hallo alex
