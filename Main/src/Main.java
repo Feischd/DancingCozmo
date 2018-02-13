@@ -57,6 +57,7 @@ public class Main extends Application {
 
 	// Hilfsarray um die einzelnen Pfade der Musikdateien zu speichern
 	private static String[] pfadSpeicher = new String[1];
+	//nicht löschen!!!!!!
 	private static AudioFilePlayer player = new AudioFilePlayer();
 
 	//Methoden
