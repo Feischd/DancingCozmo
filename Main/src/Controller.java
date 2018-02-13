@@ -47,12 +47,20 @@ public class Controller{
 //		TextLiednamen.setText(text);
 //	}
 	
-//	String titel;
-//	String kuenstler;
-//	String genre;
-//	String jahr;
-//	String album;
-//	String sonstiges;	
+//	String text = "";
+//	
+//	public void setTextLiednamen(TextArea text) {
+//		TextLiednamen = text;
+//	}
+
+//	public static void main(String[] args) {
+//		System.out.println("111");
+//	}
+
+	
+	public static void test() {
+		System.out.println("123");
+	}
 	
 	}
 	

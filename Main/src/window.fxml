@@ -7,17 +7,17 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorP" prefHeight="439.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<AnchorPane fx:id="AnchorP" prefHeight="439.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <children>
-      <TextArea id="TextLiednamen" editable="false" prefHeight="450.0" prefWidth="250.0" text="Hier werden die Liednamen stehen" />
-      <ImageView id="Bild" fitHeight="200.0" fitWidth="200.0" layoutX="300.0" pickOnBounds="true" preserveRatio="true" />
-      <TextField id="Titel" layoutX="344.0" layoutY="200.0" promptText="Titel" />
-      <TextField id="Kuenstler" layoutX="344.0" layoutY="225.0" promptText="Künstler" />
-      <TextField id="Genre" layoutX="344.0" layoutY="250.0" promptText="Genre" />
-      <TextField id="Jahr" layoutX="344.0" layoutY="275.0" promptText="Jahr" />
-      <TextField id="Album" layoutX="344.0" layoutY="300.0" promptText="Album" />
-      <TextArea id="Sonstiges" layoutX="250.0" layoutY="324.0" prefHeight="88.0" prefWidth="250.0" promptText="sonstige Informationen" />
-      <Button id="Play" layoutX="250.0" layoutY="412.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="128.0" text="Play" />
-      <Button id="Stop" layoutX="378.0" layoutY="412.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="115.0" text="Stop" />
+      <TextArea fx:id="TextLiednamen" editable="false" prefHeight="450.0" prefWidth="250.0" text="Hier werden die Liednamen stehen" />
+      <ImageView fx:id="Bild" fitHeight="200.0" fitWidth="200.0" layoutX="300.0" pickOnBounds="true" preserveRatio="true" />
+      <TextField fx:id="Titel" layoutX="344.0" layoutY="200.0" promptText="Titel" />
+      <TextField fx:id="Kuenstler" layoutX="344.0" layoutY="225.0" promptText="Künstler" />
+      <TextField fx:id="Genre" layoutX="344.0" layoutY="250.0" promptText="Genre" />
+      <TextField fx:id="Jahr" layoutX="344.0" layoutY="275.0" promptText="Jahr" />
+      <TextField fx:id="Album" layoutX="344.0" layoutY="300.0" promptText="Album" />
+      <TextArea fx:id="Sonstiges" layoutX="250.0" layoutY="324.0" prefHeight="88.0" prefWidth="250.0" promptText="sonstige Informationen" />
+      <Button fx:id="Play" layoutX="250.0" layoutY="412.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="128.0" text="Play" />
+      <Button fx:id="Stop" layoutX="378.0" layoutY="412.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="115.0" text="Stop" />
    </children>
 </AnchorPane>

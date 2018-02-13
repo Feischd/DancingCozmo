@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -20,7 +19,7 @@ public class Main extends Application{
 
 	public static void main(String[] args) {
 		
-		Controller window;
+		Controller controller = new Controller();
 
 		// Angemeldeter Benutzer
 		File dir = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Music");
@@ -142,7 +141,7 @@ public class Main extends Application{
 			// primaryStage.setMinWidth(900.00);
 			primaryStage.setResizable(false);
 			primaryStage.setTitle("DancingCozmo");
-
+			
 			Scene scene = new Scene(pane); 
 			primaryStage.setScene(scene); 
 			primaryStage.show(); 
