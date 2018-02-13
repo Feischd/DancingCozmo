@@ -170,32 +170,45 @@ public class Main extends Application {
 	
 	
 	
-	//text ist fuer den Pfad
-	private void TestKonverter(String text) throws IOException {
+	//text = eingegebener Pfad
+	private void Konverter(String text) throws IOException {
 	
-	String[] basisPfad = new String[5];
-	
-//	String basisPfad = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De Strijdlust is geboren\\03 Het Gelders Volkslied"; // ohne
-	// .wma
-	
-	basisPfad[0] = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De Strijdlust is geboren\\03 Het Gelders Volkslied";
-	basisPfad[1] = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De Strijdlust is geboren\\04 Winteroorlog";
-	basisPfad[2] = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De Strijdlust is geboren\\05 En wij stappen stevig voort";
-	basisPfad[3] = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De Strijdlust is geboren\\06 Furor Teutonicus";
-	basisPfad[4] = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De Strijdlust is geboren\\07 Het bier zal weer vloeien";
-	
-	for(int i = 0; i < basisPfad.length; i++) {
-		String inputPfad = basisPfad[i] + ".wma";
-		String outputPfad = basisPfad[i] + ".mp3";
+		String lied = getLiedName(text);
+		String kuenstler = getKuenstlerName(text);
+		addToTextArea(kuenstler + " " + lied);
 		
-		ProcessBuilder builder = new ProcessBuilder("ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad);
-		Process process = builder.start();
+		// Liednamen jeweils ausschneiden fuer spaeter
+		// String basisPfad = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De Strijdlust is geboren\\03 Het Gelders Volkslied"; // ohne
+		// .wma
+		
+
+// Alternative, falls temp in Project spaeter nicht gehen sollte
+// File f = new File("C:\\Users\\" + System.getProperty("user.name") + "\\_Dancing Cozmo Temp\\");
+		File f = new File("temp");
+		f.mkdir();
+	
+		String inputPfad = text;
+
+// Alternative, falls temp in Projekt spaeter nicht gehen sollte
+// String outputPfad = "C:\\Users\\" + System.getProperty("user.name") + "\\_Dancing Cozmo Temp\\" + name + ".mp3";
+	
+			String outputPfad = "temp\\" + kuenstler + " | " + lied + ".mp3";
+			
+			ProcessBuilder builder = new ProcessBuilder("ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad);
+			Process process = builder.start();
 	}
 	
-	
+	private String getLiedName(String text) {
+		String name = "";
+		
+		return name;
 	}
 	
-	
+	private String getKuenstlerName(String text) {
+		String name = "";
+		
+		return name;
+	}
 	
 	
 	
