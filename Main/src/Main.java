@@ -20,7 +20,7 @@ public class Main extends Application{
 
 	public static void main(String[] args) {
 		
-		Window window;
+		Controller window;
 
 		// Angemeldeter Benutzer
 		File dir = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Music");
