@@ -21,8 +21,7 @@ public class CozmoPlayer {
     }
 
     // creates dance depending on genre and length of song
-    private void createDance(String genre, double laenge){
-        //int laenge2 = (int) laenge;
+    private void createDance(String genre, int laenge){
         if(dances.contains(genre)){
             switch(genre){
                 case "Blues": new Dances.Blues().createDance(laenge/19);
@@ -31,6 +30,7 @@ public class CozmoPlayer {
         }
         else{
             //Standardtanz auswählen; unabhaengig vom Genre
+            // universal
         }
     }
 

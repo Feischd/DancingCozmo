@@ -3,7 +3,7 @@ public class Song {
     private String kuenstler;
     private String pfad;
     private String genre;
-    private double laenge;
+    private int laenge;
     private int erscheinungsjahr;
     private String album;
     private String bild;
@@ -15,7 +15,7 @@ public class Song {
         this.kuenstler = kuenstler;
         this.pfad = pfad;
         genre = "";
-        laenge = 0.0;
+        laenge = 0;
         erscheinungsjahr = 0;
         album = "";
         bild = "";
@@ -27,7 +27,7 @@ public class Song {
         this.genre = genre;
     }
 
-    public void setLaenge(double laenge){
+    public void setLaenge(int laenge){
         this.laenge = laenge;
     }
 
@@ -64,7 +64,7 @@ public class Song {
         return genre;
     }
 
-    public double getLaenge(){
+    public int getLaenge(){
         return laenge;
     }
 
