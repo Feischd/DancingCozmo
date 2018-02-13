@@ -52,7 +52,9 @@ def cozmo_program(robot: cozmo.robot.Robot):
     # faehrt 150 millimeters vorwaerts mit 50 millimeters-per-second.
     robot.drive_straight(distance_mm(150), speed_mmps(150)).wait_for_completed()
 
-
-cozmo.run_program(cozmo_program)
+i = 0
+while i < 2:
+    cozmo.run_program(cozmo_program)
+    i = i + 1
 
 

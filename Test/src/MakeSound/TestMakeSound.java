@@ -11,7 +11,7 @@ public class TestMakeSound {
 		//ms.playSound("01_Titelnummer_1.wav");
 		
 		//MP3 Pfad angeben
-		ms.playSound("");
+		ms.playSound("C:\\Users\\Ramona\\Music\\Mittalter-Rock\\Saltatio Mortis\\Wachstum über alles\\B00DJU3ETW_(disc_1)_01_-_Wachstum_über_alles.mp3");
 	}
 
 }
