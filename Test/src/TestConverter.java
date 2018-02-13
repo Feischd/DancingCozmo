@@ -22,7 +22,8 @@ public class TestConverter {
 			String inputPfad = basisPfad[i] + ".wma";
 //			String outputPfad = basisPfad[i] + ".mp3";
 			
-			String outputPfad = "temp\\" + name + ".mp3";
+			//Geht nicht so
+			String outputPfad = "C:\\Users\\" + System.getProperty("user.dir") + "\\Desktop" + name + ".mp3";
 			
 			ProcessBuilder builder = new ProcessBuilder("ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad);
 			Process process = builder.start();

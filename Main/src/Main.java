@@ -173,10 +173,8 @@ public class Main extends Application {
 	//text ist fuer den Pfad
 	private void TestKonverter(String text) throws IOException {
 	
-	String name = "";
 	String[] basisPfad = new String[5];
 	
-	//Hier die Pfade einfuegen
 //	String basisPfad = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De Strijdlust is geboren\\03 Het Gelders Volkslied"; // ohne
 	// .wma
 	
@@ -187,11 +185,8 @@ public class Main extends Application {
 	basisPfad[4] = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De Strijdlust is geboren\\07 Het bier zal weer vloeien";
 	
 	for(int i = 0; i < basisPfad.length; i++) {
-		//Geht mit allen unterschiedlichen Formaten
 		String inputPfad = basisPfad[i] + ".wma";
-//		String outputPfad = basisPfad[i] + ".mp3";
-		
-		String outputPfad = "temp" + name + ".mp3";
+		String outputPfad = basisPfad[i] + ".mp3";
 		
 		ProcessBuilder builder = new ProcessBuilder("ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad);
 		Process process = builder.start();
