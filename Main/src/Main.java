@@ -2,7 +2,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Main {
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+
+public class Main extends Application{
 
 	// Zaehlvariable zum aktuellen speichern der Pfade (wird spaeter entfernt)
 	static int i = 0;
@@ -12,6 +18,8 @@ public class Main {
 	private static AudioFilePlayer player = new AudioFilePlayer();
 
 	public static void main(String[] args) {
+		
+//		Window window = new Window();
 
 		// Angemeldeter Benutzer
 		File dir = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Music");
@@ -32,6 +40,8 @@ public class Main {
 		// beliebiges Stueck abgespielt werden kann
 		testausgabe(pfadSpeicher);
 		soundDateiAbspielen(pfadSpeicher);
+		
+		launch(args);
 
 	}
 
@@ -110,7 +120,7 @@ public class Main {
 		*/
 
 		// Play with AudioFilePlayer in GUI
-		player.play(pfadtext[1]);
+//		player.play(pfadtext[1]);
 	}
 
 	// Die einzelnen Pfade werden ausgegeben (Ueberpruefung ob alle Dateien gefunden
@@ -118,6 +128,36 @@ public class Main {
 	private static void testausgabe(String pfadtext[]) {
 		for (int i = 0; i < pfadtext.length - 1; i++) {
 			System.out.println("Der Pfad lautet: " + pfadtext[i]);
+		}
+	}
+
+	
+	
+	
+	
+	
+	Stage primaryStage;
+
+	public void start(Stage primaryStage) throws IOException {
+		this.primaryStage = primaryStage;
+		mainWindow();
+	}
+
+	private void mainWindow() {
+
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(ClassLoader.getSystemResource("window.fxml"));
+			AnchorPane pane = (AnchorPane) loader.load();
+			// primaryStage.setMinHeight(600.00);
+			// primaryStage.setMinWidth(900.00);
+			primaryStage.setResizable(false);
+			primaryStage.setTitle("DancingCozmo");
+
+			Scene scene = new Scene(pane); 
+			primaryStage.setScene(scene); 
+			primaryStage.show(); 
+			} catch (IOException e) {
 		}
 	}
 }
