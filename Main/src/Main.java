@@ -62,10 +62,47 @@ public class Main extends Application {
 	@FXML
 	private void StopClicked(ActionEvent event) {
 		String text = TextLiednamen.getText();
-		text = text + "\n Tschüss";
+		text = text + "\n Tschuess";
 		TextLiednamen.setText(text);
 	}
 
+	
+	
+//	private void addToTextArea
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// Zaehlvariable zum aktuellen speichern der Pfade (wird spaeter entfernt)
 	static int i = 0;
 
