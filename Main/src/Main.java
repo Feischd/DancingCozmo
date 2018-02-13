@@ -21,6 +21,7 @@ public class Main extends Application {
 	AnchorPane AnchorP;
 
 	@FXML
+	static
 	TextArea TextLiednamen;
 
 	@FXML
@@ -61,8 +62,6 @@ public class Main extends Application {
 
 	//Methoden
 	public static void main(String[] args) {
-
-		Controller controller = new Controller();
 
 		// Angemeldeter Benutzer
 		File dir = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Music");
@@ -156,7 +155,8 @@ public class Main extends Application {
 	// wurden)
 	private static void testausgabe(String pfadtext[]) {
 		for (int i = 0; i < pfadtext.length - 1; i++) {
-			System.out.println("Der Pfad lautet: " + pfadtext[i]);
+//			System.out.println("Der Pfad lautet: " + pfadtext[i]);
+			addToTextArea(pfadtext[i]);
 		}
 	}
 
@@ -200,7 +200,7 @@ public class Main extends Application {
 		addToTextArea("Tschuess");
 	}
 
-	private void addToTextArea(String text) {
+	private static void addToTextArea(String text) {
 		String alterText = TextLiednamen.getText();
 		String neuerText = alterText + "\n" + text;
 		TextLiednamen.setText(neuerText);
