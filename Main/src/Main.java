@@ -161,6 +161,25 @@ public class Main extends Application {
 	}
 
 	
+	//Aus Pfad was wir brauchen
+	//Metadaten vorhanden
+	
+	//Sonst über Titel
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	//GUI
