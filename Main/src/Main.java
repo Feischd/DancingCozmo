@@ -57,13 +57,11 @@ public class Main extends Application {
 
 	// Hilfsarray um die einzelnen Pfade der Musikdateien zu speichern
 	private static String[] pfadSpeicher = new String[1];
-	//nicht löschen!!!!!!
+	//nicht loeschen!!!!!!
 	private static AudioFilePlayer player = new AudioFilePlayer();
 
 	//Methoden
 	public static void main(String[] args) {
-
-		Controller controller = new Controller();
 
 		// Angemeldeter Benutzer
 		File dir = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Music");
@@ -158,9 +156,65 @@ public class Main extends Application {
 	private static void testausgabe(String pfadtext[]) {
 		for (int i = 0; i < pfadtext.length - 1; i++) {
 			System.out.println("Der Pfad lautet: " + pfadtext[i]);
+//			addToTextArea(pfadtext[i]);
 		}
 	}
 
+	
+//Alles zu Mp3 Konvertieren, falls Metadaten, Titel + Kuenstler auslesen --> 
+	//Speichern in temp mit Kuenstler + Titel
+	
+	
+	
+	
+	
+	
+	
+	//text = eingegebener Pfad
+	private void Konverter(String text) throws IOException {
+	
+		String lied = getLiedName(text);
+		String kuenstler = getKuenstlerName(text);
+		addToTextArea(kuenstler + " " + lied);
+		
+		// Liednamen jeweils ausschneiden fuer spaeter
+		// String basisPfad = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De Strijdlust is geboren\\03 Het Gelders Volkslied"; // ohne
+		// .wma
+		
+
+// Alternative, falls temp in Project spaeter nicht gehen sollte
+// File f = new File("C:\\Users\\" + System.getProperty("user.name") + "\\_Dancing Cozmo Temp\\");
+		File f = new File("temp");
+		f.mkdir();
+	
+		String inputPfad = text;
+
+// Alternative, falls temp in Projekt spaeter nicht gehen sollte
+// String outputPfad = "C:\\Users\\" + System.getProperty("user.name") + "\\_Dancing Cozmo Temp\\" + name + ".mp3";
+	
+			String outputPfad = "temp\\" + kuenstler + " | " + lied + ".mp3";
+			
+			ProcessBuilder builder = new ProcessBuilder("ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad);
+			Process process = builder.start();
+	}
+	
+	private String getLiedName(String text) {
+		String name = "";
+		
+		return name;
+	}
+	
+	private String getKuenstlerName(String text) {
+		String name = "";
+		
+		return name;
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -200,7 +254,8 @@ public class Main extends Application {
 	private void StopClicked(ActionEvent event) {
 		addToTextArea("Tschuess");
 	}
-
+	
+	@FXML
 	private void addToTextArea(String text) {
 		String alterText = TextLiednamen.getText();
 		String neuerText = alterText + "\n" + text;

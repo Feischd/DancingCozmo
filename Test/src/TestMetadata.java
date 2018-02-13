@@ -23,7 +23,7 @@ public class TestMetadata {
      * @param args
      */
     public static void main(String[] args) {
-        String fileLocation = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De Strijdlust is geboren\\03 Het Gelders Volkslied.wma";
+        String fileLocation = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De Strijdlust is geboren\\03 Het Gelders Volkslied.mp3";
 
         try {
 
