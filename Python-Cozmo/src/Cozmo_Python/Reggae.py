@@ -13,8 +13,8 @@ def cozmo_program(robot: cozmo.robot.Robot):
     # H geht runter
     robot.move_lift(-10)
     # faehrt einen Kreis linkssrum
-    robot.drive_wheels(10, 202)
-    time.sleep(2.2)
+    robot.drive_wheels(10, 201)
+    time.sleep(2.3)
 
 
 
