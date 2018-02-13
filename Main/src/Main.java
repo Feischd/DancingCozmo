@@ -21,7 +21,6 @@ public class Main extends Application {
 	AnchorPane AnchorP;
 
 	@FXML
-	static
 	TextArea TextLiednamen;
 
 	@FXML
@@ -58,6 +57,7 @@ public class Main extends Application {
 
 	// Hilfsarray um die einzelnen Pfade der Musikdateien zu speichern
 	private static String[] pfadSpeicher = new String[1];
+	//nicht loeschen!!!!!!
 	private static AudioFilePlayer player = new AudioFilePlayer();
 
 	//Methoden
@@ -155,8 +155,7 @@ public class Main extends Application {
 	// wurden)
 	private static void testausgabe(String pfadtext[]) {
 		for (int i = 0; i < pfadtext.length - 1; i++) {
-//			System.out.println("Der Pfad lautet: " + pfadtext[i]);
-			addToTextArea(pfadtext[i]);
+			System.out.println("Der Pfad lautet: " + pfadtext[i]);
 		}
 	}
 
@@ -200,9 +199,9 @@ public class Main extends Application {
 		addToTextArea("Tschuess");
 	}
 
-	private static void addToTextArea(String textDazu) {
+	private void addToTextArea(String text) {
 		String alterText = TextLiednamen.getText();
-		String neuerText = alterText + "\n" + textDazu;
+		String neuerText = alterText + "\n" + text;
 		TextLiednamen.setText(neuerText);
 	}
 }
