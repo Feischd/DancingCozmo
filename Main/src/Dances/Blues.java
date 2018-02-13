@@ -5,8 +5,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class Blues {
-    public void createBlues(double laenge){
+public class Blues extends Dance {
+    public Blues(){
+        laengeTanz = 18;
+    }
+
+    public void createDance(int laenge){
         PrintWriter pWriter = null;
         try {
             // creating file
@@ -16,6 +20,7 @@ public class Blues {
             pWriter.println("import time");
             pWriter.println("import cozmo");
             pWriter.println("from cozmo.util import degrees, distance_mm, speed_mmps");
+            pWriter.println();
 
             pWriter.println("def cozmo_program(robot: cozmo.robot.Robot):");
             // falls der Lift oben ist wird er runter geholt
@@ -67,7 +72,12 @@ public class Blues {
             // faehrt 150 millimeters vorwaerts mit 50 millimeters-per-second.
             pWriter.println("   robot.drive_straight(distance_mm(150), speed_mmps(150)).wait_for_completed()");
 
-            pWriter.println("cozmo.run_program(cozmo_program)");
+            //pWriter.println("cozmo.run_program(cozmo_program)");
+            pWriter.println();
+            pWriter.println("i = " + laenge);
+            pWriter.println("while i < 2:");
+            pWriter.println("   cozmo.run_program(cozmo_program)");
+            pWriter.println("   i = i + 1");
 
 
         } catch (IOException ioe) {
