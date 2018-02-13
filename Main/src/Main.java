@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -19,7 +20,7 @@ public class Main extends Application{
 
 	public static void main(String[] args) {
 		
-//		Window window = new Window();
+		Window window;
 
 		// Angemeldeter Benutzer
 		File dir = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Music");
@@ -42,7 +43,7 @@ public class Main extends Application{
 		soundDateiAbspielen(pfadSpeicher);
 		
 		launch(args);
-
+		
 	}
 
 	// Ab hier stehen alle Methoden, die spaeter aufgerufen werden
@@ -106,18 +107,6 @@ public class Main extends Application{
 
 	// Musik wird abgespielt
 	private static void soundDateiAbspielen(String[] pfadtext) {
-
-		// Pfad fuer MediaPlayer wird aktuell vorrausgesetzt ohne dass Pfadaenderungen
-		// vorgenommen wurden
-
-		// Player wird geoeffnet und das Lied wiedergegeben (egal welche Endung)
-		/*try {
-			Process a = Runtime.getRuntime()
-					.exec(new String[] { "C:\\Program Files (x86)\\Windows Media Player\\wmplayer.exe", pfadtext[1] });
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		*/
 
 		// Play with AudioFilePlayer in GUI
 //		player.play(pfadtext[1]);
