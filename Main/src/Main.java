@@ -33,6 +33,7 @@ public class Main extends Application {
 	AnchorPane AnchorP;
 
 	@FXML
+	static
 	TextArea TextLiednamen;
 
 	@FXML
@@ -67,6 +68,8 @@ public class Main extends Application {
 	// Zaehlvariable zum aktuellen speichern der Pfade (wird spaeter entfernt)
 	static int i = 0;
 
+	static int nummer = 0;
+
 	// Hilfsarray um die einzelnen Pfade der Musikdateien zu speichern
 	private static String[] pfadSpeicher = new String[1];
 	// nicht loeschen!!!!!!
@@ -94,6 +97,8 @@ public class Main extends Application {
 		// beliebiges Stueck abgespielt werden kann
 		testausgabe(pfadSpeicher);
 		soundDateiAbspielen(pfadSpeicher);
+		
+		
 
 		launch(args);
 
@@ -168,27 +173,14 @@ public class Main extends Application {
 	private static void testausgabe(String pfadtext[]) {
 		for (int i = 0; i < pfadtext.length - 1; i++) {
 			System.out.println("Der Pfad lautet: " + pfadtext[i]);
-			// addToTextArea(pfadtext[i]);
 		}
 	}
 
 	// Alles zu Mp3 Konvertieren, falls Metadaten, Titel + Kuenstler auslesen -->
 	// Speichern in temp mit Kuenstler + Titel
 
-	int nummer = 0;
-
 	// text = eingegebener Pfad
-	private void Konverter(String text) throws IOException {
-
-		// kommt spaeter
-		// String lied = getLiedName(text);
-		// String kuenstler = getKuenstlerName(text);
-		// addToTextArea(kuenstler + " " + lied);
-
-		// Liednamen jeweils ausschneiden fuer spaeter
-		// String basisPfad = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De
-		// Strijdlust is geboren\\03 Het Gelders Volkslied"; // ohne
-		// .wma
+	private static void konverter(String text) throws IOException {
 
 		// Alternative, falls temp in Project spaeter nicht gehen sollte
 		// File f = new File("C:\\Users\\" + System.getProperty("user.name") +
@@ -216,7 +208,7 @@ public class Main extends Application {
 
 	// Ab hier Metadaten
 
-	private void getMetadata(String text) {
+	private static void getMetadata(String text) {
 
 		String fileLocation = text;
 
@@ -240,12 +232,14 @@ public class Main extends Application {
 
 			// Retrieve the necessary info from metadata
 			// Names - title, xmpDM:artist etc. - mentioned below may differ based
-			System.out.println("----------------------------------------------");
-			System.out.println("Title: " + metadata.get("title"));
-			System.out.println("Artists: " + metadata.get("xmpDM:artist"));
-			System.out.println("Composer : " + metadata.get("xmpDM:composer"));
-			System.out.println("Genre : " + metadata.get("xmpDM:genre"));
-			System.out.println("Album : " + metadata.get("xmpDM:album"));
+			// System.out.println("----------------------------------------------");
+			// System.out.println("Title: " + metadata.get("title"));
+			// System.out.println("Artists: " + metadata.get("xmpDM:artist"));
+			// System.out.println("Composer : " + metadata.get("xmpDM:composer"));
+			// System.out.println("Genre : " + metadata.get("xmpDM:genre"));
+			// System.out.println("Album : " + metadata.get("xmpDM:album"));
+
+			addToTextArea(metadata.get("xmpDM:artist") + " " + metadata.get("title"));
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -256,9 +250,7 @@ public class Main extends Application {
 		} catch (TikaException e) {
 			e.printStackTrace();
 		}
-
 	}
-
 
 	// Konvertieren
 	// speichern
@@ -303,7 +295,7 @@ public class Main extends Application {
 	}
 
 	@FXML
-	private void addToTextArea(String text) {
+	private static void addToTextArea(String text) {
 		String alterText = TextLiednamen.getText();
 		String neuerText = alterText + "\n" + text;
 		TextLiednamen.setText(neuerText);
