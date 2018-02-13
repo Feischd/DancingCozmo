@@ -20,6 +20,7 @@ public class Blues extends Dance {
             pWriter.println("import time");
             pWriter.println("import cozmo");
             pWriter.println("from cozmo.util import degrees, distance_mm, speed_mmps");
+            pWriter.println();
 
             pWriter.println("def cozmo_program(robot: cozmo.robot.Robot):");
             // falls der Lift oben ist wird er runter geholt
@@ -72,7 +73,7 @@ public class Blues extends Dance {
             pWriter.println("   robot.drive_straight(distance_mm(150), speed_mmps(150)).wait_for_completed()");
 
             //pWriter.println("cozmo.run_program(cozmo_program)");
-
+            pWriter.println();
             pWriter.println("i = " + laenge);
             pWriter.println("while i < 2:");
             pWriter.println("   cozmo.run_program(cozmo_program)");
