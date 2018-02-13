@@ -8,13 +8,6 @@ import java.awt.Desktop;
 
 
 public class CozmoPlayer {
-    private ArrayList<String> dances;
-
-    public CozmoPlayer(){
-        dances = new ArrayList<>();
-        dances.add("Blues");
-    }
-
     public void play(Song song){
         // creation of dance
         createDance(song.getGenre(), song.getLaenge());
@@ -24,7 +17,6 @@ public class CozmoPlayer {
 
     // creates dance depending on genre and length of song
     private void createDance(String genre, int laenge){
-        if(dances.contains(genre)){
             switch(genre){
                 case "Blues": new Dances.Blues().createDance(laenge/19);
                     break;
@@ -73,11 +65,6 @@ public class CozmoPlayer {
                 default: new Dances.Universal().createDance(laenge/23);
                     break;
             }
-
-        }
-        else{
-            new Dances.Universal().createDance(laenge/23);
-        }
     }
 
     private void execDance(){
