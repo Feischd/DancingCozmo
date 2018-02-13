@@ -156,9 +156,52 @@ public class Main extends Application {
 	private static void testausgabe(String pfadtext[]) {
 		for (int i = 0; i < pfadtext.length - 1; i++) {
 			System.out.println("Der Pfad lautet: " + pfadtext[i]);
+//			addToTextArea(pfadtext[i]);
 		}
 	}
 
+	
+//Alles zu Mp3 Konvertieren, falls Metadaten, Titel + Kuenstler auslesen --> 
+	//Speichern in temp mit Kuenstler + Titel
+	
+	
+	
+	
+	
+	
+	
+	//text ist fuer den Pfad
+	private void TestKonverter(String text) throws IOException {
+	
+	String[] basisPfad = new String[5];
+	
+//	String basisPfad = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De Strijdlust is geboren\\03 Het Gelders Volkslied"; // ohne
+	// .wma
+	
+	basisPfad[0] = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De Strijdlust is geboren\\03 Het Gelders Volkslied";
+	basisPfad[1] = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De Strijdlust is geboren\\04 Winteroorlog";
+	basisPfad[2] = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De Strijdlust is geboren\\05 En wij stappen stevig voort";
+	basisPfad[3] = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De Strijdlust is geboren\\06 Furor Teutonicus";
+	basisPfad[4] = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De Strijdlust is geboren\\07 Het bier zal weer vloeien";
+	
+	for(int i = 0; i < basisPfad.length; i++) {
+		String inputPfad = basisPfad[i] + ".wma";
+		String outputPfad = basisPfad[i] + ".mp3";
+		
+		ProcessBuilder builder = new ProcessBuilder("ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad);
+		Process process = builder.start();
+	}
+	
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -198,7 +241,8 @@ public class Main extends Application {
 	private void StopClicked(ActionEvent event) {
 		addToTextArea("Tschuess");
 	}
-
+	
+	@FXML
 	private void addToTextArea(String text) {
 		String alterText = TextLiednamen.getText();
 		String neuerText = alterText + "\n" + text;
