@@ -1,13 +1,12 @@
 package Dances;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class Blues extends Dance {
-    public Blues(){
-        laengeTanz = 19;
+public class Country extends Dance {
+    public Country(){
+        laengeTanz = 22;
     }
 
     public void createDance(double laenge){
@@ -25,54 +24,46 @@ public class Blues extends Dance {
             pWriter.println("def cozmo_program(robot: cozmo.robot.Robot):");
             // falls der Lift oben ist wird er runter geholt
             pWriter.println("   robot.set_lift_height(0.0).wait_for_completed()");
-            // dreht sich um 45° nach links
-            pWriter.println("   robot.turn_in_place(degrees(45)).wait_for_completed()");
-            // Lift geht hoch und wieder runter (at 5 radians per second)
+            //dreht sich um 360° nach rechts
+            pWriter.println("   robot.turn_in_place(degrees(-360)).wait_for_completed()");
+            //Lift geht hoch und wieder runter (at 5 radians per second)
             pWriter.println("   robot.move_lift(5)");
             pWriter.println("   time.sleep(0.5)");
             pWriter.println("   robot.move_lift(-5)");
             pWriter.println("   time.sleep(0.5)");
-            // dreht sich um 90° nach rechts
-            pWriter.println("   robot.turn_in_place(degrees(-90)).wait_for_completed()");
-            // Lift geht hoch und wieder runter (at 5 radians per second)
+            //dreht sich um 360° nach links
+            pWriter.println("   robot.turn_in_place(degrees(360)).wait_for_completed()");
+            //Lift geht hoch und wieder runter (at 5 radians per second)
             pWriter.println("   robot.move_lift(5)");
             pWriter.println("   time.sleep(0.5)");
             pWriter.println("   robot.move_lift(-5)");
             pWriter.println("   time.sleep(0.5)");
-            // dreht sich um 45° nach links
-            pWriter.println("   robot.turn_in_place(degrees(45)).wait_for_completed()");
-            // Lift geht hoch und wieder runter (at 5 radians per second)
-            pWriter.println("   robot.move_lift(5)");
-            pWriter.println("   time.sleep(0.5)");
-            pWriter.println("   robot.move_lift(-5)");
-            pWriter.println("   time.sleep(0.5)");
-            // faehrt 150 millimeters rueckwaerts mit 50 millimeters-per-second.
+            //faehrt 150 millimeters rueckwaerts mit 50 millimeters-per-second
             pWriter.println("   robot.drive_straight(distance_mm(-150), speed_mmps(150)).wait_for_completed()");
-            // dreht sich um 45° nach links
-            pWriter.println("   robot.turn_in_place(degrees(45)).wait_for_completed()");
-            // Lift geht hoch und wieder runter (at 5 radians per second)
+            //dreht sich um 360° nach links
+            pWriter.println("   robot.turn_in_place(degrees(360)).wait_for_completed()");
+            //Lift geht hoch und wieder runter (at 5 radians per second)
             pWriter.println("   robot.move_lift(5)");
             pWriter.println("   time.sleep(0.5)");
             pWriter.println("   robot.move_lift(-5)");
             pWriter.println("   time.sleep(0.5)");
-            // dreht sich um 90° nach rechts
+            //faehrt 150 millimeters rueckwaerts mit 50 millimeters-per-second.
+            pWriter.println("   robot.drive_straight(distance_mm(-150), speed_mmps(150)).wait_for_completed()");
+            //dreht sich um 90° nach rechts
             pWriter.println("   robot.turn_in_place(degrees(-90)).wait_for_completed()");
-            // Lift geht hoch und wieder runter (at 5 radians per second)
+            //Lift geht hoch und wieder runter (at 5 radians per second)
             pWriter.println("   robot.move_lift(5)");
             pWriter.println("   time.sleep(0.5)");
             pWriter.println("   robot.move_lift(-5)");
             pWriter.println("   time.sleep(0.5)");
-            // dreht sich um 45° nach links
-            pWriter.println("   robot.turn_in_place(degrees(45)).wait_for_completed()");
-            // Lift geht hoch und wieder runter (at 5 radians per second)
+            //dreht sich um 270° nach links
+            pWriter.println("   robot.turn_in_place(degrees(270)).wait_for_completed()");
+            //Lift geht hoch und wieder runter (at 5 radians per second)
             pWriter.println("   robot.move_lift(5)");
             pWriter.println("   time.sleep(0.5)");
             pWriter.println("   robot.move_lift(-5)");
             pWriter.println("   time.sleep(0.5)");
-            // faehrt 150 millimeters vorwaerts mit 50 millimeters-per-second.
-            pWriter.println("   robot.drive_straight(distance_mm(150), speed_mmps(150)).wait_for_completed()");
 
-            //pWriter.println("cozmo.run_program(cozmo_program)");
             pWriter.println();
 
             pWriter.println("i = 0");
