@@ -3,12 +3,68 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class Main extends Application{
+public class Main extends Application {
+
+	// Alles FXML Sachen
+	@FXML
+	AnchorPane AnchorP;
+
+	@FXML
+	TextArea TextLiednamen;
+
+	@FXML
+	ImageView Bild;
+
+	@FXML
+	TextField Titel;
+
+	@FXML
+	TextField Kuenstler;
+
+	@FXML
+	TextField Genre;
+
+	@FXML
+	TextField Jahr;
+
+	@FXML
+	TextField Album;
+
+	@FXML
+	TextArea Sonstiges;
+
+	@FXML
+	Button Stop;
+
+	@FXML
+	Button Play;
+
+	// Beide nur Testweise, spaeter richtig ausprogrammieren und TextArea schreiben
+	// in anderer Methode
+	@FXML
+	private void PlayClicked(ActionEvent event) {
+		String text = TextLiednamen.getText();
+		text = text + "\n Hallo";
+		TextLiednamen.setText(text);
+	}
+
+	@FXML
+	private void StopClicked(ActionEvent event) {
+		String text = TextLiednamen.getText();
+		text = text + "\n Tschüss";
+		TextLiednamen.setText(text);
+	}
 
 	// Zaehlvariable zum aktuellen speichern der Pfade (wird spaeter entfernt)
 	static int i = 0;
@@ -18,7 +74,7 @@ public class Main extends Application{
 	private static AudioFilePlayer player = new AudioFilePlayer();
 
 	public static void main(String[] args) {
-		
+
 		Controller controller = new Controller();
 
 		// Angemeldeter Benutzer
@@ -40,9 +96,9 @@ public class Main extends Application{
 		// beliebiges Stueck abgespielt werden kann
 		testausgabe(pfadSpeicher);
 		soundDateiAbspielen(pfadSpeicher);
-		
+
 		launch(args);
-		
+
 	}
 
 	// Ab hier stehen alle Methoden, die spaeter aufgerufen werden
@@ -55,8 +111,8 @@ public class Main extends Application{
 
 		// Dateien werden gesucht, gefunden und die Pfade gespeichert
 		File[] files = dir.listFiles();
-		
-		//Matches koennen spaeter eventuell entfernt werden
+
+		// Matches koennen spaeter eventuell entfernt werden
 		ArrayList<File> matches = new ArrayList<File>();
 		if (files != null) {
 			for (int i = 0; i < files.length; i++) {
@@ -108,7 +164,7 @@ public class Main extends Application{
 	private static void soundDateiAbspielen(String[] pfadtext) {
 
 		// Play with AudioFilePlayer in GUI
-//		player.play(pfadtext[1]);
+		// player.play(pfadtext[1]);
 	}
 
 	// Die einzelnen Pfade werden ausgegeben (Ueberpruefung ob alle Dateien gefunden
@@ -119,11 +175,6 @@ public class Main extends Application{
 		}
 	}
 
-	
-	
-	
-	
-	
 	Stage primaryStage;
 
 	public void start(Stage primaryStage) throws IOException {
@@ -141,11 +192,11 @@ public class Main extends Application{
 			// primaryStage.setMinWidth(900.00);
 			primaryStage.setResizable(false);
 			primaryStage.setTitle("DancingCozmo");
-			
-			Scene scene = new Scene(pane); 
-			primaryStage.setScene(scene); 
-			primaryStage.show(); 
-			} catch (IOException e) {
+
+			Scene scene = new Scene(pane);
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch (IOException e) {
 		}
 	}
 }
