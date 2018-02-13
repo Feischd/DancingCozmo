@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-	// Alles FXML Sachen
+	// Attribute
 	@FXML
 	AnchorPane AnchorP;
 
@@ -49,88 +49,9 @@ public class Main extends Application {
 
 	@FXML
 	Button Play;
+	
+	Stage primaryStage;
 
-	// Beide nur Testweise, spaeter richtig ausprogrammieren und TextArea schreiben
-	// in anderer Methode
-	@FXML
-	private void PlayClicked(ActionEvent event) {
-		String text = TextLiednamen.getText();
-		text = text + "\n Hallo";
-		TextLiednamen.setText(text);
-	}
-
-	@FXML
-	private void StopClicked(ActionEvent event) {
-		String text = TextLiednamen.getText();
-		text = text + "\n Tschuess";
-		TextLiednamen.setText(text);
-	}
-
-	
-	
-	private void addToTextArea(String text) {
-		
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	// Zaehlvariable zum aktuellen speichern der Pfade (wird spaeter entfernt)
 	static int i = 0;
 
@@ -138,6 +59,7 @@ public class Main extends Application {
 	private static String[] pfadSpeicher = new String[1];
 	private static AudioFilePlayer player = new AudioFilePlayer();
 
+	//Methoden
 	public static void main(String[] args) {
 
 		Controller controller = new Controller();
@@ -166,9 +88,7 @@ public class Main extends Application {
 
 	}
 
-	// Ab hier stehen alle Methoden, die spaeter aufgerufen werden
-
-	// Methode um nach einem bestimmten File in einem bestimmten Verzeichnis suchen
+	// nach einem bestimmten File in einem bestimmten Verzeichnis suchen
 	private static ArrayList<File> searchFile(File dir, String find) {
 
 		String name = "";
@@ -240,7 +160,12 @@ public class Main extends Application {
 		}
 	}
 
-	Stage primaryStage;
+	
+	
+	
+	//GUI
+	
+
 
 	public void start(Stage primaryStage) throws IOException {
 		this.primaryStage = primaryStage;
@@ -253,8 +178,6 @@ public class Main extends Application {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(ClassLoader.getSystemResource("window.fxml"));
 			AnchorPane pane = (AnchorPane) loader.load();
-			// primaryStage.setMinHeight(600.00);
-			// primaryStage.setMinWidth(900.00);
 			primaryStage.setResizable(false);
 			primaryStage.setTitle("DancingCozmo");
 
@@ -263,5 +186,23 @@ public class Main extends Application {
 			primaryStage.show();
 		} catch (IOException e) {
 		}
+	}
+
+	// Beide nur Testweise, spaeter richtig ausprogrammieren und TextArea schreiben
+	// in anderer Methode
+	@FXML
+	private void PlayClicked(ActionEvent event) {
+		addToTextArea("Hallo");
+	}
+
+	@FXML
+	private void StopClicked(ActionEvent event) {
+		addToTextArea("Tschuess");
+	}
+
+	private void addToTextArea(String text) {
+		String alterText = TextLiednamen.getText();
+		String neuerText = alterText + "\n" + text;
+		TextLiednamen.setText(neuerText);
 	}
 }
