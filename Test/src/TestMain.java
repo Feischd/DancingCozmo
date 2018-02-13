@@ -17,7 +17,6 @@ public class TestMain extends Application {
 	public void start(Stage primaryStage) throws IOException {
 		this.primaryStage = primaryStage;
 		mainWindow();
-
 	}
 
 	private void mainWindow() {

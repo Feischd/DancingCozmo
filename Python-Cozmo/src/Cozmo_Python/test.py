@@ -34,3 +34,10 @@ robot.turn_in_place(degrees(-180)).wait_for_completed()
 robot.turn_in_place(degrees(-270)).wait_for_completed()
 # dreht sich um 360° nach rechts
 robot.turn_in_place(degrees(-360)).wait_for_completed()
+
+# faehrt einen Kreis rechtsrum
+robot.drive_wheels(200, 20)
+time.sleep(3.6)
+# faehrt einen Kreis linkssrum
+robot.drive_wheels(20, 200)
+time.sleep(3.6)
