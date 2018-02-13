@@ -24,7 +24,7 @@ public class CozmoPlayer {
     private void createDance(String genre, double laenge){
         if(dances.contains(genre)){
             switch(genre){
-                case "Blues": new Dances.Blues().createBlues(laenge);
+                case "Blues": new Dances.Blues().createDance((int) laenge/18);
             }
 
         }
