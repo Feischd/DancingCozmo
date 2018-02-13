@@ -156,6 +156,7 @@ public class Main extends Application {
 	private static void testausgabe(String pfadtext[]) {
 		for (int i = 0; i < pfadtext.length - 1; i++) {
 			System.out.println("Der Pfad lautet: " + pfadtext[i]);
+//			addToTextArea(pfadtext[i]);
 		}
 	}
 
@@ -198,7 +199,8 @@ public class Main extends Application {
 	private void StopClicked(ActionEvent event) {
 		addToTextArea("Tschuess");
 	}
-
+	
+	@FXML
 	private void addToTextArea(String text) {
 		String alterText = TextLiednamen.getText();
 		String neuerText = alterText + "\n" + text;
