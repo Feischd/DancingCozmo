@@ -12,15 +12,14 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import static javax.sound.sampled.AudioSystem.getAudioInputStream;
 import static javax.sound.sampled.AudioFormat.Encoding.PCM_SIGNED;
 
-//
 public class AudioFilePlayer {
 
-    public static void main(String[] args) {
+/*    public static void main(String[] args) {
         final AudioFilePlayer player = new AudioFilePlayer ();
-        player.play("01_Titelnummer_1.mp3");
-        player.play("01_Titelnummer_1.ogg");
+        player.play("01_Titelnummer_1.wav");
+        //player.play("something.ogg");
     }
-
+*/
     public void play(String filePath) {
         final File file = new File(filePath);
 

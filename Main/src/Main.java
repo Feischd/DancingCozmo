@@ -9,6 +9,7 @@ public class Main {
 
 	// Hilfsarray um die einzelnen Pfade der Musikdateien zu speichern
 	private static String[] pfadSpeicher = new String[1];
+	private static AudioFilePlayer player = new AudioFilePlayer();
 
 	public static void main(String[] args) {
 
@@ -100,12 +101,16 @@ public class Main {
 		// vorgenommen wurden
 
 		// Player wird geoeffnet und das Lied wiedergegeben (egal welche Endung)
-		try {
+		/*try {
 			Process a = Runtime.getRuntime()
 					.exec(new String[] { "C:\\Program Files (x86)\\Windows Media Player\\wmplayer.exe", pfadtext[1] });
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		*/
+
+		// Play with AudioFilePlayer in GUI
+		player.play(pfadtext[1]);
 	}
 
 	// Die einzelnen Pfade werden ausgegeben (Ueberpruefung ob alle Dateien gefunden
