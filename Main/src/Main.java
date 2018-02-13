@@ -200,9 +200,9 @@ public class Main extends Application {
 		addToTextArea("Tschuess");
 	}
 
-	private static void addToTextArea(String text) {
+	private static void addToTextArea(String textDazu) {
 		String alterText = TextLiednamen.getText();
-		String neuerText = alterText + "\n" + text;
+		String neuerText = alterText + "\n" + textDazu;
 		TextLiednamen.setText(neuerText);
 	}
 }
