@@ -68,7 +68,35 @@ public class Main extends Application {
 
 	
 	
-//	private void addToTextArea
+	private void addToTextArea(String text) {
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
