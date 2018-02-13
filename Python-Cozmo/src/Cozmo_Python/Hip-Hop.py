@@ -9,12 +9,9 @@ def cozmo_program(robot: cozmo.robot.Robot):
     robot.turn_in_place(degrees(-360)).wait_for_completed()
     # dreht sich um 360° nach links
     robot.turn_in_place(degrees(360)).wait_for_completed()
-
-
-
--> faehrt ein Kreis linksherum
--> faehrt ein Kreis rechtsherum
-
-
+    # faehrt 100 millimeters vorwaerts mit 150 millimeters-per-second.
+    robot.drive_straight(distance_mm(100), speed_mmps(150)).wait_for_completed()
+    # faehrt 100 millimeters rueckwaerts mit 150 millimeters-per-second.
+    robot.drive_straight(distance_mm(-100), speed_mmps(150)).wait_for_completed()
 
 cozmo.run_program(cozmo_program)
