@@ -1,6 +1,8 @@
-import Dances.Dance;
+import Dances.Classic;
+import Dances.Dark;
+import Dances.Latin;
+import Dances.Traditional;
 
-import java.util.ArrayList;
 import java.io.IOException;
 import java.lang.*;
 import java.io.File;
@@ -22,7 +24,7 @@ public class CozmoPlayer {
                     break;
                 case "Country": new Dances.Country().createDance(laenge/22);
                     break;
-                case "Dark": new Dances.DarkMusik().createDance(laenge/15);
+                case "Dark": new Dark().createDance(laenge/15);
                     break;
                 case "Disco": new Dances.Disco().createDance(laenge/18);
                     break;
@@ -36,9 +38,9 @@ public class CozmoPlayer {
                     break;
                 case "Jazz": new Dances.Jazz().createDance(laenge/14);
                     break;
-                case "Classic": new Dances.Klassik().createDance(laenge/22);
+                case "Classic": new Classic().createDance(laenge/22);
                     break;
-                case "Latin": new Dances.Lateinamerikanisch().createDance(laenge/21);
+                case "Latin": new Latin().createDance(laenge/21);
                     break;
                 case "Metal": new Dances.Metal().createDance(laenge/24);
                     break;
@@ -60,7 +62,7 @@ public class CozmoPlayer {
                     break;
                 case "Ska": new Dances.Ska().createDance(laenge/21);
                     break;
-                case "Traditional": new Dances.TraditionelleMusik().createDance(laenge/23);
+                case "Traditional": new Traditional().createDance(laenge/23);
                     break;
                 default: new Dances.Universal().createDance(laenge/23);
                     break;

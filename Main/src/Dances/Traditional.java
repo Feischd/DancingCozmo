@@ -5,8 +5,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class TraditionelleMusik extends Dance {
-    public TraditionelleMusik() {
+public class Traditional extends Dance {
+    public Traditional() {
         laengeTanz = 23;
     }
 
