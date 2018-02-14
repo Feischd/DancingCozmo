@@ -22,7 +22,7 @@ public class CozmoPlayer {
                     break;
                 case "Country": new Dances.Country().createDance(laenge/22);
                     break;
-                case "Dark Musik": new Dances.DarkMusik().createDance(laenge/15);
+                case "Dark": new Dances.DarkMusik().createDance(laenge/15);
                     break;
                 case "Disco": new Dances.Disco().createDance(laenge/18);
                     break;
@@ -36,9 +36,9 @@ public class CozmoPlayer {
                     break;
                 case "Jazz": new Dances.Jazz().createDance(laenge/14);
                     break;
-                case "Klassik": new Dances.Klassik().createDance(laenge/22);
+                case "Classic": new Dances.Klassik().createDance(laenge/22);
                     break;
-                case "Lateinamerikanisch": new Dances.Lateinamerikanisch().createDance(laenge/21);
+                case "Latin": new Dances.Lateinamerikanisch().createDance(laenge/21);
                     break;
                 case "Metal": new Dances.Metal().createDance(laenge/24);
                     break;
@@ -60,7 +60,7 @@ public class CozmoPlayer {
                     break;
                 case "Ska": new Dances.Ska().createDance(laenge/21);
                     break;
-                case "Traditionelle Musik": new Dances.TraditionelleMusik().createDance(laenge/23);
+                case "Traditional": new Dances.TraditionelleMusik().createDance(laenge/23);
                     break;
                 default: new Dances.Universal().createDance(laenge/23);
                     break;
