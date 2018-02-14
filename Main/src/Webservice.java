@@ -11,20 +11,14 @@ import java.net.URLConnection;
 
 
 public class Webservice {
-    private ArrayList<Song> songs;
     private ArrayList<ArrayList> genres;
 
     public Webservice(){
-        songs = new ArrayList<>();
         genres = new ArrayList<>();
         fillGenreArray();
-
-
-        Song song = new Song("believe", "cher", "kein Pfad");
-        songs.add(0, song);
     }
 
-    public void fillSongArray(){
+    public ArrayList fillSongArray(ArrayList<Song> songs){
         for(int i=0; i<songs.size(); i++){
             String songData = getSongData(songs.get(i));
             // get length of song
@@ -37,9 +31,10 @@ public class Webservice {
             songs.get(i).setBild(getCover(songData));
             // get summary of background information
             songs.get(i).setSonstiges(getInformation(songData).replaceAll("&quot;", "\"").replaceAll("&apos;", "'").replaceAll("&gt;", ">").replaceAll("&lt;", "<").replaceAll("&#10;&#10;", "\n"));
-
-            System.out.println(getGenre(songData));
+            // get genre
+            songs.get(i).setGenre(getGenre(songData));
         }
+        return songs;
     }
 
 
@@ -50,8 +45,6 @@ public class Webservice {
         try
         {
             URL url = new URL( " http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=e0499e4c41404deb64230e4881e2eb27&artist=" + song.getKuenstler() + "&track=" + song.getTitel());
-            //URL url = new URL("http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=e0499e4c41404deb64230e4881e2eb27&artist=green%20day&track=boulevard%20of%20broken%20dreams");
-
             is = url.openStream();
             songData = new Scanner(is).useDelimiter("Z").next();
         }
