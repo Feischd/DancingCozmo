@@ -67,8 +67,6 @@ public class Main extends Application {
 	// Zaehlvariable zum aktuellen speichern der Pfade (wird spaeter entfernt)
 	static int i = 0;
 
-	static int nummer = 0;
-
 	// Hilfsarray um die einzelnen Pfade der Musikdateien zu speichern
 	private static String[] pfadSpeicher = new String[1];
 	// nicht loeschen!!!!!!
@@ -94,10 +92,10 @@ public class Main extends Application {
 
 		// pruefen, ob 1. Alle Dateien gefunden worden sind 2. ein
 		// beliebiges Stueck abgespielt werden kann
-		testausgabe(pfadSpeicher);
-		soundDateiAbspielen(pfadSpeicher);
+//		testausgabe(pfadSpeicher);
+//		soundDateiAbspielen(pfadSpeicher);
 		
-//		konverter();
+		konverter(pfadSpeicher);
 
 		launch(args);
 
@@ -182,35 +180,34 @@ public class Main extends Application {
 	// Speichern in temp mit Kuenstler + Titel
 
 	// text = eingegebener Pfad
-	private static void konverter(String text) throws IOException {
+	private static void konverter(String[] text) throws IOException {
 //String text
 		
 		// Alternative, falls temp in Project spaeter nicht gehen sollte
 		// File f = new File("C:\\Users\\" + System.getProperty("user.name") +
 		// "\\_Dancing Cozmo Temp\\");
-//		File f = new File("temp");
-//		f.mkdir();
+		File f = new File("temp");
+		f.mkdir();
 
 //		String inputPfad = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De Strijdlust is geboren\\03 Het Gelders Volkslied.wma";
 
-		String inputPfad = text;
+		for(int i = 0; i < text.length; i++) {
+			String inputPfad = text[i];
+			String outputPfad = "temp\\" + i + ".mp3";
+			ProcessBuilder builder = new ProcessBuilder("ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad);
+			Process process = builder.start();
+			
+//			getMetadata(outputPfad);
+		}
+		
+		
+		
 		
 		// Alternative, falls temp in Projekt spaeter nicht gehen sollte
 		// String outputPfad = "C:\\Users\\" + System.getProperty("user.name") +
 		// "\\_Dancing Cozmo Temp\\" + name + ".mp3";
 
-		// String outputPfad = "temp\\" + kuenstler + " | " + lied + ".mp3";
-
-		String outputPfad = "temp\\" + nummer + ".mp3";
-
 //		String outputPfad = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De Strijdlust is geboren\\03 Het Gelders Volkslied" + ".mp3";
-		
-		ProcessBuilder builder = new ProcessBuilder("ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad);
-		Process process = builder.start();
-
-		nummer = nummer + 1;
-
-//		getMetadata(outputPfad);
 	}
 
 	// Ab hier Metadaten
@@ -301,7 +298,7 @@ public class Main extends Application {
 		addToTextArea("Tschuess");
 	}
 
-	@FXML
+//	@FXML
 	private void addToTextArea(String text) {
 		String alterText = TextLiednamen.getText();
 		String neuerText = alterText + "\n" + text;
