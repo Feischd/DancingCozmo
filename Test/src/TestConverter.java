@@ -5,7 +5,7 @@ public class TestConverter {
 	
 	public static void main(String[] args) throws IOException {
 
-		String name = "test";
+//		String name = "test";
 		String[] basisPfad = new String[1];
 		
 		//Hier die Pfade einfuegen
@@ -19,17 +19,17 @@ public class TestConverter {
 //		basisPfad[4] = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De Strijdlust is geboren\\07 Het bier zal weer vloeien";
 		
 	//	File f = new File("C:\\Users\\" + System.getProperty("user.name") + "\\_Dancing Cozmo Temp\\");
-		File f = new File("temp");
-		f.mkdir();
+//		File f = new File("temp");
+//		f.mkdir();
 		
 		for(int i = 0; i < basisPfad.length; i++) {
 			//Geht mit allen unterschiedlichen Formaten
 			String inputPfad = basisPfad[i] + ".wma";
-//			String outputPfad = basisPfad[i] + ".mp3";
+			String outputPfad = basisPfad[i] + ".mp3";
 			
 //			String outputPfad = "C:\\Users\\" + System.getProperty("user.name") + "\\_Dancing Cozmo Temp\\" + name + ".mp3";
 	
-			String outputPfad = "temp\\" + name + ".mp3";
+//			String outputPfad = "temp\\" + name + ".mp3";
 			
 			ProcessBuilder builder = new ProcessBuilder("ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad);
 			Process process = builder.start();

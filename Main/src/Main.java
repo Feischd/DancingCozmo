@@ -33,7 +33,6 @@ public class Main extends Application {
 	AnchorPane AnchorP;
 
 	@FXML
-	static
 	TextArea TextLiednamen;
 
 	@FXML
@@ -76,7 +75,7 @@ public class Main extends Application {
 	private static AudioFilePlayer player = new AudioFilePlayer();
 
 	// Methoden
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
 		// Angemeldeter Benutzer
 		File dir = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Music");
@@ -98,14 +97,14 @@ public class Main extends Application {
 		testausgabe(pfadSpeicher);
 		soundDateiAbspielen(pfadSpeicher);
 		
-		
+//		konverter();
 
 		launch(args);
 
 	}
 
 	// nach einem bestimmten File in einem bestimmten Verzeichnis suchen
-	private static ArrayList<File> searchFile(File dir, String find) {
+	private static ArrayList<File> searchFile(File dir, String find) throws IOException {
 
 		String name = "";
 		String pfad = "";
@@ -142,10 +141,13 @@ public class Main extends Application {
 	}
 
 	// Pfad speichern
-	private static void savePfad(String text) {
+	private static void savePfad(String text) throws IOException {
 		pfadSpeicher = verlaengere(pfadSpeicher);
 		pfadSpeicher[i] = text;
 		i = i + 1;
+		
+		//uebergebener Pfad wird direkt passend Konvertiert und Konvertierte Datei abgespeichert
+//		konverter(text);
 	}
 
 	// Das Array zum Speichern der Pfade um 1 Stelle verlaengern, Array ist flexibel
@@ -181,15 +183,18 @@ public class Main extends Application {
 
 	// text = eingegebener Pfad
 	private static void konverter(String text) throws IOException {
-
+//String text
+		
 		// Alternative, falls temp in Project spaeter nicht gehen sollte
 		// File f = new File("C:\\Users\\" + System.getProperty("user.name") +
 		// "\\_Dancing Cozmo Temp\\");
-		File f = new File("temp");
-		f.mkdir();
+//		File f = new File("temp");
+//		f.mkdir();
+
+//		String inputPfad = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De Strijdlust is geboren\\03 Het Gelders Volkslied.wma";
 
 		String inputPfad = text;
-
+		
 		// Alternative, falls temp in Projekt spaeter nicht gehen sollte
 		// String outputPfad = "C:\\Users\\" + System.getProperty("user.name") +
 		// "\\_Dancing Cozmo Temp\\" + name + ".mp3";
@@ -198,12 +203,14 @@ public class Main extends Application {
 
 		String outputPfad = "temp\\" + nummer + ".mp3";
 
+//		String outputPfad = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De Strijdlust is geboren\\03 Het Gelders Volkslied" + ".mp3";
+		
 		ProcessBuilder builder = new ProcessBuilder("ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad);
 		Process process = builder.start();
 
 		nummer = nummer + 1;
 
-		getMetadata(outputPfad);
+//		getMetadata(outputPfad);
 	}
 
 	// Ab hier Metadaten
@@ -239,7 +246,7 @@ public class Main extends Application {
 			// System.out.println("Genre : " + metadata.get("xmpDM:genre"));
 			// System.out.println("Album : " + metadata.get("xmpDM:album"));
 
-			addToTextArea(metadata.get("xmpDM:artist") + " " + metadata.get("title"));
+//			addToTextArea(metadata.get("xmpDM:artist") + " " + metadata.get("title"));
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -295,7 +302,7 @@ public class Main extends Application {
 	}
 
 	@FXML
-	private static void addToTextArea(String text) {
+	private void addToTextArea(String text) {
 		String alterText = TextLiednamen.getText();
 		String neuerText = alterText + "\n" + text;
 		TextLiednamen.setText(neuerText);
