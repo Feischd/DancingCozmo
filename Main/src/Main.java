@@ -181,7 +181,8 @@ public class Main extends Application {
 
 	// text = eingegebener Pfad
 	private static void konverter(String[] text) throws IOException {
-//String text
+
+		String[] tempPfade = new String[text.length];
 		
 		// Alternative, falls temp in Project spaeter nicht gehen sollte
 		// File f = new File("C:\\Users\\" + System.getProperty("user.name") +
@@ -196,6 +197,7 @@ public class Main extends Application {
 			String outputPfad = "temp\\" + i + ".mp3";
 			ProcessBuilder builder = new ProcessBuilder("ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad);
 			Process process = builder.start();
+			tempPfade[i] = outputPfad;
 			
 //			getMetadata(outputPfad);
 		}
