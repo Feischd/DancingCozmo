@@ -95,7 +95,7 @@ public class Main extends Application {
 
 		// pruefen, ob 1. Alle Dateien gefunden worden sind 2. ein
 		// beliebiges Stueck abgespielt werden kann
-//		testausgabe(pfadSpeicher);
+		testausgabe(pfadSpeicher);
 //		soundDateiAbspielen(pfadSpeicher);
 		
 		launch(args);
@@ -146,7 +146,7 @@ public class Main extends Application {
 		i = i + 1;
 		
 		//uebergebener Pfad wird direkt passend Konvertiert und Konvertierte Datei abgespeichert
-		konverter(text);
+//		konverter(text);
 	}
 
 	// Das Array zum Speichern der Pfade um 1 Stelle verlaengern, Array ist flexibel
