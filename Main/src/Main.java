@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
@@ -180,7 +181,7 @@ public class Main extends Application {
 	// Speichern in temp mit Kuenstler + Titel
 
 	// text = eingegebener Pfad
-	private static void konverter(String text) throws IOException {
+	private static void konverter(String text) throws IOException, InterruptedException {
 
 		String[] tempPfade = new String[pfadSpeicher.length];
 		
@@ -196,6 +197,7 @@ public class Main extends Application {
 			String outputPfad = "temp\\" + nummer + ".mp3";
 			ProcessBuilder builder = new ProcessBuilder("ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad);
 			Process process = builder.start();
+			TimeUnit.SECONDS.sleep(1);
 			tempPfade[nummer] = outputPfad;
 			
 			nummer = nummer + 1;
