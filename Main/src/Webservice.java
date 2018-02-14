@@ -16,19 +16,20 @@ public class Webservice {
 
     public ArrayList fillSongArray(ArrayList<Song> songs){
         for(int i=0; i<songs.size(); i++){
-            String songData = getSongData(songs.get(i));
+            Song s = songs.get(i);
+            String songData = getSongData(s);
             // get length of song
-            songs.get(i).setDuration(getDuration(songData));
+            s.setDuration(getDuration(songData));
             // get date song was published
-            songs.get(i).setPublished(getPublished(songData));
+            s.setPublished(getPublished(songData));
             // get name of album
-            songs.get(i).setAlbum(getAlbum(songData));
+            s.setAlbum(getAlbum(songData));
             // get source of cover
-            songs.get(i).setCover(getCover(songData));
+            s.setCover(getCover(songData));
             // get summary of background information
-            songs.get(i).setInformation(getInformation(songData).replaceAll("&quot;", "\"").replaceAll("&apos;", "'").replaceAll("&gt;", ">").replaceAll("&lt;", "<").replaceAll("&#10;&#10;", "\n"));
+            s.setInformation(getInformation(songData).replaceAll("&quot;", "\"").replaceAll("&apos;", "'").replaceAll("&gt;", ">").replaceAll("&lt;", "<").replaceAll("&#10;&#10;", "\n"));
             // get genre
-            songs.get(i).setGenre(getGenre(songData));
+            s.setGenre(getGenre(songData));
         }
         return songs;
     }
