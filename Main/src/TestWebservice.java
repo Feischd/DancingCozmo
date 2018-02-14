@@ -13,14 +13,14 @@ public class TestWebservice {
 
         for(Song s: songs){
             System.out.println(s.getAlbum());
-            System.out.println(s.getBild());
-            System.out.println(s.getErscheinungsjahr());
+            System.out.println(s.getCover());
+            System.out.println(s.getPublished());
             System.out.println(s.getGenre());
-            System.out.println(s.getKuenstler());
-            System.out.println(s.getLaenge());
-            System.out.println(s.getPfad());
-            System.out.println(s.getSonstiges());
-            System.out.println(s.getTitel());
+            System.out.println(s.getArtist());
+            System.out.println(s.getDuration());
+            System.out.println(s.getPath());
+            System.out.println(s.getInformation());
+            System.out.println(s.getTrack());
         }
 
 

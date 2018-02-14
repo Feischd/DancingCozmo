@@ -1,13 +1,9 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.io.ByteArrayOutputStream;
 import java.io.*;
 import java.io.InputStream;
 
 import java.net.URL;
 import java.util.Scanner;
-
-import java.net.URLConnection;
 
 
 public class Webservice {
@@ -22,15 +18,15 @@ public class Webservice {
         for(int i=0; i<songs.size(); i++){
             String songData = getSongData(songs.get(i));
             // get length of song
-            songs.get(i).setLaenge(getDuration(songData));
+            songs.get(i).setDuration(getDuration(songData));
             // get date song was published
-            songs.get(i).setErscheinungsjahr(getPublished(songData));
+            songs.get(i).setPublished(getPublished(songData));
             // get name of album
             songs.get(i).setAlbum(getAlbum(songData));
             // get source of cover
-            songs.get(i).setBild(getCover(songData));
+            songs.get(i).setCover(getCover(songData));
             // get summary of background information
-            songs.get(i).setSonstiges(getInformation(songData).replaceAll("&quot;", "\"").replaceAll("&apos;", "'").replaceAll("&gt;", ">").replaceAll("&lt;", "<").replaceAll("&#10;&#10;", "\n"));
+            songs.get(i).setInformation(getInformation(songData).replaceAll("&quot;", "\"").replaceAll("&apos;", "'").replaceAll("&gt;", ">").replaceAll("&lt;", "<").replaceAll("&#10;&#10;", "\n"));
             // get genre
             songs.get(i).setGenre(getGenre(songData));
         }
@@ -44,7 +40,7 @@ public class Webservice {
         InputStream is = null;
         try
         {
-            URL url = new URL( " http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=e0499e4c41404deb64230e4881e2eb27&artist=" + song.getKuenstler() + "&track=" + song.getTitel());
+            URL url = new URL( " http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=e0499e4c41404deb64230e4881e2eb27&artist=" + song.getArtist() + "&track=" + song.getTrack());
             is = url.openStream();
             songData = new Scanner(is).useDelimiter("Z").next();
         }

@@ -12,7 +12,7 @@ import java.awt.Desktop;
 public class CozmoPlayer {
     public void play(Song song){
         // creation of dance
-        createDance(song.getGenre(), song.getLaenge());
+        createDance(song.getGenre(), song.getDuration());
         // exection of python file
         execDance();
     }

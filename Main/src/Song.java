@@ -1,25 +1,25 @@
 public class Song {
-    private String titel;
-    private String kuenstler;
-    private String pfad;
+    private String track;
+    private String artist;
+    private String path;
     private String genre;
-    private int laenge;
-    private int erscheinungsjahr;
+    private int duration;
+    private int published;
     private String album;
-    private String bild;
-    private String sonstiges;
+    private String cover;
+    private String information;
 
 
-    public Song(String titel, String kuenstler, String pfad){
-        this.titel = titel;
-        this.kuenstler = kuenstler;
-        this.pfad = pfad;
+    public Song(String track, String artist, String path){
+        this.track = track;
+        this.artist = artist;
+        this.path = path;
         genre = "";
-        laenge = 0;
-        erscheinungsjahr = 0;
+        duration = 0;
+        published = 0;
         album = "";
-        bild = "";
-        sonstiges = "";
+        cover = "";
+        information = "";
     }
 
     // setter
@@ -27,60 +27,60 @@ public class Song {
         this.genre = genre;
     }
 
-    public void setLaenge(int laenge){
-        this.laenge = laenge;
+    public void setDuration(int duration){
+        this.duration = duration;
     }
 
-    public void setErscheinungsjahr(int erscheinungsjahr){
-        this.erscheinungsjahr = erscheinungsjahr;
+    public void setPublished(int published){
+        this.published = published;
     }
 
     public void setAlbum(String album){
         this.album = album;
     }
-
-    public void setBild(String bild){
-        this.bild = bild;
+    
+    public void setCover(String cover){
+        this.cover = cover;
     }
 
-    public void setSonstiges(String sonstiges){
-        this.sonstiges = sonstiges;
+    public void setInformation(String information){
+        this.information = information;
     }
 
     //getter
-    public String getTitel(){
-        return titel;
+    public String getTrack(){
+        return track;
     }
 
-    public String getKuenstler(){
-        return kuenstler;
+    public String getArtist(){
+        return artist;
     }
 
-    public String getPfad(){
-        return pfad;
+    public String getPath(){
+        return path;
     }
 
     public String getGenre(){
         return genre;
     }
 
-    public int getLaenge(){
-        return laenge;
+    public int getDuration(){
+        return duration;
     }
 
-    public int getErscheinungsjahr(){
-        return  erscheinungsjahr;
+    public int getPublished(){
+        return  published;
     }
 
     public String getAlbum(){
         return album;
     }
 
-    public String getBild(){
-        return bild;
+    public String getCover(){
+        return cover;
     }
 
-    public String getSonstiges(){
-        return sonstiges;
+    public String getInformation(){
+        return information;
     }
 }
