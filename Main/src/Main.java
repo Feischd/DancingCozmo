@@ -181,7 +181,7 @@ public class Main extends Application {
 	// Speichern in temp mit Kuenstler + Titel
 
 	// text = eingegebener Pfad
-	private static void konverter(String text) throws IOException, InterruptedException {
+	private static void konverter(String text) throws IOException {
 
 		String[] tempPfade = new String[pfadSpeicher.length];
 		
@@ -197,7 +197,12 @@ public class Main extends Application {
 			String outputPfad = "temp\\" + nummer + ".mp3";
 			ProcessBuilder builder = new ProcessBuilder("ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad);
 			Process process = builder.start();
-			TimeUnit.SECONDS.sleep(1);
+			try {
+				TimeUnit.SECONDS.sleep(1);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			tempPfade[nummer] = outputPfad;
 			
 			nummer = nummer + 1;
