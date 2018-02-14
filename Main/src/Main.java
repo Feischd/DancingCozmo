@@ -66,6 +66,8 @@ public class Main extends Application {
 
 	// Zaehlvariable zum aktuellen speichern der Pfade (wird spaeter entfernt)
 	static int i = 0;
+	
+	static int nummer = 0;
 
 	// Hilfsarray um die einzelnen Pfade der Musikdateien zu speichern
 	private static String[] pfadSpeicher = new String[1];
@@ -95,8 +97,6 @@ public class Main extends Application {
 //		testausgabe(pfadSpeicher);
 //		soundDateiAbspielen(pfadSpeicher);
 		
-		konverter(pfadSpeicher);
-
 		launch(args);
 
 	}
@@ -145,7 +145,7 @@ public class Main extends Application {
 		i = i + 1;
 		
 		//uebergebener Pfad wird direkt passend Konvertiert und Konvertierte Datei abgespeichert
-//		konverter(text);
+		konverter(text);
 	}
 
 	// Das Array zum Speichern der Pfade um 1 Stelle verlaengern, Array ist flexibel
@@ -180,9 +180,9 @@ public class Main extends Application {
 	// Speichern in temp mit Kuenstler + Titel
 
 	// text = eingegebener Pfad
-	private static void konverter(String[] text) throws IOException {
+	private static void konverter(String text) throws IOException {
 
-		String[] tempPfade = new String[text.length];
+		String[] tempPfade = new String[pfadSpeicher.length];
 		
 		// Alternative, falls temp in Project spaeter nicht gehen sollte
 		// File f = new File("C:\\Users\\" + System.getProperty("user.name") +
@@ -192,15 +192,16 @@ public class Main extends Application {
 
 //		String inputPfad = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De Strijdlust is geboren\\03 Het Gelders Volkslied.wma";
 
-		for(int i = 0; i < text.length; i++) {
-			String inputPfad = text[i];
-			String outputPfad = "temp\\" + i + ".mp3";
+			String inputPfad = text;
+			String outputPfad = "temp\\" + nummer + ".mp3";
 			ProcessBuilder builder = new ProcessBuilder("ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad);
 			Process process = builder.start();
-			tempPfade[i] = outputPfad;
+			tempPfade[nummer] = outputPfad;
+			
+			nummer = nummer + 1;
 			
 //			getMetadata(outputPfad);
-		}
+		
 		
 		
 		
