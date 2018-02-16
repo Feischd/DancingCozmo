@@ -107,8 +107,19 @@ public class Main extends Application {
 //		testausgabe(pfadSpeicher);
 //		soundDateiAbspielen(pfadSpeicher);
 		
+		//Lege Temporaere Pfade an
+		legeDateiOrdnerAn();
+		
 		launch(args);
 
+	}
+	
+	private static void legeDateiOrdnerAn() {
+		// Alternative, falls temp in Project spaeter nicht gehen sollte
+		// File f = new File("C:\\Users\\" + System.getProperty("user.name") +
+		// "\\_Dancing Cozmo Temp\\");
+		File f = new File("temp");
+		f.mkdir();
 	}
 
 	// nach einem bestimmten File in einem bestimmten Verzeichnis suchen
@@ -194,12 +205,6 @@ public class Main extends Application {
 
 		String[] tempPfade = new String[pfadSpeicher.length];
 		
-		// Alternative, falls temp in Project spaeter nicht gehen sollte
-		// File f = new File("C:\\Users\\" + System.getProperty("user.name") +
-		// "\\_Dancing Cozmo Temp\\");
-		File f = new File("temp");
-		f.mkdir();
-
 //		String inputPfad = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De Strijdlust is geboren\\03 Het Gelders Volkslied.wma";
 
 			String inputPfad = text;
@@ -322,7 +327,7 @@ public class Main extends Application {
 
         try {
             //Process a = Runtime.getRuntime()
-            p2= Runtime.getRuntime().exec(new String[] { "C:\\Windows\\py.exe", "C:\\Users\\Patrick\\Documents\\DHBW\\Programmieren\\DancingCozmo\\cozmoDance.py" });
+            p2= Runtime.getRuntime().exec(new String[] { "C:\\Windows\\System32\\cmd.exe", "cd C:\\Users\\Patrick\\Documents\\DHBW\\Programmieren\\DancingCozmo\\cozmoDance.py" });
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -343,5 +348,10 @@ public class Main extends Application {
 //		TextLiednamen.setText(neuerText);
 	}
 
+	@FXML
+	private void getIndex() {
+		int index = TextLiednamen.getSelectionModel().getSelectedIndex();
+		System.out.println(index);
+	}
 
 }
