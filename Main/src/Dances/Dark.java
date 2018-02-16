@@ -23,19 +23,19 @@ public class Dark extends Dance {
             pWriter.println();
 
             pWriter.println("def cozmo_program(robot: cozmo.robot.Robot):");
-            // falls der Lift oben ist wird er runter geholt
+            // Move lift down to the bottom
             pWriter.println("   robot.set_lift_height(0.0).wait_for_completed()");
-            //dreht sich um 360° nach rechts
+            // Turn 360 degrees to the right
             pWriter.println("   robot.turn_in_place(degrees(-360)).wait_for_completed()");
-            //faehrt 150 millimeters vorwaerts mit 50 millimeters-per-second
+            // Drive forwards for 150 millimeters at 50 millimeters-per-second
             pWriter.println("   robot.drive_straight(distance_mm(150), speed_mmps(150)).wait_for_completed()");
-            //faehrt 150 millimeters rueckwaerts mit 50 millimeters-per-second
+            // Drive backwards for 150 millimeters at 50 millimeters-per-second
             pWriter.println("   robot.drive_straight(distance_mm(-300), speed_mmps(150)).wait_for_completed()");
-            //faehrt 150 millimeters vorwaerts mit 50 millimeters-per-second.
+            // Drive forwards for 150 millimeters at 50 millimeters-per-second
             pWriter.println("   robot.drive_straight(distance_mm(150), speed_mmps(150)).wait_for_completed()");
-            //dreht sich um 180° nach links
+            // Turn 180 degrees to the left
             pWriter.println("   robot.turn_in_place(degrees(180)).wait_for_completed()");
-            //Lift geht hoch und wieder runter (at 5 radians per second)
+            //The lift is first raising and then lowering (at 5 radians per second)
             pWriter.println("   robot.move_lift(5)");
             pWriter.println("   time.sleep(0.5)");
             pWriter.println("   robot.move_lift(-5)");

@@ -23,42 +23,42 @@ public class Electro extends Dance {
             pWriter.println();
 
             pWriter.println("def cozmo_program(robot: cozmo.robot.Robot):");
-            // falls der Lift oben ist wird er runter geholt
+            // Move lift down to the bottom
             pWriter.println("   robot.set_lift_height(0.0).wait_for_completed()");
-            // Lift geht hoch und wieder runter (at 5 radians per second)
+            // The lift is first raising and then lowering (at 5 radians per second)
             pWriter.println("   robot.move_lift(5)");
             pWriter.println("   time.sleep(0.5)");
             pWriter.println("   robot.move_lift(-5)");
             pWriter.println("   time.sleep(0.5)");
-            //dreht sich um 180° nach links
+            // Turn 180 degrees to the left
             pWriter.println("   robot.turn_in_place(degrees(180)).wait_for_completed()");
-            // Lift geht hoch und wieder runter (at 5 radians per second)
+            // The lift is first raising and then lowering (at 5 radians per second)
             pWriter.println("   robot.move_lift(5)");
             pWriter.println("   time.sleep(0.5)");
             pWriter.println("   robot.move_lift(-5)");
             pWriter.println("   time.sleep(0.5)");
-            //dreht sich um 180° nach rechts
+            // Turn 180 degrees to the right
             pWriter.println("   robot.turn_in_place(degrees(-180)).wait_for_completed()");
-            // Lift geht hoch und wieder runter (at 5 radians per second)
+            // The lift is first raising and then lowering (at 5 radians per second)
             pWriter.println("   robot.move_lift(5)");
             pWriter.println("   time.sleep(0.5)");
             pWriter.println("   robot.move_lift(-5)");
             pWriter.println("   time.sleep(0.5)");
-            //dreht sich um 90° nach rechts
+            // Turn 90 degrees to the right
             pWriter.println("   robot.turn_in_place(degrees(-90)).wait_for_completed()");
-            // Lift geht hoch und wieder runter (at 5 radians per second)
+            // The lift is first raising and then lowering (at 5 radians per second)
             pWriter.println("   robot.move_lift(5)");
             pWriter.println("   time.sleep(0.5)");
             pWriter.println("   robot.move_lift(-5)");
             pWriter.println("   time.sleep(0.5)");
-            //dreht sich um 180° nach rechts
+            // Turn 180 degrees to the right
             pWriter.println("   robot.turn_in_place(degrees(-180)).wait_for_completed()");
-            // Lift geht hoch und wieder runter (at 5 radians per second)
+            // The lift is first raising and then lowering (at 5 radians per second)
             pWriter.println("   robot.move_lift(5)");
             pWriter.println("   time.sleep(0.5)");
             pWriter.println("   robot.move_lift(-5)");
             pWriter.println("   time.sleep(0.5)");
-            //dreht sich um 270° nach links
+            // Turn 270 degrees to the left
             pWriter.println("   robot.turn_in_place(degrees(270)).wait_for_completed()");
 
             pWriter.println();
