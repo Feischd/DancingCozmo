@@ -23,16 +23,16 @@ public class Reggae extends Dance {
             pWriter.println();
 
             pWriter.println("def cozmo_program(robot: cozmo.robot.Robot):");
-            // falls der Lift oben ist wird er runter geholt
+            // Move lift down to the bottom
             pWriter.println("   robot.set_lift_height(0.0).wait_for_completed()");
-            //H geht hoch
-            pWriter.println("   robot.move_lift(10)");
-            //faehrt einen Teilkreis rechtsrum
+            //The lift is raising (at 5 radians per second)
+            pWriter.println("   robot.move_lift(5)");
+            // Drive a pitch circle to the right side (left wheel: 200mmps; right wheel: 10mmps)
             pWriter.println("   robot.drive_wheels(200, 10)");
             pWriter.println("   time.sleep(0.5)");
-            //H geht runter
-            pWriter.println("   robot.move_lift(-10)");
-            //faehrt einen Teilkreis linkssrum
+            //The lift is lowering (at 5 radians per second)
+            pWriter.println("   robot.move_lift(-5)");
+            // Drive a pitch circle to the left side (left wheel: 10mmps; right wheel: 201mmps)
             pWriter.println("   robot.drive_wheels(10, 201)");
             pWriter.println("   time.sleep(2.3)");
 

@@ -23,15 +23,15 @@ public class HipHop extends Dance {
             pWriter.println();
 
             pWriter.println("def cozmo_program(robot: cozmo.robot.Robot):");
-            // falls der Lift oben ist wird er runter geholt
+            // Move lift down to the bottom
             pWriter.println("   robot.set_lift_height(0.0).wait_for_completed()");
-            //dreht sich um 360° nach rechts
+            // Turn 360 degrees to the right
             pWriter.println("   robot.turn_in_place(degrees(-360)).wait_for_completed()");
-            //dreht sich um 360° nach links
+            // Turn 360 degrees to the left
             pWriter.println("   robot.turn_in_place(degrees(360)).wait_for_completed()");
-            //faehrt 100 millimeters vorwaerts mit 150 millimeters-per-second
+            // Drive forwards for 100 millimeters at 50 millimeters-per-second
             pWriter.println("   robot.drive_straight(distance_mm(100), speed_mmps(150)).wait_for_completed()");
-            //faehrt 100 millimeters rueckwaerts mit 150 millimeters-per-second
+            // Drive backwards for 100 millimeters at 50 millimeters-per-second
             pWriter.println("   robot.drive_straight(distance_mm(-100), speed_mmps(150)).wait_for_completed()");
 
             pWriter.println();
