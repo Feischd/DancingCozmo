@@ -7,9 +7,11 @@ public class TestWebservice {
         Song song = new Song("Believe", "cher", "kein Pfad");
         Song song2 = new Song("boulevard of broken dreams", "green day", "kein Pfad");
         ArrayList<Song> songs = new ArrayList<>();
+        song = ws.fillSongArray(song);
+        song2 = ws.fillSongArray(song2);
+
         songs.add(song);
         songs.add(song2);
-        songs = ws.fillSongArray(songs);
 
         for(Song s: songs){
             System.out.println(s.getAlbum());
