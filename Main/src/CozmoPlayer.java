@@ -14,7 +14,7 @@ public class CozmoPlayer {
         // creation of dance
         createDance(song.getGenre(), song.getDuration());
         // exection of python file
-        execDance();
+        //execDance();
     }
 
     // creates dance depending on genre and length of song

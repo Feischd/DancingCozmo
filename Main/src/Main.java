@@ -58,6 +58,8 @@ public class Main extends Application {
 	private static Webservice ws;
 	private static CozmoPlayer cp;
 	private static ArrayList<Song> songs;
+	private static Process p;
+	private static Process p2;
 
 
 	public Main(){
@@ -65,7 +67,7 @@ public class Main extends Application {
 		ws = new Webservice();
 		cp = new CozmoPlayer();
 		songs = new ArrayList<>();
-		songs.add(new Song("Believe", "Cher", "01_Titelnummer_1.wav"));
+		songs.add(new Song("Believe", "Cher", "C:\\Users\\Patrick\\Documents\\DHBW\\Programmieren\\DancingCozmo\\01_Titelnummer_1.wav"));
 		songs.set(0, ws.fillSongArray(songs.get(0)));
 		System.out.println(songs.get(0).getGenre());
 
@@ -309,14 +311,28 @@ public class Main extends Application {
 	private void PlayClicked(ActionEvent event) {
 		addToListView("Hallo");
 		cp.play(songs.get(0));
-		afp.play(songs.get(0).getPath());
+		//afp.play(songs.get(0).getPath());
 
+        try {
+            //Process a = Runtime.getRuntime()
+            p= Runtime.getRuntime().exec(new String[] { "C:\\Program Files (x86)\\Windows Media Player\\wmplayer.exe", songs.get(0).getPath() });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+        try {
+            //Process a = Runtime.getRuntime()
+            p2= Runtime.getRuntime().exec(new String[] { "C:\\Windows\\py.exe", "C:\\Users\\Patrick\\Documents\\DHBW\\Programmieren\\DancingCozmo\\cozmoDance.py" });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 
 	@FXML
 	private void StopClicked(ActionEvent event) {
 		addToListView("Tschuess");
+		p.destroy();
+		p2.destroy();
 	}
 
 //	@FXML
