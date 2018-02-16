@@ -14,24 +14,22 @@ public class Webservice {
         fillGenreArray();
     }
 
-    public ArrayList fillSongArray(ArrayList<Song> songs){
-        for(int i=0; i<songs.size(); i++){
-            Song s = songs.get(i);
-            String songData = getSongData(s);
+    public Song fillSongArray(Song song){
+            String songData = getSongData(song);
             // get length of song
-            s.setDuration(getDuration(songData));
+            song.setDuration(getDuration(songData));
             // get date song was published
-            s.setPublished(getPublished(songData));
+            song.setPublished(getPublished(songData));
             // get name of album
-            s.setAlbum(getAlbum(songData));
+            song.setAlbum(getAlbum(songData));
             // get source of cover
-            s.setCover(getCover(songData));
+            song.setCover(getCover(songData));
             // get summary of background information
-            s.setInformation(getInformation(songData).replaceAll("&quot;", "\"").replaceAll("&apos;", "'").replaceAll("&gt;", ">").replaceAll("&lt;", "<").replaceAll("&#10;&#10;", "\n"));
+            song.setInformation(getInformation(songData).replaceAll("&quot;", "\"").replaceAll("&apos;", "'").replaceAll("&gt;", ">").replaceAll("&lt;", "<").replaceAll("&#10;&#10;", "\n"));
             // get genre
-            s.setGenre(getGenre(songData));
-        }
-        return songs;
+            song.setGenre(getGenre(songData));
+
+        return song;
     }
 
 
