@@ -80,6 +80,7 @@ public class Main extends Application {
 
 	// Hilfsarray um die einzelnen Pfade der Musikdateien zu speichern
 	private static String[] pfadSpeicher = new String[1];
+	private static String[] dateiNamen;
 	// nicht loeschen!!!!!!
 	private static AudioFilePlayer player = new AudioFilePlayer();
 
@@ -101,6 +102,9 @@ public class Main extends Application {
 		searchFile(dir, findmp3);
 		searchFile(dir, findm4a);
 		searchFile(dir, findaac);
+		
+		//noetig um die Liednamen in GUI anzuzeigen
+		dateiNamen = new String[pfadSpeicher.length];
 
 		// pruefen, ob 1. Alle Dateien gefunden worden sind 2. ein
 		// beliebiges Stueck abgespielt werden kann
@@ -111,7 +115,7 @@ public class Main extends Application {
 		legeDateiOrdnerAn();
 		
 //		legeSongsAn(pfadSpeicher);
-//		zerlegeAltenString();
+		zerlegeAltenString();
 		
 		launch(args);
 
@@ -357,9 +361,16 @@ public class Main extends Application {
 //	@FXML
 	private void addToListView(String text) {
 		
-		for(int i = 0; i < pfadSpeicher.length; i++) {
-			TextLiednamen.getItems().add(pfadSpeicher[i]);
+		//vorher
+//		for(int i = 0; i < pfadSpeicher.length; i++) {
+//			TextLiednamen.getItems().add(pfadSpeicher[i]);
+//		}
+		
+		//jetzt
+		for(int i = 0; i < dateiNamen.length; i++) {
+			TextLiednamen.getItems().add(dateiNamen[i]);
 		}
+		
 		
 //		TextLiednamen.getItems().add(text);
 //		String alterText = TextLiednamen.getText();
@@ -377,34 +388,32 @@ public class Main extends Application {
 		}
 	}
 	
-	//unschön, funnkt später auch so nicht
 	//letzter Teil des Pfades soll ausgeschnitten werden 
 	//...\\...\\...\hallo.txt --> also hallo.txt
 	private static void zerlegeAltenString() {
-		//String[] pfadSpeicher
-		
-		for (int i = 0; i < pfadSpeicher.length; i++) {
-			String text = "";
-			int loeschSpeicher = 0;
-			char[] c = pfadSpeicher[i].toCharArray();
-			
+
+		for(int i = 0; i < pfadSpeicher.length; i++) {
+			String text = pfadSpeicher[i];
+			String gekuerzt = "";
+			char[] c = text.toCharArray();
+			int merker = 0;
+			int neu;
 			for(int j = 0; j < c.length; j++) {
-				if(c[j] == '\\'){
-					loeschSpeicher = j;	
+				if(c[j] == '\\') {
+					//loesche alles davor
+					merker = j + 4;
 				}
 			}
-			
-			for(int k = 0; k < loeschSpeicher; k++) {
-//				c[k] = c[loeschSpeicher + 1];
-				text = text + c[k];
+			neu = c.length - merker;
+			char[] neues = new char[neu];
+			for(int k = 0; k < neu; k++) {
+				neues[k] = c[k + merker];
 			}
-//			text = text.replace(" ", "");
-//			addToListView(text);
-			
-//			System.out.println(text);
-			
-			
-			pfadSpeicher[i] = text;
+			for(int l = 0; l < neues.length; l++) {
+				gekuerzt = gekuerzt + neues[l];
+			}
+//			System.out.println(gekuerzt);
+			dateiNamen[i] = gekuerzt;
 		}
 	}
 }
