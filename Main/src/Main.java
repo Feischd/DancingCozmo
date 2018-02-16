@@ -403,6 +403,7 @@ public class Main extends Application {
 			
 //			System.out.println(text);
 			
+			
 			pfadSpeicher[i] = text;
 		}
 	}
