@@ -3,14 +3,20 @@ import java.io.File;
 import java.io.IOException;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class TestMain extends Application {
 
 	//TestMain ist gleichzeitig der Controller der GUI
+	
+	@FXML
+	ListView List;
 	
 	Stage primaryStage;
 
@@ -71,5 +77,27 @@ public class TestMain extends Application {
 		launch(args);
 
 	}
+	
+	
+	
+	@FXML
+	private void PlayClicked(ActionEvent event) {
+		addToTextArea("Hallo");
+	}
+
+	@FXML
+	private void StopClicked(ActionEvent event) {
+		addToTextArea("Tschuess");
+	}
+
+//	@FXML
+	private void addToTextArea(String text) {
+		String alterText = ListView.getText();
+		String neuerText = alterText + "\n" + text;
+		ListView.setText(neuerText);
+	}
+	
+	
+	//vorher war TextArea:  <TextArea id="TextLiednamen" editable="false" prefHeight="450.0" prefWidth="250.0" text="Hier werden die Liednamen stehen" />
 
 }
