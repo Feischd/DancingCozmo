@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -17,6 +18,12 @@ public class TestMain extends Application {
 	
 	@FXML
 	ListView List;
+	
+	@FXML
+	Button Stop;
+	
+	@FXML
+	Button Play;
 	
 	Stage primaryStage;
 
@@ -81,20 +88,23 @@ public class TestMain extends Application {
 	
 	
 	@FXML
-	private void PlayClicked(ActionEvent event) {
-		addToTextArea("Hallo");
+	private void PClick(ActionEvent event) {
+//		addToTextArea("Hallo");
 	}
 
 	@FXML
-	private void StopClicked(ActionEvent event) {
-		addToTextArea("Tschuess");
+	private void SClick(ActionEvent event) {
+//		addToTextArea("Tschuess");
 	}
 
 //	@FXML
 	private void addToTextArea(String text) {
-		String alterText = ListView.getText();
-		String neuerText = alterText + "\n" + text;
-		ListView.setText(neuerText);
+		
+//		List.getItems().add(text);
+		
+//		String alterText = ListView.getText();
+//		String neuerText = alterText + "\n" + text;
+//		ListView.setText(neuerText);
 	}
 	
 	
