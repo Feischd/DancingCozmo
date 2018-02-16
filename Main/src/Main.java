@@ -322,7 +322,7 @@ public class Main extends Application {
 
         try {
             //Process a = Runtime.getRuntime()
-            p2= Runtime.getRuntime().exec(new String[] { "C:\\Windows\\py.exe", "C:\\Users\\Patrick\\Documents\\DHBW\\Programmieren\\DancingCozmo\\cozmoDance.py" });
+            p2= Runtime.getRuntime().exec(new String[] { "C:\\Windows\\System32\\cmd.exe", "cd C:\\Users\\Patrick\\Documents\\DHBW\\Programmieren\\DancingCozmo\\cozmoDance.py" });
         } catch (IOException e) {
             e.printStackTrace();
         }
