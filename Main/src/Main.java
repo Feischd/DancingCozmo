@@ -343,5 +343,10 @@ public class Main extends Application {
 //		TextLiednamen.setText(neuerText);
 	}
 
+	@FXML
+	private void getIndex() {
+		int index = TextLiednamen.getSelectionModel().getSelectedIndex();
+		System.out.println(index);
+	}
 
 }
