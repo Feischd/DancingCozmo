@@ -32,38 +32,43 @@ public class Main extends Application {
 	// Attribute
 	@FXML
 	AnchorPane AnchorP;
-
 	@FXML
 	TextArea TextLiednamen;
-
 	@FXML
 	ImageView Bild;
-
 	@FXML
 	TextField Titel;
-
 	@FXML
 	TextField Kuenstler;
-
 	@FXML
 	TextField Genre;
-
 	@FXML
 	TextField Jahr;
-
 	@FXML
 	TextField Album;
-
 	@FXML
 	TextArea Sonstiges;
-
 	@FXML
 	Button Stop;
-
 	@FXML
 	Button Play;
-
 	Stage primaryStage;
+	private static AudioFilePlayer afp;
+	private static Webservice ws;
+	private static CozmoPlayer cp;
+	private static ArrayList<Song> songs;
+
+
+	public Main(){
+		afp = new AudioFilePlayer();
+		ws = new Webservice();
+		cp = new CozmoPlayer();
+		songs = new ArrayList<>();
+		songs.add(new Song("Believe", "Cher", "01_Titelnummer_1.wav"));
+		songs.set(0, ws.fillSongArray(songs.get(0)));
+		System.out.println(songs.get(0).getGenre());
+
+	}
 
 	// Zaehlvariable zum aktuellen speichern der Pfade (wird spaeter entfernt)
 	static int i = 0;
@@ -77,6 +82,7 @@ public class Main extends Application {
 
 	// Methoden
 	public static void main(String[] args) throws IOException {
+
 
 		// Angemeldeter Benutzer
 		File dir = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Music");
@@ -301,6 +307,10 @@ public class Main extends Application {
 	@FXML
 	private void PlayClicked(ActionEvent event) {
 		addToTextArea("Hallo");
+		cp.play(songs.get(0));
+		afp.play(songs.get(0).getPath());
+
+
 	}
 
 	@FXML
@@ -314,4 +324,6 @@ public class Main extends Application {
 		String neuerText = alterText + "\n" + text;
 		TextLiednamen.setText(neuerText);
 	}
+
+
 }
