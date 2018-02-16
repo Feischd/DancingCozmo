@@ -67,16 +67,16 @@ public class Main extends Application {
 		ws = new Webservice();
 		cp = new CozmoPlayer();
 		songs = new ArrayList<>();
-		songs.add(new Song("Believe", "Cher", "C:\\Users\\Patrick\\Documents\\DHBW\\Programmieren\\DancingCozmo\\01_Titelnummer_1.wav"));
-		songs.set(0, ws.fillSongArray(songs.get(0)));
-		System.out.println(songs.get(0).getGenre());
+//		songs.add(new Song("Believe", "Cher", "C:\\Users\\Patrick\\Documents\\DHBW\\Programmieren\\DancingCozmo\\01_Titelnummer_1.wav"));
+//		songs.set(0, ws.fillSongArray(songs.get(0)));
+//		System.out.println(songs.get(0).getGenre());
 
 	}
 
 	// Zaehlvariable zum aktuellen speichern der Pfade (wird spaeter entfernt)
 	static int i = 0;
 	
-	static int nummer = 0;
+//	static int nummer = 0;
 
 	// Hilfsarray um die einzelnen Pfade der Musikdateien zu speichern
 	private static String[] pfadSpeicher = new String[1];
@@ -110,6 +110,9 @@ public class Main extends Application {
 		//Lege Temporaere Pfade an
 		legeDateiOrdnerAn();
 		
+//		legeSongsAn(pfadSpeicher);
+		zerlegeAltenString(pfadSpeicher);
+		
 		launch(args);
 
 	}
@@ -121,6 +124,10 @@ public class Main extends Application {
 		File f = new File("temp");
 		f.mkdir();
 	}
+	
+//	private static void legeSongsAn(String[] pfadeAlt) {
+//			songs.add(new Song(titel, kuenstler, pfad));
+//	}
 
 	// nach einem bestimmten File in einem bestimmten Verzeichnis suchen
 	private static ArrayList<File> searchFile(File dir, String find) throws IOException {
@@ -201,14 +208,17 @@ public class Main extends Application {
 	// Speichern in temp mit Kuenstler + Titel
 
 	// text = eingegebener Pfad
-	private static void konverter(String text) throws IOException {
+	private static void konverter(int indexGeklickt) throws IOException {
 
-		String[] tempPfade = new String[pfadSpeicher.length];
+//		String[] tempPfade = new String[pfadSpeicher.length];
+		
+		String inputPfad = pfadSpeicher[indexGeklickt];
+		String outputPfad = "temp\\" + indexGeklickt + ".mp3";
 		
 //		String inputPfad = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De Strijdlust is geboren\\03 Het Gelders Volkslied.wma";
 
-			String inputPfad = text;
-			String outputPfad = "temp\\" + nummer + ".mp3";
+//			String inputPfad = text;
+//			String outputPfad = "temp\\" + nummer + ".mp3";
 			ProcessBuilder builder = new ProcessBuilder("ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad);
 			Process process = builder.start();
 			try {
@@ -217,11 +227,11 @@ public class Main extends Application {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			tempPfade[nummer] = outputPfad;
+//			tempPfade[nummer] = outputPfad;
 			
-			nummer = nummer + 1;
+//			nummer = nummer + 1;
 			
-//			getMetadata(outputPfad);
+			getMetadata(outputPfad, indexGeklickt);
 		
 		
 		
@@ -236,7 +246,7 @@ public class Main extends Application {
 
 	// Ab hier Metadaten
 
-	private static void getMetadata(String text) {
+	private static void getMetadata(String text, int index) {
 
 		String fileLocation = text;
 
@@ -268,6 +278,9 @@ public class Main extends Application {
 			// System.out.println("Album : " + metadata.get("xmpDM:album"));
 
 //			addToTextArea(metadata.get("xmpDM:artist") + " " + metadata.get("title"));
+			
+			//hier
+//			songs.add(index, new Song(metadata.get("title"), metadata.get("xmpDM:artist"), text));
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -315,29 +328,30 @@ public class Main extends Application {
 	@FXML
 	private void PlayClicked(ActionEvent event) {
 		addToListView("Hallo");
-		cp.play(songs.get(0));
+//		cp.play(songs.get(0));
 		//afp.play(songs.get(0).getPath());
 
-        try {
-            //Process a = Runtime.getRuntime()
-            p= Runtime.getRuntime().exec(new String[] { "C:\\Program Files (x86)\\Windows Media Player\\wmplayer.exe", songs.get(0).getPath() });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            //Process a = Runtime.getRuntime()
-            p2= Runtime.getRuntime().exec(new String[] { "C:\\Windows\\System32\\cmd.exe", "cd C:\\Users\\Patrick\\Documents\\DHBW\\Programmieren\\DancingCozmo\\cozmoDance.py" });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+		//Kommentar, weil ich anderen Pfad habe
+//        try {
+//            //Process a = Runtime.getRuntime()
+//            p= Runtime.getRuntime().exec(new String[] { "C:\\Program Files (x86)\\Windows Media Player\\wmplayer.exe", songs.get(0).getPath() });
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        try {
+//            //Process a = Runtime.getRuntime()
+//            p2= Runtime.getRuntime().exec(new String[] { "C:\\Windows\\System32\\cmd.exe", "cd C:\\Users\\Patrick\\Documents\\DHBW\\Programmieren\\DancingCozmo\\cozmoDance.py" });
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 	}
 
 	@FXML
 	private void StopClicked(ActionEvent event) {
 		addToListView("Tschuess");
-		p.destroy();
-		p2.destroy();
+//		p.destroy();
+//		p2.destroy();
 	}
 
 //	@FXML
@@ -349,9 +363,40 @@ public class Main extends Application {
 	}
 
 	@FXML
-	private void getIndex() {
+	private void getIndex() throws IOException {
 		int index = TextLiednamen.getSelectionModel().getSelectedIndex();
-		System.out.println(index);
+//		System.out.println(index);
+		
+		konverter(index);
 	}
-
+	
+	//unschön, funnkt später auch so nicht
+	//letzter Teil des Pfades soll ausgeschnitten werden 
+	//...\\...\\...\hallo.txt --> also hallo.txt
+	private static void zerlegeAltenString(String[] pfadSpeicher) {
+		
+		String text = "";
+		
+		for (int i = 0; i < pfadSpeicher.length; i++) {
+			int loeschSpeicher = 0;
+			char[] c = pfadSpeicher[i].toCharArray();
+			
+			for(int j = 0; j < c.length; j++) {
+				if(c[j] == '\\'){
+					loeschSpeicher = j;	
+				}
+			}
+			
+			for(int k = 0; k < loeschSpeicher; k++) {
+				c[k] = c[loeschSpeicher + 1];
+				text = text + c[k];
+			}
+//			text = text.replace(" ", "");
+//			addToListView(text);
+			
+			System.out.println(text);
+		}
+	}
 }
+
+
