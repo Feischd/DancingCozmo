@@ -111,7 +111,7 @@ public class Main extends Application {
 		legeDateiOrdnerAn();
 		
 //		legeSongsAn(pfadSpeicher);
-		zerlegeAltenString(pfadSpeicher);
+//		zerlegeAltenString();
 		
 		launch(args);
 
@@ -356,7 +356,12 @@ public class Main extends Application {
 
 //	@FXML
 	private void addToListView(String text) {
-		TextLiednamen.getItems().add(text);
+		
+		for(int i = 0; i < pfadSpeicher.length; i++) {
+			TextLiednamen.getItems().add(pfadSpeicher[i]);
+		}
+		
+//		TextLiednamen.getItems().add(text);
 //		String alterText = TextLiednamen.getText();
 //		String neuerText = alterText + "\n" + text;
 //		TextLiednamen.setText(neuerText);
@@ -367,17 +372,19 @@ public class Main extends Application {
 		int index = TextLiednamen.getSelectionModel().getSelectedIndex();
 //		System.out.println(index);
 		
+		if(songs.get(index).getTrack() == null) {
 		konverter(index);
+		}
 	}
 	
 	//unschön, funnkt später auch so nicht
 	//letzter Teil des Pfades soll ausgeschnitten werden 
 	//...\\...\\...\hallo.txt --> also hallo.txt
-	private static void zerlegeAltenString(String[] pfadSpeicher) {
-		
-		String text = "";
+	private static void zerlegeAltenString() {
+		//String[] pfadSpeicher
 		
 		for (int i = 0; i < pfadSpeicher.length; i++) {
+			String text = "";
 			int loeschSpeicher = 0;
 			char[] c = pfadSpeicher[i].toCharArray();
 			
@@ -388,13 +395,15 @@ public class Main extends Application {
 			}
 			
 			for(int k = 0; k < loeschSpeicher; k++) {
-				c[k] = c[loeschSpeicher + 1];
+//				c[k] = c[loeschSpeicher + 1];
 				text = text + c[k];
 			}
 //			text = text.replace(" ", "");
 //			addToListView(text);
 			
-			System.out.println(text);
+//			System.out.println(text);
+			
+			pfadSpeicher[i] = text;
 		}
 	}
 }
