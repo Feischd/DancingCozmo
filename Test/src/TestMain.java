@@ -82,7 +82,6 @@ public class TestMain extends Application {
 		TestMethoden.soundDateiAbspielen(pfadSpeicher);
 
 		launch(args);
-
 	}
 	
 	
@@ -106,6 +105,12 @@ public class TestMain extends Application {
 //		String neuerText = alterText + "\n" + text;
 //		ListView.setText(neuerText);
 	}
+	
+	@FXML
+	private void getIndex() {
+		int index = List.getSelectionModel().getSelectedIndex();
+	}
+	
 	
 	
 	//vorher war TextArea:  <TextArea id="TextLiednamen" editable="false" prefHeight="450.0" prefWidth="250.0" text="Hier werden die Liednamen stehen" />
