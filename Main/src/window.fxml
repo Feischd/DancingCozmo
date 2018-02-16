@@ -9,7 +9,6 @@
 
 <AnchorPane fx:id="AnchorP" prefHeight="439.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main">
    <children>
-      <TextArea fx:id="TextLiednamen" editable="false" prefHeight="450.0" prefWidth="250.0" text="Hier werden die Liednamen stehen" />
       <ImageView fx:id="Bild" fitHeight="200.0" fitWidth="200.0" layoutX="300.0" pickOnBounds="true" preserveRatio="true" />
       <TextField fx:id="Titel" layoutX="344.0" layoutY="200.0" promptText="Titel" />
       <TextField fx:id="Kuenstler" layoutX="344.0" layoutY="225.0" promptText="Künstler" />
@@ -19,5 +18,6 @@
       <TextArea fx:id="Sonstiges" layoutX="250.0" layoutY="324.0" prefHeight="88.0" prefWidth="250.0" promptText="sonstige Informationen" />
       <Button fx:id="Stop" layoutX="250.0" layoutY="412.0" mnemonicParsing="false" onAction="#StopClicked" prefHeight="34.0" prefWidth="128.0" text="Stop" />
       <Button fx:id="Play" layoutX="378.0" layoutY="412.0" mnemonicParsing="false" onAction="#PlayClicked" prefHeight="34.0" prefWidth="115.0" text="Play" />
+      <ListView fx:id="TextLiednamen" prefHeight="446.0" prefWidth="250.0" />
    </children>
 </AnchorPane>

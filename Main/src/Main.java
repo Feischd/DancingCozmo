@@ -21,6 +21,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -33,7 +34,7 @@ public class Main extends Application {
 	@FXML
 	AnchorPane AnchorP;
 	@FXML
-	TextArea TextLiednamen;
+	ListView TextLiednamen;
 	@FXML
 	ImageView Bild;
 	@FXML
@@ -101,7 +102,7 @@ public class Main extends Application {
 
 		// pruefen, ob 1. Alle Dateien gefunden worden sind 2. ein
 		// beliebiges Stueck abgespielt werden kann
-		testausgabe(pfadSpeicher);
+//		testausgabe(pfadSpeicher);
 //		soundDateiAbspielen(pfadSpeicher);
 		
 		launch(args);
@@ -306,7 +307,7 @@ public class Main extends Application {
 	// in anderer Methode
 	@FXML
 	private void PlayClicked(ActionEvent event) {
-		addToTextArea("Hallo");
+		addToListView("Hallo");
 		cp.play(songs.get(0));
 		afp.play(songs.get(0).getPath());
 
@@ -315,14 +316,15 @@ public class Main extends Application {
 
 	@FXML
 	private void StopClicked(ActionEvent event) {
-		addToTextArea("Tschuess");
+		addToListView("Tschuess");
 	}
 
 //	@FXML
-	private void addToTextArea(String text) {
-		String alterText = TextLiednamen.getText();
-		String neuerText = alterText + "\n" + text;
-		TextLiednamen.setText(neuerText);
+	private void addToListView(String text) {
+		TextLiednamen.getItems().add(text);
+//		String alterText = TextLiednamen.getText();
+//		String neuerText = alterText + "\n" + text;
+//		TextLiednamen.setText(neuerText);
 	}
 
 
