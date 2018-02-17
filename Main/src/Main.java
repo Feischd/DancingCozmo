@@ -53,38 +53,38 @@ public class Main extends Application {
 	Button Stop;
 	@FXML
 	Button Play;
+	@FXML
+	Button Show;
+	
 	Stage primaryStage;
 	private static Webservice ws;
 	private static ArrayList<Song> songs;
 	private static Cozmo cozmo;
 	private static Song selectedSong;
 
-
-	public Main(){
+	public Main() {
 		cozmo = new Cozmo();
 		ws = new Webservice();
 		songs = new ArrayList<>();
-		songs.add(new Song("Believe", "Cher", "C:\\Users\\Patrick\\Documents\\DHBW\\Programmieren\\DancingCozmo\\01_Titelnummer_1.wav"));
-		songs.set(0, ws.fillSongArray(songs.get(0)));
-		// selectedSong muss später auf null geändert werden!
-		selectedSong = songs.get(0);
-
-
+		
+		//17.02 von Alex als Kommentar
+//		songs.add(new Song("Believe", "Cher",
+//				"C:\\Users\\Patrick\\Documents\\DHBW\\Programmieren\\DancingCozmo\\01_Titelnummer_1.wav"));
+//		songs.set(0, ws.fillSongArray(songs.get(0)));
+		// selectedSong muss spaeter auf null geaendert werden!
+//		selectedSong = songs.get(0);
 	}
 
-	// Zaehlvariable zum aktuellen speichern der Pfade (wird spaeter entfernt)
+	// Zaehlvariable zum aktuellen speichern der Pfade
 	static int i = 0;
-	
-//	static int nummer = 0;
+
+	// static int nummer = 0;
 
 	// Hilfsarray um die einzelnen Pfade der Musikdateien zu speichern
 	private static String[] pfadSpeicher = new String[1];
 	private static String[] dateiNamen;
 
-
-	// Methoden
 	public static void main(String[] args) throws IOException {
-
 
 		// Angemeldeter Benutzer
 		File dir = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Music");
@@ -100,25 +100,25 @@ public class Main extends Application {
 		searchFile(dir, findmp3);
 		searchFile(dir, findm4a);
 		searchFile(dir, findaac);
-		
-		//noetig um die Liednamen in GUI anzuzeigen
+
+		// noetig um die Liednamen in GUI anzuzeigen
 		dateiNamen = new String[pfadSpeicher.length];
 
 		// pruefen, ob 1. Alle Dateien gefunden worden sind 2. ein
 		// beliebiges Stueck abgespielt werden kann
-//		testausgabe(pfadSpeicher);
-//		soundDateiAbspielen(pfadSpeicher);
-		
-		//Lege Temporaere Pfade an
+		// testausgabe(pfadSpeicher);
+		// soundDateiAbspielen(pfadSpeicher);
+
+		// Lege Temporaere Pfade an
 		legeDateiOrdnerAn();
-		
-//		legeSongsAn(pfadSpeicher);
-//		zerlegeAltenString();
-		
+
+		// legeSongsAn(pfadSpeicher);
+		zerlegeAltenString();
+
 		launch(args);
 
 	}
-	
+
 	private static void legeDateiOrdnerAn() {
 		// Alternative, falls temp in Project spaeter nicht gehen sollte
 		// File f = new File("C:\\Users\\" + System.getProperty("user.name") +
@@ -126,10 +126,10 @@ public class Main extends Application {
 		File f = new File("temp");
 		f.mkdir();
 	}
-	
-//	private static void legeSongsAn(String[] pfadeAlt) {
-//			songs.add(new Song(titel, kuenstler, pfad));
-//	}
+
+	// private static void legeSongsAn(String[] pfadeAlt) {
+	// songs.add(new Song(titel, kuenstler, pfad));
+	// }
 
 	// nach einem bestimmten File in einem bestimmten Verzeichnis suchen
 	private static ArrayList<File> searchFile(File dir, String find) throws IOException {
@@ -173,9 +173,10 @@ public class Main extends Application {
 		pfadSpeicher = verlaengere(pfadSpeicher);
 		pfadSpeicher[i] = text;
 		i = i + 1;
-		
-		//uebergebener Pfad wird direkt passend Konvertiert und Konvertierte Datei abgespeichert
-//		konverter(text);
+
+		// uebergebener Pfad wird direkt passend Konvertiert und Konvertierte Datei
+		// abgespeichert
+		// konverter(text);
 	}
 
 	// Das Array zum Speichern der Pfade um 1 Stelle verlaengern, Array ist flexibel
@@ -191,7 +192,6 @@ public class Main extends Application {
 
 	}
 
-
 	// Die einzelnen Pfade werden ausgegeben (Ueberpruefung ob alle Dateien gefunden
 	// wurden)
 	private static void testausgabe(String pfadtext[]) {
@@ -206,38 +206,36 @@ public class Main extends Application {
 	// text = eingegebener Pfad
 	private static void konverter(int indexGeklickt) throws IOException {
 
-//		String[] tempPfade = new String[pfadSpeicher.length];
-		
+		// String[] tempPfade = new String[pfadSpeicher.length];
+
 		String inputPfad = pfadSpeicher[indexGeklickt];
 		String outputPfad = "temp\\" + indexGeklickt + ".mp3";
-		
-//		String inputPfad = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De Strijdlust is geboren\\03 Het Gelders Volkslied.wma";
 
-//			String inputPfad = text;
-//			String outputPfad = "temp\\" + nummer + ".mp3";
-			ProcessBuilder builder = new ProcessBuilder("ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad);
-			Process process = builder.start();
-			try {
-				TimeUnit.SECONDS.sleep(1);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-//			tempPfade[nummer] = outputPfad;
-			
-//			nummer = nummer + 1;
-			
-			getMetadata(outputPfad, indexGeklickt);
-		
-		
-		
-		
-		
+		// String inputPfad = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De
+		// Strijdlust is geboren\\03 Het Gelders Volkslied.wma";
+
+		// String inputPfad = text;
+		// String outputPfad = "temp\\" + nummer + ".mp3";
+		ProcessBuilder builder = new ProcessBuilder("ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad);
+		Process process = builder.start();
+		try {
+			TimeUnit.SECONDS.sleep(1);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// tempPfade[nummer] = outputPfad;
+
+		// nummer = nummer + 1;
+
+		getMetadata(outputPfad, indexGeklickt);
+
 		// Alternative, falls temp in Projekt spaeter nicht gehen sollte
 		// String outputPfad = "C:\\Users\\" + System.getProperty("user.name") +
 		// "\\_Dancing Cozmo Temp\\" + name + ".mp3";
 
-//		String outputPfad = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De Strijdlust is geboren\\03 Het Gelders Volkslied" + ".mp3";
+		// String outputPfad = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De
+		// Strijdlust is geboren\\03 Het Gelders Volkslied" + ".mp3";
 	}
 
 	// Ab hier Metadaten
@@ -260,9 +258,9 @@ public class Main extends Application {
 			// List all metadata
 			String[] metadataNames = metadata.names();
 
-			for (String name : metadataNames) {
-				System.out.println(name + ": " + metadata.get(name));
-			}
+//			for (String name : metadataNames) {
+//				System.out.println(name + ": " + metadata.get(name));
+//			}
 
 			// Retrieve the necessary info from metadata
 			// Names - title, xmpDM:artist etc. - mentioned below may differ based
@@ -273,10 +271,11 @@ public class Main extends Application {
 			// System.out.println("Genre : " + metadata.get("xmpDM:genre"));
 			// System.out.println("Album : " + metadata.get("xmpDM:album"));
 
-//			addToTextArea(metadata.get("xmpDM:artist") + " " + metadata.get("title"));
-			
-			//hier
-//			songs.add(index, new Song(metadata.get("title"), metadata.get("xmpDM:artist"), text));
+			// addToTextArea(metadata.get("xmpDM:artist") + " " + metadata.get("title"));
+
+			// hier
+			songs.add(index, new Song(metadata.get("title"),
+			metadata.get("xmpDM:artist"), text));
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -287,6 +286,9 @@ public class Main extends Application {
 		} catch (TikaException e) {
 			e.printStackTrace();
 		}
+		
+		songs.set(index, ws.fillSongArray(songs.get(0)));
+		
 	}
 
 	// Konvertieren
@@ -329,69 +331,70 @@ public class Main extends Application {
 
 	@FXML
 	private void StopClicked(ActionEvent event) {
-	//	addToListView("Tschuess");
+		// addToListView("Tschuess");
 		cozmo.stop();
 	}
+	
+	@FXML
+	private void ShowClicked(ActionEvent event) {
+		addToListView("");
+	}
 
-//	@FXML
 	private void addToListView(String text) {
-		
-		//vorher
-//		for(int i = 0; i < pfadSpeicher.length; i++) {
-//			TextLiednamen.getItems().add(pfadSpeicher[i]);
-//		}
-		
-		//jetzt
-		for(int i = 0; i < dateiNamen.length; i++) {
+
+		// vorher
+		// for(int i = 0; i < pfadSpeicher.length; i++) {
+		// TextLiednamen.getItems().add(pfadSpeicher[i]);
+		// }
+
+		// jetzt
+		for (int i = 0; i < dateiNamen.length; i++) {
 			TextLiednamen.getItems().add(dateiNamen[i]);
 		}
-		
-		
-//		TextLiednamen.getItems().add(text);
-//		String alterText = TextLiednamen.getText();
-//		String neuerText = alterText + "\n" + text;
-//		TextLiednamen.setText(neuerText);
+
+		// TextLiednamen.getItems().add(text);
+		// String alterText = TextLiednamen.getText();
+		// String neuerText = alterText + "\n" + text;
+		// TextLiednamen.setText(neuerText);
 	}
 
 	@FXML
 	private void getIndex() throws IOException {
 		int index = TextLiednamen.getSelectionModel().getSelectedIndex();
-//		System.out.println(index);
-		
-		if(songs.get(index).getTrack() == null) {
-		konverter(index);
+		// System.out.println(index);
+
+		if (songs.get(index).getTrack() == null) {
+			konverter(index);
 		}
 	}
-	
-	//letzter Teil des Pfades soll ausgeschnitten werden 
-	//...\\...\\...\hallo.txt --> also hallo.txt
+
+	// letzter Teil des Pfades soll ausgeschnitten werden
+	// ...\\...\\...\hallo.txt --> also hallo.txt
 	private static void zerlegeAltenString() {
 
-		for(int i = 0; i < pfadSpeicher.length; i++) {
+		for (int i = 0; i < pfadSpeicher.length; i++) {
 			String text = pfadSpeicher[i];
 			String gekuerzt = "";
 			char[] c = text.toCharArray();
 			int merker = 0;
 			int neu;
-			for(int j = 0; j < c.length; j++) {
-				if(c[j] == '\\') {
-					//loesche alles davor
+			for (int j = 0; j < c.length; j++) {
+				if (c[j] == '\\') {
+					// loesche alles davor
 					merker = j + 4;
 				}
 			}
 			neu = c.length - merker;
 			char[] neues = new char[neu];
-			for(int k = 0; k < neu; k++) {
+			for (int k = 0; k < neu; k++) {
 				neues[k] = c[k + merker];
 			}
-			for(int l = 0; l < neues.length; l++) {
+			for (int l = 0; l < neues.length; l++) {
 				gekuerzt = gekuerzt + neues[l];
 			}
-//			System.out.println(gekuerzt);
+			// System.out.println(gekuerzt);
 			dateiNamen[i] = gekuerzt;
-			
+
 		}
 	}
 }
-
-
