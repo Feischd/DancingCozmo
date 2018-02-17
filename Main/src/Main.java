@@ -287,7 +287,7 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 		
-		songs.set(index, ws.fillSongArray(songs.get(0)));
+		songs.set(index, ws.fillSongArray(songs.get(index)));
 		
 	}
 
@@ -368,6 +368,7 @@ public class Main extends Application {
 //		}
 		
 		 if(songs.contains(index)) {
+		 }else {
 			 konverter(index);
 		 }
 		 
@@ -375,11 +376,21 @@ public class Main extends Application {
 		
 	}
 	
+	//Bild?
 	private void zeigeDatenInDerGUI(int indexDesSongs) {
 		Titel.clear();
 		Kuenstler.clear();
+		Genre.clear();
+		Jahr.clear();
+		Album.clear();
+		Sonstiges.clear();
+		
 		Titel.setText(songs.get(indexDesSongs).getTrack());
 		Kuenstler.setText(songs.get(indexDesSongs).getArtist());
+		Genre.setText(songs.get(indexDesSongs).getGenre());
+		Jahr.setText("" + songs.get(indexDesSongs).getPublished());
+		Album.setText(songs.get(indexDesSongs).getAlbum());
+		Sonstiges.setText(songs.get(indexDesSongs).getInformation());
 	}
 
 	// letzter Teil des Pfades soll ausgeschnitten werden
@@ -412,3 +423,4 @@ public class Main extends Application {
 		}
 	}
 }
+
