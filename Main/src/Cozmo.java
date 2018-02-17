@@ -1,8 +1,3 @@
-import Dances.Classic;
-import Dances.Dark;
-import Dances.Latin;
-import Dances.Traditional;
-
 import java.io.IOException;
 
 public class Cozmo {
@@ -27,7 +22,6 @@ public class Cozmo {
         catch(IOException e){
             e.printStackTrace();
         }
-
     }
 
     // creates dance for cozmo depending on genre and duration of song
@@ -37,7 +31,7 @@ public class Cozmo {
                 break;
             case "Country": new Dances.Country().createDance(laenge/22);
                 break;
-            case "Dark": new Dark().createDance(laenge/15);
+            case "Dark": new Dances.Dark().createDance(laenge/15);
                 break;
             case "Disco": new Dances.Disco().createDance(laenge/18);
                 break;
@@ -51,9 +45,9 @@ public class Cozmo {
                 break;
             case "Jazz": new Dances.Jazz().createDance(laenge/14);
                 break;
-            case "Classic": new Classic().createDance(laenge/22);
+            case "Classic": new Dances.Classic().createDance(laenge/22);
                 break;
-            case "Latin": new Latin().createDance(laenge/21);
+            case "Latin": new Dances.Latin().createDance(laenge/21);
                 break;
             case "Metal": new Dances.Metal().createDance(laenge/24);
                 break;
@@ -75,7 +69,7 @@ public class Cozmo {
                 break;
             case "Ska": new Dances.Ska().createDance(laenge/21);
                 break;
-            case "Traditional": new Traditional().createDance(laenge/23);
+            case "Traditional": new Dances.Traditional().createDance(laenge/23);
                 break;
             default: new Dances.Universal().createDance(laenge/23);
                 break;

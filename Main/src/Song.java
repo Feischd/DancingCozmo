@@ -22,6 +22,7 @@ public class Song {
         information = "";
     }
 
+
     // setter
     public void setGenre(String genre){
         this.genre = genre;
