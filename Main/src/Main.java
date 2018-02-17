@@ -414,6 +414,7 @@ public class Main extends Application {
 			}
 //			System.out.println(gekuerzt);
 			dateiNamen[i] = gekuerzt;
+			
 		}
 	}
 }
