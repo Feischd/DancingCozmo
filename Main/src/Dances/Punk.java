@@ -6,14 +6,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 public class Punk extends Dance {
-    public Punk(){
-        laengeTanz = 31;
-    }
 
     public void createDance(double laenge){
         PrintWriter pWriter = null;
         try {
-            // creating file
             pWriter = new PrintWriter(new BufferedWriter(new FileWriter("cozmoDance.py")));
 
             // python code
@@ -60,15 +56,12 @@ public class Punk extends Dance {
             pWriter.println("   time.sleep(0.5)");
             pWriter.println("   robot.move_lift(-5)");
             pWriter.println("   time.sleep(0.5)");
-
             pWriter.println();
 
             pWriter.println("i = 0");
             pWriter.println("while i < " + laenge + ":");
             pWriter.println("   cozmo.run_program(cozmo_program)");
             pWriter.println("   i = i + 1");
-
-
         } catch (IOException ioe) {
             ioe.printStackTrace();
         } finally {

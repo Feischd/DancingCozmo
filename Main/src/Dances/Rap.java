@@ -6,14 +6,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 public class Rap extends Dance {
-    public Rap(){
-        laengeTanz = 27;
-    }
 
     public void createDance(double laenge){
         PrintWriter pWriter = null;
         try {
-            // creating file
             pWriter = new PrintWriter(new BufferedWriter(new FileWriter("cozmoDance.py")));
 
             // python code
@@ -63,15 +59,12 @@ public class Rap extends Dance {
             pWriter.println("   time.sleep(0.5)");
             // Turn 360 degrees to the right
             pWriter.println(" robot.turn_in_place(degrees(-360)).wait_for_completed()");
-
             pWriter.println();
 
             pWriter.println("i = 0");
             pWriter.println("while i < " + laenge + ":");
             pWriter.println("   cozmo.run_program(cozmo_program)");
             pWriter.println("   i = i + 1");
-
-
         } catch (IOException ioe) {
             ioe.printStackTrace();
         } finally {
