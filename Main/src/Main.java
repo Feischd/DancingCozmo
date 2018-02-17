@@ -54,22 +54,21 @@ public class Main extends Application {
 	@FXML
 	Button Play;
 	Stage primaryStage;
-	private static AudioFilePlayer afp;
 	private static Webservice ws;
-	private static CozmoPlayer cp;
 	private static ArrayList<Song> songs;
-	private static Process p;
-	private static Process p2;
+	private static Cozmo cozmo;
+	private static Song selectedSong;
 
 
 	public Main(){
-		afp = new AudioFilePlayer();
+		cozmo = new Cozmo();
 		ws = new Webservice();
-		cp = new CozmoPlayer();
 		songs = new ArrayList<>();
-//		songs.add(new Song("Believe", "Cher", "C:\\Users\\Patrick\\Documents\\DHBW\\Programmieren\\DancingCozmo\\01_Titelnummer_1.wav"));
-//		songs.set(0, ws.fillSongArray(songs.get(0)));
-//		System.out.println(songs.get(0).getGenre());
+		songs.add(new Song("Believe", "Cher", "C:\\Users\\Patrick\\Documents\\DHBW\\Programmieren\\DancingCozmo\\01_Titelnummer_1.wav"));
+		songs.set(0, ws.fillSongArray(songs.get(0)));
+		// selectedSong muss später auf null geändert werden!
+		selectedSong = songs.get(0);
+
 
 	}
 
@@ -81,8 +80,7 @@ public class Main extends Application {
 	// Hilfsarray um die einzelnen Pfade der Musikdateien zu speichern
 	private static String[] pfadSpeicher = new String[1];
 	private static String[] dateiNamen;
-	// nicht loeschen!!!!!!
-	private static AudioFilePlayer player = new AudioFilePlayer();
+
 
 	// Methoden
 	public static void main(String[] args) throws IOException {
@@ -115,7 +113,7 @@ public class Main extends Application {
 		legeDateiOrdnerAn();
 		
 //		legeSongsAn(pfadSpeicher);
-		zerlegeAltenString();
+//		zerlegeAltenString();
 		
 		launch(args);
 
@@ -193,12 +191,6 @@ public class Main extends Application {
 
 	}
 
-	// Musik wird abgespielt
-	private static void soundDateiAbspielen(String[] pfadtext) {
-
-		// Play with AudioFilePlayer in GUI
-		// player.play(pfadtext[1]);
-	}
 
 	// Die einzelnen Pfade werden ausgegeben (Ueberpruefung ob alle Dateien gefunden
 	// wurden)
@@ -331,31 +323,14 @@ public class Main extends Application {
 	// in anderer Methode
 	@FXML
 	private void PlayClicked(ActionEvent event) {
-		addToListView("Hallo");
-//		cp.play(songs.get(0));
-		//afp.play(songs.get(0).getPath());
-
-		//Kommentar, weil ich anderen Pfad habe
-//        try {
-//            //Process a = Runtime.getRuntime()
-//            p= Runtime.getRuntime().exec(new String[] { "C:\\Program Files (x86)\\Windows Media Player\\wmplayer.exe", songs.get(0).getPath() });
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        try {
-//            //Process a = Runtime.getRuntime()
-//            p2= Runtime.getRuntime().exec(new String[] { "C:\\Windows\\System32\\cmd.exe", "cd C:\\Users\\Patrick\\Documents\\DHBW\\Programmieren\\DancingCozmo\\cozmoDance.py" });
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+//		addToListView("Hallo");
+		cozmo.play(selectedSong);
 	}
 
 	@FXML
 	private void StopClicked(ActionEvent event) {
-		addToListView("Tschuess");
-//		p.destroy();
-//		p2.destroy();
+	//	addToListView("Tschuess");
+		cozmo.stop();
 	}
 
 //	@FXML
