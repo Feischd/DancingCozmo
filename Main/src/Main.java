@@ -363,9 +363,23 @@ public class Main extends Application {
 		int index = TextLiednamen.getSelectionModel().getSelectedIndex();
 		// System.out.println(index);
 
-		if (songs.get(index).getTrack() == null) {
-			konverter(index);
-		}
+//		if (songs.get(index).getTrack() == null) {
+//			konverter(index);
+//		}
+		
+		 if(songs.contains(index)) {
+			 konverter(index);
+		 }
+		 
+		 zeigeDatenInDerGUI(index);
+		
+	}
+	
+	private void zeigeDatenInDerGUI(int indexDesSongs) {
+		Titel.clear();
+		Kuenstler.clear();
+		Titel.setText(songs.get(indexDesSongs).getTrack());
+		Kuenstler.setText(songs.get(indexDesSongs).getArtist());
 	}
 
 	// letzter Teil des Pfades soll ausgeschnitten werden
