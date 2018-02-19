@@ -128,8 +128,9 @@ public class Main extends Application {
 		// Alternative, falls temp in Project spaeter nicht gehen sollte
 		// File f = new File("C:\\Users\\" + System.getProperty("user.name") +
 		// "\\_Dancing Cozmo Temp\\");
-		File f = new File("temp");
-		f.mkdir();
+		//File f = new File("temp");
+		//f.mkdir();
+		new File("temp").mkdir();
 	}
 
 	// private static void legeSongsAn(String[] pfadeAlt) {
@@ -318,10 +319,6 @@ public class Main extends Application {
 		} catch (Exception e){
 			e.printStackTrace();
 		}
-
-//		System.out.println(songs.get(index));
-
-		
 	}
 
 	// Konvertieren
