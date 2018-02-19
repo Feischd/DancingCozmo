@@ -8,10 +8,6 @@
 	<classpathentry kind="src" path="mp3-transform-0.81/src/tools"/>
 	<classpathentry kind="src" path="Python-Cozmo/src"/>
 	<classpathentry kind="src" path="Test/src"/>
-	<classpathentry kind="lib" path="JLayer1.0.1/jl1.0.1.jar"/>
 	<classpathentry kind="lib" path="Main/tika-app-1.17.jar"/>
-	<classpathentry kind="lib" path="mp3-transform-0.81/bin/mp3transform.jar"/>
-	<classpathentry kind="lib" path="spotify-web-api-java-1.5.0-javadoc.jar"/>
-	<classpathentry kind="lib" path="Test/tika-app-1.17.jar"/>
 	<classpathentry kind="output" path="Test/bin"/>
 </classpath>
