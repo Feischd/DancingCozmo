@@ -339,7 +339,7 @@ public class Main extends Application {
 				public void handle(WindowEvent event) {
 					// Hier muss der Temp-Ordner geloescht werden
 					System.out.println("Test");
-					deleteDir(new File("Main/temp"));
+//					deleteDir(new File("Main/temp"));
 				}
 			});
 			
@@ -352,14 +352,14 @@ public class Main extends Application {
 //		
 //	}
 
-	   public static void deleteDir(File path) {
-		      for (File file : path.listFiles()) {
-		         if (file.isDirectory())
-		            deleteDir(file);
-		         file.delete();
-		      }
-		      path.delete();
-		   }
+//	   public static void deleteDir(File path) {
+//		      for (File file : path.listFiles()) {
+//		         if (file.isDirectory())
+//		            deleteDir(file);
+//		         file.delete();
+//		      }
+//		      path.delete();
+//		   }
 	
 	// Beide nur Testweise, spaeter richtig ausprogrammieren und TextArea schreiben
 	// in anderer Methode
