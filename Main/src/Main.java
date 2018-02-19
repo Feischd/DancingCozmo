@@ -27,6 +27,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import ucar.nc2.util.IO;
 
 public class Main extends Application {
 
@@ -209,7 +210,7 @@ public class Main extends Application {
 		// String[] tempPfade = new String[pfadSpeicher.length];
 		String inputPfad = pfadSpeicher[indexGeklickt];
 //		String outputPfad = "temp\\" + indexGeklickt + ".mp3";
-		String outputPfad = "temp\\" + dateiNamen[indexGeklickt] + ".mp3";
+		String outputPfad = "temp\\" + dateiNamen[indexGeklickt].substring(0, dateiNamen[indexGeklickt].length()-4) + ".mp3";
 
 		// String inputPfad = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De
 		// Strijdlust is geboren\\03 Het Gelders Volkslied.wma";
@@ -242,7 +243,14 @@ public class Main extends Application {
 	// Ab hier Metadaten
 
 	private static void getMetadata(String fileLocation, int index) {
-		System.out.println(fileLocation);
+
+		try{
+			TimeUnit.SECONDS.sleep(1);
+
+		}catch(Exception e){
+			System.out.println(e);
+		}
+
 		try {
 			InputStream input = new FileInputStream(new File(fileLocation));
 			ContentHandler handler = new DefaultHandler();
@@ -253,8 +261,9 @@ public class Main extends Application {
 			parser.parse(input, handler, metadata, parseCtx);
 			input.close();
 
+			//System.out.println(metadata);
 			// List all metadata
-			String[] metadataNames = metadata.names();
+			//String[] metadataNames = metadata.names();
 
 //			for (String name : metadataNames) {
 //				System.out.println(name + ": " + metadata.get(name));
@@ -263,11 +272,11 @@ public class Main extends Application {
 			// Retrieve the necessary info from metadata
 			// Names - title, xmpDM:artist etc. - mentioned below may differ based
 			// System.out.println("----------------------------------------------");
-			// System.out.println("Title: " + metadata.get("title"));
-			// System.out.println("Artists: " + metadata.get("xmpDM:artist"));
-			// System.out.println("Composer : " + metadata.get("xmpDM:composer"));
-			// System.out.println("Genre : " + metadata.get("xmpDM:genre"));
-			// System.out.println("Album : " + metadata.get("xmpDM:album"));
+			//System.out.println("Title: " + metadata.get("title"));
+			//System.out.println("Artists: " + metadata.get("xmpDM:artist"));
+			//System.out.println("Composer : " + metadata.get("xmpDM:composer"));
+			//System.out.println("Genre : " + metadata.get("xmpDM:genre"));
+			//System.out.println("Album : " + metadata.get("xmpDM:album"));
 
 			// addToTextArea(metadata.get("xmpDM:artist") + " " + metadata.get("title"));
 
@@ -284,7 +293,8 @@ public class Main extends Application {
 		} catch (TikaException e) {
 			e.printStackTrace();
 		}
-		
+
+		System.out.println(songs.get(index));
 		songs.set(index, ws.fillSongArray(songs.get(index)));
 		
 	}
@@ -398,6 +408,7 @@ public class Main extends Application {
 			String path = pfadSpeicher[i];
 			String[] split = path.split("\\\\");
 			dateiNamen[i] = split[split.length-1];
+			System.out.println(dateiNamen[i]);
 		}
 	}
 }

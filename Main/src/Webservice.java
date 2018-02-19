@@ -16,6 +16,7 @@ public class Webservice {
 
     public Song fillSongArray(Song song){
             String songData = getSongData(song);
+        System.out.println(songData);
             // get length of song
             song.setDuration(getDuration(songData));
             // get date song was published
