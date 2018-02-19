@@ -42,14 +42,11 @@ public class Rap extends Dance {
             pWriter.println("   time.sleep(0.5)");
             pWriter.println("   robot.move_lift(-5)");
             pWriter.println("   time.sleep(0.5)");
-            // Drive backwards for 150 millimeters at 50 millimeters-per-second & The lift is raising (at 5 radians per second)
+            // The lift is first raising and then lowering (at 5 radians per second)
             pWriter.println("   robot.move_lift(5)");
-            pWriter.println("   robot.drive_straight(distance_mm(-150), speed_mmps(150)).wait_for_completed()");
-            pWriter.println("   time.sleep(1)");
-            // Drive forwards for 150 millimeters at 50 millimeters-per-second & The lift is lowering (at 5 radians per second)
+            pWriter.println("   time.sleep(0.5)");
             pWriter.println("   robot.move_lift(-5)");
-            pWriter.println("   robot.drive_straight(distance_mm(150), speed_mmps(150)).wait_for_completed()");
-            pWriter.println("   time.sleep(1)");
+            pWriter.println("   time.sleep(0.5)");
             // Turn 360 degrees to the left
             pWriter.println("   robot.turn_in_place(degrees(360)).wait_for_completed()");
             // The lift is first raising and then lowering (at 5 radians per second)
