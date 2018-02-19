@@ -15,22 +15,19 @@ def cozmo_program(robot: cozmo.robot.Robot):
     robot.drive_straight(distance_mm(150), speed_mmps(150)).wait_for_completed()
     # dreht sich um 90° nach links
     robot.turn_in_place(degrees(90)).wait_for_completed()
-    # faehrt vorwaerts & H geht hoch
-    robot.move_lift(10)
-    robot.drive_straight(distance_mm(150), speed_mmps(150)).wait_for_completed()
-    time.sleep(1)
-    # faehrt rueckwaerts & H geht runter
-    robot.move_lift(-10)
-    robot.drive_straight(distance_mm(-150), speed_mmps(150)).wait_for_completed()
-    time.sleep(1)
+    # Lift geht hoch und wieder runter (at 5 radians per second)
+    robot.move_lift(5)
+    time.sleep(0.5)
+    robot.move_lift(-5)
+    time.sleep(0.5)
     # dreht sich um 180° nach rechts
     robot.turn_in_place(degrees(-180)).wait_for_completed()
     # faehrt vorwaerts & H geht hoch
-    robot.move_lift(10)
+    robot.move_lift(5)
     robot.drive_straight(distance_mm(150), speed_mmps(150)).wait_for_completed()
     time.sleep(1)
     # faehrt rueckwaerts & H geht runter
-    robot.move_lift(-10)
+    robot.move_lift(-5)
     robot.drive_straight(distance_mm(-150), speed_mmps(150)).wait_for_completed()
     time.sleep(1)
     # dreht sich um 90° nach links

@@ -53,11 +53,11 @@ public class Cozmo {
                 break;
             case "Pop": new Dances.Pop().createDance(laenge/16);
                 break;
-            case "Punk": new Dances.Punk().createDance(laenge/31);
+            case "Punk": new Dances.Punk().createDance(laenge/23);
                 break;
             case "R&B": new Dances.RandB().createDance(laenge/21);
                 break;
-            case "Rap": new Dances.Rap().createDance(laenge/27);
+            case "Rap": new Dances.Rap().createDance(laenge/20);
                 break;
             case "Reggae": new Dances.Reggae().createDance(laenge/4);
                 break;
