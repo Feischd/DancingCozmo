@@ -239,7 +239,7 @@ public class Main extends Application {
 
 		// nummer = nummer + 1;
 
-		getMetadata(outputPfad, indexGeklickt); 
+		getMetadata(outputPfad, indexGeklickt);
 
 		// Alternative, falls temp in Projekt spaeter nicht gehen sollte
 		// String outputPfad = "C:\\Users\\" + System.getProperty("user.name") +
@@ -288,14 +288,17 @@ public class Main extends Application {
 			//System.out.println("Album : " + metadata.get("xmpDM:album"));
 
 			// addToTextArea(metadata.get("xmpDM:artist") + " " + metadata.get("title"));
-
+            System.out.println(metadata.get("title"));
+            System.out.println(metadata.get("xmpDM:artist") );
 			//spaeter noch machen
 			if((metadata.get("title") != null) && (metadata.get("xmpDM:artist") != null)){
 				
-			songs.add(index, new Song(metadata.get("title"),
-			metadata.get("xmpDM:artist"), fileLocation));
+			//songs.add(index, new Song(metadata.get("title"), metadata.get("xmpDM:artist"), fileLocation));
 			
-			songs.set(index, ws.fillSongArray(songs.get(index)));
+			//songs.set(index, ws.fillSongArray(songs.get(index)));
+
+            songs.add(index, ws.fillSongArray(new Song(metadata.get("title"), metadata.get("xmpDM:artist"), fileLocation)));
+
 			}else {
 //				songs.set(index, new Song("", "", ""));
 				songs.add(index, new Song("", "", fileLocation));
@@ -427,33 +430,34 @@ public class Main extends Application {
 	@FXML
 	private void getIndex() throws IOException {
 		int index = TextLiednamen.getSelectionModel().getSelectedIndex();
-		// System.out.println(index);
+
 
 //		if (songs.get(index).getTrack() == null) {
 //			konverter(index);
 //		}
 		
-		 if(songs.contains(index)) {
-		 }else {
+		 //if(songs.contains(index)) {
+
+		// }else {
 			 konverter(index);
-		 }
+		 //}
 		 
-		 zeigeDatenInDerGUI(index);
+		// zeigeDatenInDerGUI(index);
 		
 	}
 	
 	//Bild?
 	private void zeigeDatenInDerGUI(int indexDesSongs) {
-		Titel.clear();
+		/*Titel.clear();
 		Kuenstler.clear();
 		Genre.clear();
 		Jahr.clear();
 		Album.clear();
-		Sonstiges.clear();
+		Sonstiges.clear();*/
 		
-		if(songs.get(indexDesSongs).getTrack() != "" && songs.get(indexDesSongs).getTrack() != null) {
+		//if(songs.get(indexDesSongs).getTrack() != "" && songs.get(indexDesSongs).getTrack() != null) {
 			Titel.setText(songs.get(indexDesSongs).getTrack());
-		}
+		//}
 		if(songs.get(indexDesSongs).getArtist() != "" && songs.get(indexDesSongs).getArtist() != null) {
 			Kuenstler.setText(songs.get(indexDesSongs).getArtist());
 		}
