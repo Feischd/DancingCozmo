@@ -207,7 +207,6 @@ public class Main extends Application {
 	private static void konverter(int indexGeklickt) throws IOException {
 
 		// String[] tempPfade = new String[pfadSpeicher.length];
-
 		String inputPfad = pfadSpeicher[indexGeklickt];
 //		String outputPfad = "temp\\" + indexGeklickt + ".mp3";
 		String outputPfad = "temp\\" + dateiNamen[indexGeklickt] + ".mp3";
@@ -217,8 +216,9 @@ public class Main extends Application {
 
 		// String inputPfad = text;
 		// String outputPfad = "temp\\" + nummer + ".mp3";
-		ProcessBuilder builder = new ProcessBuilder("ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad);
+		ProcessBuilder builder = new ProcessBuilder("Main\\ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad);
 		Process process = builder.start();
+
 		try {
 			TimeUnit.SECONDS.sleep(1);
 		} catch (InterruptedException e) {
@@ -241,12 +241,8 @@ public class Main extends Application {
 
 	// Ab hier Metadaten
 
-	private static void getMetadata(String text, int index) {
-
-		String fileLocation = text;
-
+	private static void getMetadata(String fileLocation, int index) {
 		try {
-
 			InputStream input = new FileInputStream(new File(fileLocation));
 			ContentHandler handler = new DefaultHandler();
 			Metadata metadata = new Metadata();
@@ -276,7 +272,7 @@ public class Main extends Application {
 
 			// hier
 			songs.add(index, new Song(metadata.get("title"),
-			metadata.get("xmpDM:artist"), text));
+			metadata.get("xmpDM:artist"), fileLocation));
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
