@@ -95,12 +95,14 @@ public class Main extends Application {
 		String findmp3 = ".mp3";
 		String findm4a = ".m4a";
 		String findaac = ".aac";
+		String findwav = ".wav";
 
 		// Ab hier Methoden aufrufen
 		searchFile(dir, findwma);
 		searchFile(dir, findmp3);
 		searchFile(dir, findm4a);
 		searchFile(dir, findaac);
+		searchFile(dir, findwav);
 
 		// noetig um die Liednamen in GUI anzuzeigen
 		dateiNamen = new String[pfadSpeicher.length];
@@ -217,7 +219,10 @@ public class Main extends Application {
 
 		// String inputPfad = text;
 		// String outputPfad = "temp\\" + nummer + ".mp3";
-		ProcessBuilder builder = new ProcessBuilder("Main\\ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad);
+		
+		//erstes nur bei Alex
+		ProcessBuilder builder = new ProcessBuilder("ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad);
+//		ProcessBuilder builder = new ProcessBuilder("Main\\ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad);
 		Process process = builder.start();
 
 		try {
@@ -407,7 +412,7 @@ public class Main extends Application {
 		for(int i=0; i<pfadSpeicher.length; i++){
 			String path = pfadSpeicher[i];
 			String[] split = path.split("\\\\");
-			dateiNamen[i] = split[split.length-1];
+			dateiNamen[i] = split[split.length-1].replaceAll(".mp3", "").replaceAll(".wma", "").replaceAll(".wav", "".replaceAll("m4a", "").replaceAll("aac", ""));
 		}
 	}
 }
