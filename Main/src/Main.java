@@ -214,7 +214,7 @@ public class Main extends Application {
 		// String[] tempPfade = new String[pfadSpeicher.length];
 		String inputPfad = pfadSpeicher[indexGeklickt];
 //		String outputPfad = "temp\\" + indexGeklickt + ".mp3";
-		String outputPfad = "temp\\" + dateiNamen[indexGeklickt].substring(0, dateiNamen[indexGeklickt].length()) + ".mp3";
+		String outputPfad = "temp\\" + dateiNamen[indexGeklickt] + ".mp3";
 
 		// String inputPfad = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De
 		// Strijdlust is geboren\\03 Het Gelders Volkslied.wma";
@@ -224,11 +224,10 @@ public class Main extends Application {
 		
 		//erstes nur bei Alex
 //		ProcessBuilder builder = new ProcessBuilder("ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad);
-//		ProcessBuilder builder = new ProcessBuilder("Main\\ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad);
-//		Process process = builder.start();
+		ProcessBuilder builder = new ProcessBuilder("Main\\ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad);
+		Process process = builder.start();
 
-		Runtime.getRuntime().exec(new String[] {"Main\\ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad});
-
+		//Runtime.getRuntime().exec(new String[] {"Main\\ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad});
 
 
 //		try {
@@ -255,14 +254,15 @@ public class Main extends Application {
 
 	private static void getMetadata(String fileLocation, int index) {
 		
-//		try{
-//			TimeUnit.SECONDS.sleep(1);
-//
-//		}catch(Exception e){
-//			System.out.println(e);
-//		}
+		/*try{
+			TimeUnit.SECONDS.sleep(2);
+
+		}catch(Exception e){
+			System.out.println(e);
+		}*/
 
 		try {
+			TimeUnit.SECONDS.sleep(2);
 			InputStream input = new FileInputStream(new File(fileLocation));
 			ContentHandler handler = new DefaultHandler();
 			Metadata metadata = new Metadata();
@@ -313,6 +313,8 @@ public class Main extends Application {
 		} catch (SAXException e) {
 			e.printStackTrace();
 		} catch (TikaException e) {
+			e.printStackTrace();
+		} catch (Exception e){
 			e.printStackTrace();
 		}
 
