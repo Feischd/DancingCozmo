@@ -2,15 +2,12 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="Java-Cozmo/src"/>
-	<classpathentry kind="src" path="JLayer1.0.1/src"/>
-	<classpathentry kind="src" path="JLayer1.0.1/srctest"/>
 	<classpathentry kind="src" path="Main/src"/>
 	<classpathentry kind="src" path="mp3-transform-0.81/src/main"/>
 	<classpathentry kind="src" path="mp3-transform-0.81/src/test"/>
 	<classpathentry kind="src" path="mp3-transform-0.81/src/tools"/>
 	<classpathentry kind="src" path="Python-Cozmo/src"/>
 	<classpathentry kind="src" path="Test/src"/>
-	<classpathentry kind="src" path="test4/src"/>
 	<classpathentry kind="lib" path="JLayer1.0.1/jl1.0.1.jar"/>
 	<classpathentry kind="lib" path="Main/tika-app-1.17.jar"/>
 	<classpathentry kind="lib" path="mp3-transform-0.81/bin/mp3transform.jar"/>
