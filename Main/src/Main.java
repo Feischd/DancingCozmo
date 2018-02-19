@@ -338,7 +338,7 @@ public class Main extends Application {
 				@Override
 				public void handle(WindowEvent event) {
 					// Hier muss der Temp-Ordner geloescht werden
-					System.out.println("Test");
+					System.out.println("Hier Temp loeschen");
 //					deleteDir(new File("Main/temp"));
 				}
 			});
