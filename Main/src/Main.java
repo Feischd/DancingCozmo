@@ -250,13 +250,13 @@ public class Main extends Application {
 	// Ab hier Metadaten
 
 	private static void getMetadata(String fileLocation, int index) {
-
-		try{
-			TimeUnit.SECONDS.sleep(1);
-
-		}catch(Exception e){
-			System.out.println(e);
-		}
+		
+//		try{
+//			TimeUnit.SECONDS.sleep(1);
+//
+//		}catch(Exception e){
+//			System.out.println(e);
+//		}
 
 		try {
 			InputStream input = new FileInputStream(new File(fileLocation));
@@ -287,9 +287,17 @@ public class Main extends Application {
 
 			// addToTextArea(metadata.get("xmpDM:artist") + " " + metadata.get("title"));
 
-			// hier
+			//später noch machen
+			if((metadata.get("title") != null) && (metadata.get("xmpDM:artist") != null)){
+				
 			songs.add(index, new Song(metadata.get("title"),
 			metadata.get("xmpDM:artist"), fileLocation));
+			
+			songs.set(index, ws.fillSongArray(songs.get(index)));
+			}else {
+//				songs.set(index, new Song("", "", ""));
+				songs.add(index, new Song("", "", fileLocation));
+			}
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -301,8 +309,8 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 
-		System.out.println(songs.get(index));
-		songs.set(index, ws.fillSongArray(songs.get(index)));
+//		System.out.println(songs.get(index));
+
 		
 	}
 
@@ -314,7 +322,7 @@ public class Main extends Application {
 	// --> in TextArea mit zusammengesetztem namen
 
 	// GUI
-
+	
 	public void start(Stage primaryStage) throws IOException {
 		this.primaryStage = primaryStage;
 		mainWindow();
@@ -339,7 +347,7 @@ public class Main extends Application {
 				public void handle(WindowEvent event) {
 					// Hier muss der Temp-Ordner geloescht werden
 					System.out.println("Hier Temp loeschen");
-//					deleteDir(new File("Main/temp"));
+//					loescheTempZumEnde();
 				}
 			});
 			
@@ -349,6 +357,22 @@ public class Main extends Application {
 	
 //	//noch ausprogrammieren
 //	private void loescheTempZumEnde() {
+//		
+//		File file = new File( "Main/temp");
+//		File file = f;
+//
+//		if ( file.isDirectory() )
+//		{         
+//		     File[] listFiles = file.listFiles();
+//
+//		     for ( int i = 0; i < listFiles.length; i++ )
+//		     {            
+//		         file=( listFiles[ i ] );
+//		         file.delete();
+//		     }
+//		}
+//		
+//		System.out.println("Temp geloescht");
 //		
 //	}
 
@@ -425,12 +449,28 @@ public class Main extends Application {
 		Album.clear();
 		Sonstiges.clear();
 		
-		Titel.setText(songs.get(indexDesSongs).getTrack());
-		Kuenstler.setText(songs.get(indexDesSongs).getArtist());
-		Genre.setText(songs.get(indexDesSongs).getGenre());
-		Jahr.setText("" + songs.get(indexDesSongs).getPublished());
-		Album.setText(songs.get(indexDesSongs).getAlbum());
-		Sonstiges.setText(songs.get(indexDesSongs).getInformation());
+		if(songs.get(indexDesSongs).getTrack() != "" && songs.get(indexDesSongs).getTrack() != null) {
+			Titel.setText(songs.get(indexDesSongs).getTrack());
+		}
+		if(songs.get(indexDesSongs).getArtist() != "" && songs.get(indexDesSongs).getArtist() != null) {
+			Kuenstler.setText(songs.get(indexDesSongs).getArtist());
+		}
+		if(songs.get(indexDesSongs).getGenre() != "" && songs.get(indexDesSongs).getGenre() != null) {
+			Genre.setText(songs.get(indexDesSongs).getGenre());
+		}
+		if(songs.get(indexDesSongs).getPublished() != 0) {
+			Jahr.setText("" + songs.get(indexDesSongs).getPublished());
+		}
+		if(songs.get(indexDesSongs).getAlbum() != "" && songs.get(indexDesSongs).getAlbum() != null) {
+			Album.setText(songs.get(indexDesSongs).getAlbum());
+		}
+		if(songs.get(indexDesSongs).getInformation() != "" && songs.get(indexDesSongs).getInformation() != null) {
+			Sonstiges.setText(songs.get(indexDesSongs).getInformation());
+		} else {
+			Sonstiges.setText("Fehler");
+		}
+		
+		
 	}
 
 	// letzter Teil des Pfades soll ausgeschnitten werden
