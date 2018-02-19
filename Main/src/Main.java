@@ -227,12 +227,12 @@ public class Main extends Application {
 //		ProcessBuilder builder = new ProcessBuilder("Main\\ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad);
 		Process process = builder.start();
 
-		try {
-			TimeUnit.SECONDS.sleep(1);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			TimeUnit.SECONDS.sleep(1);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		// tempPfade[nummer] = outputPfad;
 
 		// nummer = nummer + 1;
@@ -339,6 +339,7 @@ public class Main extends Application {
 				public void handle(WindowEvent event) {
 					// Hier muss der Temp-Ordner geloescht werden
 					System.out.println("Test");
+					deleteDir(new File("Main/temp"));
 				}
 			});
 			
@@ -346,11 +347,20 @@ public class Main extends Application {
 		}
 	}
 	
-	//noch ausprogrammieren
-	private void loescheTempZumEnde() {
-		
-	}
+//	//noch ausprogrammieren
+//	private void loescheTempZumEnde() {
+//		
+//	}
 
+	   public static void deleteDir(File path) {
+		      for (File file : path.listFiles()) {
+		         if (file.isDirectory())
+		            deleteDir(file);
+		         file.delete();
+		      }
+		      path.delete();
+		   }
+	
 	// Beide nur Testweise, spaeter richtig ausprogrammieren und TextArea schreiben
 	// in anderer Methode
 	@FXML
