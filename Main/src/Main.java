@@ -287,7 +287,7 @@ public class Main extends Application {
 
 			// addToTextArea(metadata.get("xmpDM:artist") + " " + metadata.get("title"));
 
-			//später noch machen
+			//spaeter noch machen
 			if((metadata.get("title") != null) && (metadata.get("xmpDM:artist") != null)){
 				
 			songs.add(index, new Song(metadata.get("title"),
