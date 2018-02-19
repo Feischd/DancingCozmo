@@ -306,6 +306,7 @@ public class Main extends Application {
 				songs.add(index, new Song("", "", fileLocation));
 			}
 
+
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
