@@ -229,6 +229,7 @@ public class Main extends Application {
 
 		Runtime.getRuntime().exec(new String[] {"Main\\ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad});
 
+
 //		try {
 //			TimeUnit.SECONDS.sleep(1);
 //		} catch (InterruptedException e) {
