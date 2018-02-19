@@ -227,7 +227,7 @@ public class Main extends Application {
 //		ProcessBuilder builder = new ProcessBuilder("Main\\ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad);
 //		Process process = builder.start();
 
-		Runtime.getRuntime().exec(new String[] {"ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad});
+		Runtime.getRuntime().exec(new String[] {"Main\\ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad});
 
 
 
