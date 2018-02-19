@@ -214,7 +214,7 @@ public class Main extends Application {
 		// String[] tempPfade = new String[pfadSpeicher.length];
 		String inputPfad = pfadSpeicher[indexGeklickt];
 //		String outputPfad = "temp\\" + indexGeklickt + ".mp3";
-		String outputPfad = "temp\\" + dateiNamen[indexGeklickt].substring(0, dateiNamen[indexGeklickt].length()-4) + ".mp3";
+		String outputPfad = "temp\\" + dateiNamen[indexGeklickt].substring(0, dateiNamen[indexGeklickt].length()) + ".mp3";
 
 		// String inputPfad = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De
 		// Strijdlust is geboren\\03 Het Gelders Volkslied.wma";
