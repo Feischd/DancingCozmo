@@ -10,7 +10,7 @@ public class Disco extends Dance {
     public void createDance(double laenge){
         PrintWriter pWriter = null;
         try {
-            pWriter = new PrintWriter(new BufferedWriter(new FileWriter("cozmoDance.py")));
+            pWriter = new PrintWriter(new BufferedWriter(new FileWriter("temp\\cozmoDance.py")));
 
             // python code
             pWriter.println("import time");
