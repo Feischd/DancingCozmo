@@ -209,7 +209,8 @@ public class Main extends Application {
 		// String[] tempPfade = new String[pfadSpeicher.length];
 
 		String inputPfad = pfadSpeicher[indexGeklickt];
-		String outputPfad = "temp\\" + indexGeklickt + ".mp3";
+//		String outputPfad = "temp\\" + indexGeklickt + ".mp3";
+		String outputPfad = "temp\\" + dateiNamen[indexGeklickt] + ".mp3";
 
 		// String inputPfad = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De
 		// Strijdlust is geboren\\03 Het Gelders Volkslied.wma";
@@ -415,7 +416,11 @@ public class Main extends Application {
 				neues[k] = c[k + merker];
 			}
 			for (int l = 0; l < neues.length; l++) {
-				gekuerzt = gekuerzt + neues[l];
+				if(l == neues.length - 4) {
+					break;
+				}else {
+					gekuerzt = gekuerzt + neues[l];
+				}
 			}
 			// System.out.println(gekuerzt);
 			dateiNamen[i] = gekuerzt;
