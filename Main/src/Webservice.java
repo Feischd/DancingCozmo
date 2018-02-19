@@ -79,7 +79,7 @@ public class Webservice {
 
     private String getAlbum(String songData){
         // get general album information
-        String album = songData.substring(songData.indexOf("<album"));
+        String album = songData.substring(songData.indexOf("<album>"));
         return album.substring(album.indexOf("<title>")+7, album.indexOf("</title>"));
     }
 

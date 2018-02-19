@@ -209,7 +209,6 @@ public class Main extends Application {
 	private static void konverter(int indexGeklickt) throws IOException {
 
 		// String[] tempPfade = new String[pfadSpeicher.length];
-
 		String inputPfad = pfadSpeicher[indexGeklickt];
 //		String outputPfad = "temp\\" + indexGeklickt + ".mp3";
 		String outputPfad = "temp\\" + dateiNamen[indexGeklickt] + ".mp3";
@@ -219,8 +218,9 @@ public class Main extends Application {
 
 		// String inputPfad = text;
 		// String outputPfad = "temp\\" + nummer + ".mp3";
-		ProcessBuilder builder = new ProcessBuilder("ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad);
+		ProcessBuilder builder = new ProcessBuilder("Main\\ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad);
 		Process process = builder.start();
+
 		try {
 			TimeUnit.SECONDS.sleep(1);
 		} catch (InterruptedException e) {
@@ -243,12 +243,9 @@ public class Main extends Application {
 
 	// Ab hier Metadaten
 
-	private static void getMetadata(String text, int index) {
-
-		String fileLocation = text;
-
+	private static void getMetadata(String fileLocation, int index) {
+		System.out.println(fileLocation);
 		try {
-
 			InputStream input = new FileInputStream(new File(fileLocation));
 			ContentHandler handler = new DefaultHandler();
 			Metadata metadata = new Metadata();
@@ -278,7 +275,7 @@ public class Main extends Application {
 
 			// hier
 			songs.add(index, new Song(metadata.get("title"),
-			metadata.get("xmpDM:artist"), text));
+			metadata.get("xmpDM:artist"), fileLocation));
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -399,34 +396,10 @@ public class Main extends Application {
 	// letzter Teil des Pfades soll ausgeschnitten werden
 	// ...\\...\\...\hallo.txt --> also hallo.txt
 	private static void zerlegeAltenString() {
-
-		for (int i = 0; i < pfadSpeicher.length; i++) {
-			String text = pfadSpeicher[i];
-			String gekuerzt = "";
-			char[] c = text.toCharArray();
-			int merker = 0;
-			int neu;
-			for (int j = 0; j < c.length; j++) {
-				if (c[j] == '\\') {
-					// loesche alles davor
-					merker = j + 4;
-				}
-			}
-			neu = c.length - merker;
-			char[] neues = new char[neu];
-			for (int k = 0; k < neu; k++) {
-				neues[k] = c[k + merker];
-			}
-			for (int l = 0; l < neues.length; l++) {
-				if(l == neues.length - 4) {
-					break;
-				}else {
-					gekuerzt = gekuerzt + neues[l];
-				}
-			}
-			// System.out.println(gekuerzt);
-			dateiNamen[i] = gekuerzt;
-
+		for(int i=0; i<pfadSpeicher.length; i++){
+			String path = pfadSpeicher[i];
+			String[] split = path.split("\\\\");
+			dateiNamen[i] = split[split.length-1];
 		}
 	}
 }
