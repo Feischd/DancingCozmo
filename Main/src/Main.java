@@ -231,7 +231,7 @@ public class Main extends Application {
 
 		// nummer = nummer + 1;
 
-		getMetadata(outputPfad, indexGeklickt);
+		getMetadata(outputPfad, indexGeklickt); 
 
 		// Alternative, falls temp in Projekt spaeter nicht gehen sollte
 		// String outputPfad = "C:\\Users\\" + System.getProperty("user.name") +
