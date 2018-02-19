@@ -16,20 +16,20 @@ public class Webservice {
 
     public Song fillSongArray(Song song){
             String songData = getSongData(song);
-        System.out.println(songData);
-            // get length of song
-            song.setDuration(getDuration(songData));
-            // get date song was published
-            song.setPublished(getPublished(songData));
-            // get name of album
-            song.setAlbum(getAlbum(songData));
-            // get source of cover
-            song.setCover(getCover(songData));
-            // get summary of background information
-            song.setInformation(getInformation(songData).replaceAll("&quot;", "\"").replaceAll("&apos;", "'").replaceAll("&gt;", ">").replaceAll("&lt;", "<").replaceAll("&#10;&#10;", "\n"));
-            // get genre
-            song.setGenre(getGenre(songData));
-
+            if(songData != ""){
+                // get length of song
+                song.setDuration(getDuration(songData));
+                // get date song was published
+                song.setPublished(getPublished(songData));
+                // get name of album
+                song.setAlbum(getAlbum(songData));
+                // get source of cover
+                song.setCover(getCover(songData));
+                // get summary of background information
+                song.setInformation(getInformation(songData).replaceAll("&quot;", "\"").replaceAll("&apos;", "'").replaceAll("&gt;", ">").replaceAll("&lt;", "<").replaceAll("&#10;&#10;", "\n"));
+                // get genre
+                song.setGenre(getGenre(songData));
+            }
         return song;
     }
 
@@ -63,89 +63,124 @@ public class Webservice {
 
     // Methods for song information
     private int getDuration(String songData){
-        return Integer.parseInt(songData.substring(songData.indexOf("<duration>")+10, songData.indexOf("</duration>")));
+        int duration = 0;
+        try{
+            duration = Integer.parseInt(songData.substring(songData.indexOf("<duration>")+10, songData.indexOf("</duration>")));
+        } catch(Exception e){
+
+        }
+        return duration;
     }
 
 
     private int getPublished(String songData){
-        // get general information of release (month day year)
-        String release = songData.substring(songData.indexOf("<published>")+11);
-        release = release.substring(0, release.indexOf(","));
-        // get year of release
-        String[] releaseSplit = release.split(" ");
+        int published = 0;
+        try{
+            // get general information of release (month day year)
+            String release = songData.substring(songData.indexOf("<published>")+11);
+            release = release.substring(0, release.indexOf(","));
+            // get year of release
+            String[] releaseSplit = release.split(" ");
+            published = Integer.parseInt(releaseSplit[2]);
+        } catch(Exception e){
 
-        return Integer.parseInt(releaseSplit[2]);
+        }
+        return published;
     }
 
 
     private String getAlbum(String songData){
-        // get general album information
-        String album = songData.substring(songData.indexOf("<album>"));
-        return album.substring(album.indexOf("<title>")+7, album.indexOf("</title>"));
+        String album = "";
+        try{
+            // get general album information
+            album = songData.substring(songData.indexOf("<album"));
+            album = album.substring(album.indexOf("<title>")+7, album.indexOf("</title>"));
+        } catch(Exception e){
+
+        }
+        return album;
     }
 
 
     private String getCover(String songData){
-        // select image size large
-        String cover = songData.substring(songData.indexOf("<image size=\"large\">"));
-        return cover.substring(20, cover.indexOf("</image>"));
+        String cover = "";
+        try{
+            // select image size large
+            cover = songData.substring(songData.indexOf("<image size=\"large\">"));
+            cover = cover.substring(20, cover.indexOf("</image>"));
+        } catch(Exception e){
+
+        }
+        return cover;
     }
 
 
     private String getInformation(String songData){
-        return songData.substring(songData.indexOf("<summary>")+9, songData.indexOf("</summary>"));
+        String info = "";
+        try {
+            info = songData.substring(songData.indexOf("<summary>")+9, songData.indexOf("</summary>"));
+        } catch(Exception e){
+
+        }
+        return info;
     }
 
 
     private String getGenre(String songData){
-        // get all genres the song is part of and put them into genresTemp-ArrayList
-        String sub = songData;
-        ArrayList<String> genresTemp = new ArrayList<>();
-        while(sub.indexOf("<tag>") > -1){
-            // there are more than one <tag>, so the 'tag-String' needs to be cut
-            sub = sub.substring(sub.indexOf("<tag>")+5);
-            // adding <tag> to array
-            genresTemp.add("0 " + sub.substring(sub.indexOf("<name>")+6, sub.indexOf("</name>")).replaceAll(" ", "").replaceAll("[A-Z]", "[a-z]"));
-        }
+        String genre = "";
+        try {
+            // get all genres the song is part of and put them into genresTemp-ArrayList
+            String sub = songData;
+            ArrayList<String> genresTemp = new ArrayList<>();
+            while(sub.indexOf("<tag>") > -1){
+                // there are more than one <tag>, so the 'tag-String' needs to be cut
+                sub = sub.substring(sub.indexOf("<tag>")+5);
+                // adding <tag> to array
+                genresTemp.add("0 " + sub.substring(sub.indexOf("<name>")+6, sub.indexOf("</name>")).replaceAll(" ", "").replaceAll("[A-Z]", "[a-z]"));
+            }
 
-        // Compares given Genres (tempGenre) with Genre-List; by match: Name of Genre-List will be taken and 1 instead of 0 above
-        for(int i=0; i<genresTemp.size(); i++){
-            for(int z=0; z<genres.size(); z++){
-                for(int x=0; x<genres.get(z).size(); x++){
-                    String[] temp = genresTemp.get(i).split(" ");
-                    if(temp[1].equals(genres.get(z).get(x))){
-                        genresTemp.set(i, Integer.parseInt(temp[0])+1 + " " + genres.get(z).get(0));
-                        break;
+            // Compares given Genres (tempGenre) with Genre-List; by match: Name of Genre-List will be taken and 1 instead of 0 above
+            for(int i=0; i<genresTemp.size(); i++){
+                for(int z=0; z<genres.size(); z++){
+                    for(int x=0; x<genres.get(z).size(); x++){
+                        String[] temp = genresTemp.get(i).split(" ");
+                        if(temp[1].equals(genres.get(z).get(x))){
+                            genresTemp.set(i, Integer.parseInt(temp[0])+1 + " " + genres.get(z).get(0));
+                            break;
+                        }
                     }
                 }
             }
-        }
 
-        // checks on more than one matches by the same genre and sums the indexes above the genre
-        for(int x=0; x<genresTemp.size()-1; x++){
-            String[] temp1 = genresTemp.get(x).split(" ");
-            for(int y=x+1; y<genresTemp.size(); y++){
-                String[] temp2 = genresTemp.get(y).split(" ");
-                if(temp1[1].equals(temp2[1])){
-                    genresTemp.set(x, Integer.parseInt(temp1[0])+Integer.parseInt(temp2[0]) + " " + temp1[1]);
+            // checks on more than one matches by the same genre and sums the indexes above the genre
+            for(int x=0; x<genresTemp.size()-1; x++){
+                String[] temp1 = genresTemp.get(x).split(" ");
+                for(int y=x+1; y<genresTemp.size(); y++){
+                    String[] temp2 = genresTemp.get(y).split(" ");
+                    if(temp1[1].equals(temp2[1])){
+                        genresTemp.set(x, Integer.parseInt(temp1[0])+Integer.parseInt(temp2[0]) + " " + temp1[1]);
+                    }
                 }
             }
-        }
 
-        // Checks on the indexes above the genres. The genre with the highest index will be taken. If there are genres with the same
-        // index, the first of them will be chosen
-        int i1 = 0;
-        String[] temp1 = genresTemp.get(i1).split(" ");
-        for(int i2=1; i2<genresTemp.size(); i2++){
-            String[] temp2 = genresTemp.get(i2).split(" ");
-            if(Integer.parseInt(temp2[0])>Integer.parseInt(temp1[0])){
-                i1 = i2;
-                temp1 = genresTemp.get(i1).split(" ");
+            // Checks on the indexes above the genres. The genre with the highest index will be taken. If there are genres with the same
+            // index, the first of them will be chosen
+            int i1 = 0;
+            String[] temp1 = genresTemp.get(i1).split(" ");
+            for(int i2=1; i2<genresTemp.size(); i2++){
+                String[] temp2 = genresTemp.get(i2).split(" ");
+                if(Integer.parseInt(temp2[0])>Integer.parseInt(temp1[0])){
+                    i1 = i2;
+                    temp1 = genresTemp.get(i1).split(" ");
+                }
             }
-        }
 
-        String[] genre = genresTemp.get(i1).split(" ");
-        return genre[1];
+            String[] genreArray = genresTemp.get(i1).split(" ");
+            genre = genreArray[1];
+        } catch(Exception e){
+
+        }
+        return genre;
     }
 
 
