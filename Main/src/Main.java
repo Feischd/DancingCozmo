@@ -223,9 +223,11 @@ public class Main extends Application {
 		// String outputPfad = "temp\\" + nummer + ".mp3";
 		
 		//erstes nur bei Alex
-		ProcessBuilder builder = new ProcessBuilder("ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad);
+//		ProcessBuilder builder = new ProcessBuilder("ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad);
 //		ProcessBuilder builder = new ProcessBuilder("Main\\ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad);
-		Process process = builder.start();
+//		Process process = builder.start();
+
+		Runtime.getRuntime().exec(new String[] {"Main\\ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad});
 
 //		try {
 //			TimeUnit.SECONDS.sleep(1);
