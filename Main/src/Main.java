@@ -17,6 +17,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -27,6 +28,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import ucar.nc2.util.IO;
 
 public class Main extends Application {
@@ -330,8 +332,23 @@ public class Main extends Application {
 			Scene scene = new Scene(pane);
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			
+			primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+				
+				@Override
+				public void handle(WindowEvent event) {
+					// Hier muss der Temp-Ordner geloescht werden
+					System.out.println("Test");
+				}
+			});
+			
 		} catch (IOException e) {
 		}
+	}
+	
+	//noch ausprogrammieren
+	private void loescheTempZumEnde() {
+		
 	}
 
 	// Beide nur Testweise, spaeter richtig ausprogrammieren und TextArea schreiben
