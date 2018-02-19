@@ -133,6 +133,21 @@ public class Main extends Application {
 		new File("temp").mkdir();
 	}
 
+	private static void deleteTemp(){
+		File path = new File("Main\\temp");
+		deleteTempFiles(path);
+	}
+
+	private static void deleteTempFiles(File path){
+		for (File file : path.listFiles()) {
+			if (file.isDirectory()) {
+				deleteTempFiles(file);
+			}
+			file.delete();
+		}
+		path.delete();
+	}
+
 	// private static void legeSongsAn(String[] pfadeAlt) {
 	// songs.add(new Song(titel, kuenstler, pfad));
 	// }
@@ -354,6 +369,7 @@ public class Main extends Application {
 				public void handle(WindowEvent event) {
 					// Hier muss der Temp-Ordner geloescht werden
 					System.out.println("Hier Temp loeschen");
+					deleteTemp();
 //					loescheTempZumEnde();
 				}
 			});
