@@ -60,10 +60,10 @@ public class Main extends Application {
 	Button Show;
 	
 	Stage primaryStage;
-	private static Webservice ws;
-	private static ArrayList<Song> songs;
-	private static Cozmo cozmo;
-	private static Song selectedSong;
+	private Webservice ws;
+	private ArrayList<Song> songs;
+	private Cozmo cozmo;
+	private Song selectedSong;
 
 	public Main() {
 		cozmo = new Cozmo();
@@ -225,12 +225,12 @@ public class Main extends Application {
 	// Speichern in temp mit Kuenstler + Titel
 
 	// text = eingegebener Pfad
-	private static void konverter(int indexGeklickt) throws IOException {
+	private void konverter(String pathInput, String pathOutput){
 
 		// String[] tempPfade = new String[pfadSpeicher.length];
-		String inputPfad = pfadSpeicher[indexGeklickt];
+		//String inputPfad = pfadSpeicher[indexGeklickt];
 //		String outputPfad = "temp\\" + indexGeklickt + ".mp3";
-		String outputPfad = "temp\\" + dateiNamen[indexGeklickt] + ".mp3";
+		//String pathOutput = "temp\\" + name + ".mp3";
 
 		// String inputPfad = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De
 		// Strijdlust is geboren\\03 Het Gelders Volkslied.wma";
@@ -240,10 +240,15 @@ public class Main extends Application {
 		
 		//erstes nur bei Alex
 //		ProcessBuilder builder = new ProcessBuilder("ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad);
-		ProcessBuilder builder = new ProcessBuilder("Main\\ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad);
-		Process process = builder.start();
+		//ProcessBuilder builder = new ProcessBuilder("Main\\ffmpeg", "-vn", "-i", pathInput, "-ab", "128k", "temp\\" + name + ".mp3");
+		//Process process = builder.start();
 
-		//Runtime.getRuntime().exec(new String[] {"Main\\ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad});
+		try{
+			Runtime.getRuntime().exec(new String[] {"Main\\ffmpeg", "-vn", "-i", pathInput, "-ab", "128k", pathOutput});
+		}catch(Exception e){
+			System.out.println(e);
+		}
+
 
 
 //		try {
@@ -256,7 +261,7 @@ public class Main extends Application {
 
 		// nummer = nummer + 1;
 
-		getMetadata(outputPfad, indexGeklickt);
+		//getMetadata(outputPfad, indexGeklickt);
 
 		// Alternative, falls temp in Projekt spaeter nicht gehen sollte
 		// String outputPfad = "C:\\Users\\" + System.getProperty("user.name") +
@@ -268,13 +273,13 @@ public class Main extends Application {
 
 	// Ab hier Metadaten
 
-	private static void getMetadata(String fileLocation, int index) {
+	private Song getMetadata(String path) {
 		boolean converted = false;
 		boolean metadataAvailable = false;
 		Metadata metadata = null;
 		while(!converted || !metadataAvailable){
 			try{
-				InputStream input = new FileInputStream(new File(fileLocation));
+				InputStream input = new FileInputStream(new File(path));
 				converted = true;
 
 				ContentHandler handler = new DefaultHandler();
@@ -297,13 +302,13 @@ public class Main extends Application {
 
 
 		if((metadata.get("title") != null) && (metadata.get("xmpDM:artist") != null)){
-			//songs.add(index, new Song(metadata.get("title"), metadata.get("xmpDM:artist"), fileLocation));
+			//songs.add(index, new Song(metadata.get("title"), metadata.get("xmpDM:artist"), path));
 			//songs.set(index, ws.fillSongArray(songs.get(index)));
-			songs.add(ws.fillSongArray(new Song(metadata.get("title"), metadata.get("xmpDM:artist"), fileLocation)));
+			return ws.fillSongArray(new Song(metadata.get("title"), metadata.get("xmpDM:artist"), path));
 
 		}else {
 //				songs.set(index, new Song("", "", ""));
-			songs.add(new Song("", "", fileLocation));
+			 return new Song("", "", path);
 		}
 	}
 
@@ -417,7 +422,7 @@ public class Main extends Application {
 	}
 
 	@FXML
-	private void itemHandler() throws IOException {
+	private void getIndex() throws IOException {
 		int index = TextLiednamen.getSelectionModel().getSelectedIndex();
 
 
@@ -428,7 +433,9 @@ public class Main extends Application {
 		 //if(songs.contains(index)) {
 
 		// }else {
-			 konverter(index);
+		 String pathOutput = "temp\\" + dateiNamen[index] + ".mp3";
+			 konverter(pfadSpeicher[index], pathOutput);
+			 getMetadata(pathOutput);
 		 //}
 		 
 		 zeigeDatenInDerGUI(index);
