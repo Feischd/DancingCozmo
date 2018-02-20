@@ -462,7 +462,7 @@ public class Main extends Application {
 			 konverter(index);
 		 //}
 		 
-		// zeigeDatenInDerGUI(index);
+		 zeigeDatenInDerGUI(index);
 		
 	}
 	
@@ -475,25 +475,35 @@ public class Main extends Application {
 		Album.clear();
 		Sonstiges.clear();*/
 		
-		//if(songs.get(indexDesSongs).getTrack() != "" && songs.get(indexDesSongs).getTrack() != null) {
+		if(songs.get(indexDesSongs).getTrack() != "" && songs.get(indexDesSongs).getTrack() != null) {
 			Titel.setText(songs.get(indexDesSongs).getTrack());
-		//}
+		} else {
+			Titel.setText("keinen Titel gefunden");
+		}
 		if(songs.get(indexDesSongs).getArtist() != "" && songs.get(indexDesSongs).getArtist() != null) {
 			Kuenstler.setText(songs.get(indexDesSongs).getArtist());
+		} else {
+			Kuenstler.setText("kein Kuenstler gefunden");
 		}
 		if(songs.get(indexDesSongs).getGenre() != "" && songs.get(indexDesSongs).getGenre() != null) {
 			Genre.setText(songs.get(indexDesSongs).getGenre());
+		} else {
+			Genre.setText("kein Genre gefunden");
 		}
 		if(songs.get(indexDesSongs).getPublished() != 0) {
 			Jahr.setText("" + songs.get(indexDesSongs).getPublished());
+		} else {
+			Jahr.setText("keine Jahresangabe gefunden");
 		}
 		if(songs.get(indexDesSongs).getAlbum() != "" && songs.get(indexDesSongs).getAlbum() != null) {
 			Album.setText(songs.get(indexDesSongs).getAlbum());
+		} else {
+			Album.setText("kein Album gefunden");
 		}
 		if(songs.get(indexDesSongs).getInformation() != "" && songs.get(indexDesSongs).getInformation() != null) {
 			Sonstiges.setText(songs.get(indexDesSongs).getInformation());
 		} else {
-			Sonstiges.setText("Fehler");
+			Sonstiges.setText("keine Zusatzinformationen gefunden");
 		}
 		
 		
