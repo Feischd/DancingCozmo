@@ -60,10 +60,10 @@ public class Main extends Application {
 	Button Show;
 	
 	Stage primaryStage;
-	private static Webservice ws;
-	private static ArrayList<Song> songs;
-	private static Cozmo cozmo;
-	private static Song selectedSong;
+	private Webservice ws;
+	private ArrayList<Song> songs;
+	private Cozmo cozmo;
+	private Song selectedSong;
 
 	public Main() {
 		cozmo = new Cozmo();
@@ -225,12 +225,12 @@ public class Main extends Application {
 	// Speichern in temp mit Kuenstler + Titel
 
 	// text = eingegebener Pfad
-	private static void konverter(int indexGeklickt) throws IOException {
+	private void konverter(String pathInput, String pathOutput){
 
 		// String[] tempPfade = new String[pfadSpeicher.length];
-		String inputPfad = pfadSpeicher[indexGeklickt];
+		//String inputPfad = pfadSpeicher[indexGeklickt];
 //		String outputPfad = "temp\\" + indexGeklickt + ".mp3";
-		String outputPfad = "temp\\" + dateiNamen[indexGeklickt] + ".mp3";
+		//String pathOutput = "temp\\" + name + ".mp3";
 
 		// String inputPfad = "C:\\Users\\Alexander Feist\\Music\\Heidevolk\\De
 		// Strijdlust is geboren\\03 Het Gelders Volkslied.wma";
@@ -240,10 +240,15 @@ public class Main extends Application {
 		
 		//erstes nur bei Alex
 //		ProcessBuilder builder = new ProcessBuilder("ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad);
-		ProcessBuilder builder = new ProcessBuilder("Main\\ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad);
-		Process process = builder.start();
+		//ProcessBuilder builder = new ProcessBuilder("Main\\ffmpeg", "-vn", "-i", pathInput, "-ab", "128k", "temp\\" + name + ".mp3");
+		//Process process = builder.start();
 
-		//Runtime.getRuntime().exec(new String[] {"Main\\ffmpeg", "-vn", "-i", inputPfad, "-ab", "128k", outputPfad});
+		try{
+			Runtime.getRuntime().exec(new String[] {"Main\\ffmpeg", "-vn", "-i", pathInput, "-ab", "128k", pathOutput});
+		}catch(Exception e){
+			System.out.println(e);
+		}
+
 
 
 //		try {
@@ -256,7 +261,7 @@ public class Main extends Application {
 
 		// nummer = nummer + 1;
 
-		getMetadata(outputPfad, indexGeklickt);
+		//getMetadata(outputPfad, indexGeklickt);
 
 		// Alternative, falls temp in Projekt spaeter nicht gehen sollte
 		// String outputPfad = "C:\\Users\\" + System.getProperty("user.name") +
@@ -268,73 +273,42 @@ public class Main extends Application {
 
 	// Ab hier Metadaten
 
-	private static void getMetadata(String fileLocation, int index) {
-		
-		/*try{
-			TimeUnit.SECONDS.sleep(2);
+	private Song getMetadata(String path) {
+		boolean converted = false;
+		boolean metadataAvailable = false;
+		Metadata metadata = null;
+		while(!converted || !metadataAvailable){
+			try{
+				InputStream input = new FileInputStream(new File(path));
+				converted = true;
 
-		}catch(Exception e){
-			System.out.println(e);
-		}*/
+				ContentHandler handler = new DefaultHandler();
+				metadata = new Metadata();
+				Parser parser = new Mp3Parser();
 
-		try {
-			TimeUnit.SECONDS.sleep(2);
-			InputStream input = new FileInputStream(new File(fileLocation));
-			ContentHandler handler = new DefaultHandler();
-			Metadata metadata = new Metadata();
-			Parser parser = new Mp3Parser();
+				ParseContext parseCtx = new ParseContext();
+				parser.parse(input, handler, metadata, parseCtx);
+				input.close();
 
-			ParseContext parseCtx = new ParseContext();
-			parser.parse(input, handler, metadata, parseCtx);
-			input.close();
+				if(metadata.size()>2){
+					metadataAvailable = true;
+				}
+			}catch(Exception e){
 
-			//System.out.println(metadata);
-			// List all metadata
-			//String[] metadataNames = metadata.names();
-
-//			for (String name : metadataNames) {
-//				System.out.println(name + ": " + metadata.get(name));
-//			}
-
-			// Retrieve the necessary info from metadata
-			// Names - title, xmpDM:artist etc. - mentioned below may differ based
-			// System.out.println("----------------------------------------------");
-			//System.out.println("Title: " + metadata.get("title"));
-			//System.out.println("Artists: " + metadata.get("xmpDM:artist"));
-			//System.out.println("Composer : " + metadata.get("xmpDM:composer"));
-			//System.out.println("Genre : " + metadata.get("xmpDM:genre"));
-			//System.out.println("Album : " + metadata.get("xmpDM:album"));
-
-			// addToTextArea(metadata.get("xmpDM:artist") + " " + metadata.get("title"));
-            System.out.println(metadata.get("title"));
-            System.out.println(metadata.get("xmpDM:artist") );
-			//spaeter noch machen
-			if((metadata.get("title") != null) && (metadata.get("xmpDM:artist") != null)){
-				
-			//songs.add(index, new Song(metadata.get("title"), metadata.get("xmpDM:artist"), fileLocation));
-			
-			//songs.set(index, ws.fillSongArray(songs.get(index)));
-
-
-
-            songs.add(index, ws.fillSongArray(new Song(metadata.get("title"), metadata.get("xmpDM:artist"), fileLocation)));
-
-			}else {
-//				songs.set(index, new Song("", "", ""));
-				songs.add(index, new Song("", "", fileLocation));
 			}
+		}
+		System.out.println(metadata.get("title"));
+		System.out.println(metadata.get("xmpDM:artist") );
 
 
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (SAXException e) {
-			e.printStackTrace();
-		} catch (TikaException e) {
-			e.printStackTrace();
-		} catch (Exception e){
-			e.printStackTrace();
+		if((metadata.get("title") != null) && (metadata.get("xmpDM:artist") != null)){
+			//songs.add(index, new Song(metadata.get("title"), metadata.get("xmpDM:artist"), path));
+			//songs.set(index, ws.fillSongArray(songs.get(index)));
+			return ws.fillSongArray(new Song(metadata.get("title"), metadata.get("xmpDM:artist"), path));
+
+		}else {
+//				songs.set(index, new Song("", "", ""));
+			 return new Song("", "", path);
 		}
 	}
 
@@ -459,10 +433,12 @@ public class Main extends Application {
 		 //if(songs.contains(index)) {
 
 		// }else {
-			 konverter(index);
+		 String pathOutput = "temp\\" + dateiNamen[index] + ".mp3";
+			 konverter(pfadSpeicher[index], pathOutput);
+			 getMetadata(pathOutput);
 		 //}
 		 
-		// zeigeDatenInDerGUI(index);
+		 zeigeDatenInDerGUI(index);
 		
 	}
 	
@@ -475,25 +451,35 @@ public class Main extends Application {
 		Album.clear();
 		Sonstiges.clear();*/
 		
-		//if(songs.get(indexDesSongs).getTrack() != "" && songs.get(indexDesSongs).getTrack() != null) {
+		if(songs.get(indexDesSongs).getTrack() != "" && songs.get(indexDesSongs).getTrack() != null) {
 			Titel.setText(songs.get(indexDesSongs).getTrack());
-		//}
+		} else {
+			Titel.setText("keinen Titel gefunden");
+		}
 		if(songs.get(indexDesSongs).getArtist() != "" && songs.get(indexDesSongs).getArtist() != null) {
 			Kuenstler.setText(songs.get(indexDesSongs).getArtist());
+		} else {
+			Kuenstler.setText("kein Kuenstler gefunden");
 		}
 		if(songs.get(indexDesSongs).getGenre() != "" && songs.get(indexDesSongs).getGenre() != null) {
 			Genre.setText(songs.get(indexDesSongs).getGenre());
+		} else {
+			Genre.setText("kein Genre gefunden");
 		}
 		if(songs.get(indexDesSongs).getPublished() != 0) {
 			Jahr.setText("" + songs.get(indexDesSongs).getPublished());
+		} else {
+			Jahr.setText("keine Jahresangabe gefunden");
 		}
 		if(songs.get(indexDesSongs).getAlbum() != "" && songs.get(indexDesSongs).getAlbum() != null) {
 			Album.setText(songs.get(indexDesSongs).getAlbum());
+		} else {
+			Album.setText("kein Album gefunden");
 		}
 		if(songs.get(indexDesSongs).getInformation() != "" && songs.get(indexDesSongs).getInformation() != null) {
 			Sonstiges.setText(songs.get(indexDesSongs).getInformation());
 		} else {
-			Sonstiges.setText("Fehler");
+			Sonstiges.setText("keine Zusatzinformationen gefunden");
 		}
 		
 		
