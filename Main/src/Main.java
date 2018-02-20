@@ -278,7 +278,7 @@ public class Main extends Application {
 		}*/
 
 		try {
-			TimeUnit.SECONDS.sleep(2);
+			TimeUnit.SECONDS.sleep(10);
 			InputStream input = new FileInputStream(new File(fileLocation));
 			ContentHandler handler = new DefaultHandler();
 			Metadata metadata = new Metadata();
@@ -317,11 +317,11 @@ public class Main extends Application {
 
 
 
-            songs.add(index, ws.fillSongArray(new Song(metadata.get("title"), metadata.get("xmpDM:artist"), fileLocation)));
+            songs.add(ws.fillSongArray(new Song(metadata.get("title"), metadata.get("xmpDM:artist"), fileLocation)));
 
 			}else {
 //				songs.set(index, new Song("", "", ""));
-				songs.add(index, new Song("", "", fileLocation));
+				songs.add(new Song("", "", fileLocation));
 			}
 
 
