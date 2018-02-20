@@ -315,6 +315,8 @@ public class Main extends Application {
 			
 			//songs.set(index, ws.fillSongArray(songs.get(index)));
 
+
+
             songs.add(index, ws.fillSongArray(new Song(metadata.get("title"), metadata.get("xmpDM:artist"), fileLocation)));
 
 			}else {
