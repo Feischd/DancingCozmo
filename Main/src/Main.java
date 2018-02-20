@@ -417,7 +417,7 @@ public class Main extends Application {
 	}
 
 	@FXML
-	private void getIndex() throws IOException {
+	private void itemHandler() throws IOException {
 		int index = TextLiednamen.getSelectionModel().getSelectedIndex();
 
 
