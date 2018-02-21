@@ -492,7 +492,7 @@ public class Main extends Application {
 			String path = pfadSpeicher[i];
 			String[] split = path.split("\\\\");
 			dateiNamen[i] = split[split.length-1].replaceAll(".mp3", "").replaceAll(".wma", "").replaceAll(".wav", "".replaceAll("m4a", "").replaceAll("aac", ""));
-		} 
+		}
 	}
 }
 
