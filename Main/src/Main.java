@@ -63,11 +63,13 @@ public class Main extends Application {
 	private Webservice ws;
 	private ArrayList<Song> songs;
 	private Cozmo cozmo;
+	private Song selectedSong;
 
 	public Main() {
 		cozmo = new Cozmo();
 		ws = new Webservice();
 		songs = new ArrayList<>();
+		selectedSong = new Song("", "", "");
 	}
 
 	// Zaehlvariable zum aktuellen speichern der Pfade
@@ -224,14 +226,21 @@ public class Main extends Application {
 
 			}
 		}
-		System.out.println(metadata.get("title"));
-		System.out.println(metadata.get("xmpDM:artist") );
 
+		String track = metadata.get("title");
+		String artist = metadata.get("xmpDM:artist");
 
-		if((metadata.get("title") != null) && (metadata.get("xmpDM:artist") != null)){
+		if(track != null && artist != null){
 			return ws.fillSongArray(new Song(metadata.get("title"), metadata.get("xmpDM:artist"), path));
-		}else {
-			 return new Song("", "", path);
+		}
+		else {
+			if(track == null){
+				track = "";
+			}
+			if(artist == null){
+				artist = "";
+			}
+			return new Song(track, artist, path);
 		}
 	}
 
@@ -295,9 +304,11 @@ public class Main extends Application {
 		int index = TextLiednamen.getSelectionModel().getSelectedIndex();
 
 		 String pathOutput = "temp\\" + dateiNamen[index] + ".mp3";
-			 konverter(pfadSpeicher[index], pathOutput);
+		 konverter(pfadSpeicher[index], pathOutput);
 
-			 zeigeDatenInDerGUI(getMetadata(pathOutput));
+		 selectedSong = getMetadata(pathOutput);
+
+		 zeigeDatenInDerGUI(selectedSong);
 	}
 	
 	//Bild?
