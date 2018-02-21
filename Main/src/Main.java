@@ -64,6 +64,8 @@ public class Main extends Application {
 	private ArrayList<Song> songs;
 	private Cozmo cozmo;
 	private Song selectedSong;
+	private static String[] format = {".wma", ".mp3", ".m4a", ".aac", ".wav"};
+
 
 	public Main() {
 		cozmo = new Cozmo();
@@ -83,13 +85,7 @@ public class Main extends Application {
 
 		// Angemeldeter Benutzer
 		File dir = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Music");
-
-		// Ab hier Methoden aufrufen
-		searchFile(dir, ".wma");
-		searchFile(dir, ".mp3");
-		searchFile(dir, ".m4a");
-		searchFile(dir, ".aac");
-		searchFile(dir, ".wav");
+		searchFile(dir);
 
 		// noetig um die Liednamen in GUI anzuzeigen
 		dateiNamen = new String[pfadSpeicher.length];
@@ -120,27 +116,24 @@ public class Main extends Application {
 	}
 
 	// nach einem bestimmten File in einem bestimmten Verzeichnis suchen
-	private static ArrayList<File> searchFile(File dir, String find) throws IOException {
-		String pfad = "";
-
+	private static ArrayList<File> searchFile(File dir) throws IOException {
 		// Dateien werden gesucht, gefunden und die Pfade gespeichert
 		File[] files = dir.listFiles();
 
 		// Matches koennen spaeter eventuell entfernt werden
 		ArrayList<File> matches = new ArrayList<File>();
 		if (files != null) {
-			for (int i = 0; i < files.length; i++) {
+			for(String typ: format){
+				for (int i=0; i<files.length; i++) {
+					if (files[i].getName().endsWith(typ)) {
+						savePfad(files[i].getPath());
+						matches.add(files[i]);
+					}
 
-				if (files[i].getName().endsWith(find)) {
-					pfad = pfad + files[i].getPath();
-					savePfad(pfad);
-					pfad = "";
-					matches.add(files[i]);
-				}
-
-				if (files[i].isDirectory()) {
-					// fuegt der ArrayList die ArrayList mit den Treffern aus dem Unterordner hinzu
-					matches.addAll(searchFile(files[i], find));
+					if (files[i].isDirectory()) {
+						// fuegt der ArrayList die ArrayList mit den Treffern aus dem Unterordner hinzu
+						matches.addAll(searchFile(files[i]));
+					}
 				}
 			}
 		}
