@@ -84,25 +84,18 @@ public class Main extends Application {
 		// Angemeldeter Benutzer
 		File dir = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Music");
 
-		// 4 Unterschiedliche Dateitypen sollen gefunden werden
-		String findwma = ".wma";
-		String findmp3 = ".mp3";
-		String findm4a = ".m4a";
-		String findaac = ".aac";
-		String findwav = ".wav";
-
 		// Ab hier Methoden aufrufen
-		searchFile(dir, findwma);
-		searchFile(dir, findmp3);
-		searchFile(dir, findm4a);
-		searchFile(dir, findaac);
-		searchFile(dir, findwav);
+		searchFile(dir, ".wma");
+		searchFile(dir, ".mp3");
+		searchFile(dir, ".m4a");
+		searchFile(dir, ".aac");
+		searchFile(dir, ".wav");
 
 		// noetig um die Liednamen in GUI anzuzeigen
 		dateiNamen = new String[pfadSpeicher.length];
 
 		// Lege Temporaere Pfade an
-		legeDateiOrdnerAn();
+		new File("temp").mkdir();
 
 		// legeSongsAn(pfadSpeicher);
 		zerlegeAltenString();
@@ -110,9 +103,6 @@ public class Main extends Application {
 		launch(args);
 	}
 
-	private static void legeDateiOrdnerAn() {
-		new File("temp").mkdir();
-	}
 
 	private static void deleteTemp(){
 		File path = new File("Main\\temp");
@@ -131,8 +121,6 @@ public class Main extends Application {
 
 	// nach einem bestimmten File in einem bestimmten Verzeichnis suchen
 	private static ArrayList<File> searchFile(File dir, String find) throws IOException {
-
-		String name = "";
 		String pfad = "";
 
 		// Dateien werden gesucht, gefunden und die Pfade gespeichert
@@ -144,15 +132,9 @@ public class Main extends Application {
 			for (int i = 0; i < files.length; i++) {
 
 				if (files[i].getName().endsWith(find)) {
-
-					name = name + files[i].getName();
 					pfad = pfad + files[i].getPath();
-
 					savePfad(pfad);
-
-					name = "";
 					pfad = "";
-
 					matches.add(files[i]);
 				}
 
@@ -302,7 +284,7 @@ public class Main extends Application {
 
 
 	@FXML
-	private void getIndex() throws IOException {
+	private void getIndex(){
 		int index = TextLiednamen.getSelectionModel().getSelectedIndex();
 
 		 String pathOutput = "temp\\" + dateiNamen[index] + ".mp3";
