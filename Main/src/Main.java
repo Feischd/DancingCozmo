@@ -78,17 +78,18 @@ public class Main extends Application {
 	static int i = 0;
 
 	// Hilfsarray um die einzelnen Pfade der Musikdateien zu speichern
-	private static String[] pfadSpeicher = new String[1];
-	private static String[] dateiNamen;
+	//private static String[] pfadSpeicher = new String[1];
+	private static ArrayList<String> pfadSpeicher = new ArrayList<>();
+	//private static String[] dateiNamen;
+	private static ArrayList<String> dateiNamen = new ArrayList<>();
 
 	public static void main(String[] args) throws IOException {
-
 		// Angemeldeter Benutzer
 		File dir = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Music");
 		searchFile(dir);
 
 		// noetig um die Liednamen in GUI anzuzeigen
-		dateiNamen = new String[pfadSpeicher.length];
+		//dateiNamen = new String[pfadSpeicher.size()];
 
 		// Lege Temporaere Pfade an
 		new File("temp").mkdir();
@@ -142,22 +143,12 @@ public class Main extends Application {
 
 	// Pfad speichern
 	private static void savePfad(String text) throws IOException {
-		pfadSpeicher = verlaengere(pfadSpeicher);
-		pfadSpeicher[i] = text;
+		pfadSpeicher.add(i, text);
+		//pfadSpeicher = verlaengere(pfadSpeicher);
+		//pfadSpeicher[i] = text;
 		i = i + 1;
 	}
 
-	// Das Array zum Speichern der Pfade um 1 Stelle verlaengern, Array ist flexibel
-	private static String[] verlaengere(String[] array) {
-		String[] hilfe = new String[array.length + 1];
-
-		for (int i = 0; i < array.length; i++) {
-			hilfe[i] = array[i];
-		}
-		hilfe[array.length] = "";
-
-		return hilfe;
-	}
 
 	// Die einzelnen Pfade werden ausgegeben (Ueberpruefung ob alle Dateien gefunden
 	// wurden)
@@ -270,8 +261,8 @@ public class Main extends Application {
 	
 	@FXML
 	private void ShowClicked(ActionEvent event) {
-		for (int i = 0; i < dateiNamen.length; i++) {
-			TextLiednamen.getItems().add(dateiNamen[i]);
+		for (int i = 0; i < dateiNamen.size(); i++) {
+			TextLiednamen.getItems().add(dateiNamen.get(i));
 		}
 	}
 
@@ -280,8 +271,8 @@ public class Main extends Application {
 	private void getIndex(){
 		int index = TextLiednamen.getSelectionModel().getSelectedIndex();
 
-		 String pathOutput = "temp\\" + dateiNamen[index] + ".mp3";
-		 konverter(pfadSpeicher[index], pathOutput);
+		 String pathOutput = "temp\\" + dateiNamen.get(index) + ".mp3";
+		 konverter(pfadSpeicher.get(index), pathOutput);
 
 		 selectedSong = getMetadata(pathOutput);
 
@@ -325,10 +316,10 @@ public class Main extends Application {
 
 	// letzter Teil des Pfades soll ausgeschnitten werden
 	private static void zerlegeAltenString() {
-		for(int i=0; i<pfadSpeicher.length; i++){
-			String path = pfadSpeicher[i];
+		for(int i=0; i<pfadSpeicher.size(); i++){
+			String path = pfadSpeicher.get(i);
 			String[] split = path.split("\\\\");
-			dateiNamen[i] = split[split.length-1].replaceAll(".mp3", "").replaceAll(".wma", "").replaceAll(".wav", "".replaceAll("m4a", "").replaceAll("aac", ""));
+			dateiNamen.add(i, split[split.length-1].replaceAll(".mp3", "").replaceAll(".wma", "").replaceAll(".wav", "".replaceAll("m4a", "").replaceAll("aac", "")));
 		}
 	}
 }
