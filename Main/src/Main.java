@@ -74,8 +74,6 @@ public class Main extends Application {
 		selectedSong = new Song("", "", "");
 	}
 
-	// Zaehlvariable zum aktuellen speichern der Pfade
-	static int i = 0;
 
 	// Hilfsarray um die einzelnen Pfade der Musikdateien zu speichern
 	//private static String[] pfadSpeicher = new String[1];
@@ -127,7 +125,7 @@ public class Main extends Application {
 			for(String typ: format){
 				for (int i=0; i<files.length; i++) {
 					if (files[i].getName().endsWith(typ)) {
-						savePfad(files[i].getPath());
+						pfadSpeicher.add(files[i].getPath());
 						matches.add(files[i]);
 					}
 
@@ -139,12 +137,6 @@ public class Main extends Application {
 			}
 		}
 		return matches;
-	}
-
-	// Pfad speichern
-	private static void savePfad(String text){
-		pfadSpeicher.add(i, text);
-		i = i + 1;
 	}
 
 
