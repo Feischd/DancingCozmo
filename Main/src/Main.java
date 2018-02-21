@@ -250,7 +250,6 @@ public class Main extends Application {
 	}
 
 	private void mainWindow() {
-
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(ClassLoader.getSystemResource("window.fxml"));
@@ -293,7 +292,6 @@ public class Main extends Application {
 	}
 
 	private void addToListView() {
-
 		for (int i = 0; i < dateiNamen.length; i++) {
 			TextLiednamen.getItems().add(dateiNamen[i]);
 		}
@@ -332,7 +330,7 @@ public class Main extends Application {
 		if(song.getPublished() != 0) {
 			Jahr.setText("" + song.getPublished());
 		} else {
-			Jahr.setText("keine Eintrag");
+			Jahr.setText("kein Eintrag");
 		}
 		if(song.getAlbum() != "" && song.getAlbum() != null) {
 			Album.setText(song.getAlbum());
@@ -342,7 +340,7 @@ public class Main extends Application {
 		if(song.getInformation() != "" && song.getInformation() != null) {
 			Sonstiges.setText(song.getInformation());
 		} else {
-			Sonstiges.setText("keine Eintrag");
+			Sonstiges.setText("kein Eintrag");
 		}
 	}
 
