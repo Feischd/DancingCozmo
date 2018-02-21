@@ -1,18 +1,14 @@
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
-import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
 import org.apache.tika.parser.ParseContext;
 import org.apache.tika.parser.Parser;
 import org.apache.tika.parser.mp3.Mp3Parser;
 import org.xml.sax.ContentHandler;
-import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import javafx.application.Application;
@@ -29,11 +25,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import ucar.nc2.util.IO;
 
 public class Main extends Application {
 
-	// Attribute
 	@FXML
 	AnchorPane AnchorP;
 	@FXML
@@ -61,50 +55,30 @@ public class Main extends Application {
 	
 	Stage primaryStage;
 	private Webservice ws;
-	private ArrayList<Song> songs;
+	private static ArrayList<Song> songs = new ArrayList<>();
 	private Cozmo cozmo;
 	private Song selectedSong;
-	private static String[] format = {".wma", ".mp3", ".m4a", ".aac", ".wav"};
+	private static String[] format = new String[]{".wma", ".mp3", ".m4a", ".aac", ".wav"};
 
 
 	public Main() {
 		cozmo = new Cozmo();
 		ws = new Webservice();
-		songs = new ArrayList<>();
-		selectedSong = new Song("", "", "");
+		selectedSong = new Song("");
 	}
 
 
-	// Hilfsarray um die einzelnen Pfade der Musikdateien zu speichern
-	//private static String[] pfadSpeicher = new String[1];
-	private static ArrayList<String> pfadSpeicher = new ArrayList<>();
-	//private static String[] dateiNamen;
-	private static ArrayList<String> dateiNamen = new ArrayList<>();
-
-	public static void main(String[] args) throws IOException {
-		// Angemeldeter Benutzer
-		File dir = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Music");
-		searchFile(dir);
-
-		// noetig um die Liednamen in GUI anzuzeigen
-		//dateiNamen = new String[pfadSpeicher.size()];
-
-		// Lege Temporaere Pfade an
-		new File("temp").mkdir();
-
-		// legeSongsAn(pfadSpeicher);
-		zerlegeAltenString();
-
+	public static void main(String[] args) {
 		launch(args);
 	}
 
 
-	private static void deleteTemp(){
-		File path = new File("Main\\temp");
+	private void deleteTemp(){
+		File path = new File("temp");
 		deleteTempFiles(path);
 	}
 
-	private static void deleteTempFiles(File path){
+	private void deleteTempFiles(File path){
 		for (File file : path.listFiles()) {
 			if (file.isDirectory()) {
 				deleteTempFiles(file);
@@ -115,51 +89,48 @@ public class Main extends Application {
 	}
 
 	// nach einem bestimmten File in einem bestimmten Verzeichnis suchen
-	private static ArrayList<File> searchFile(File dir) throws IOException {
+	private void searchFile(File dir){
 		// Dateien werden gesucht, gefunden und die Pfade gespeichert
-		File[] files = dir.listFiles();
+		try{
+            File[] files = dir.listFiles();
+            for (int i=0; i<files.length; i++) {
+                if (files[i].isDirectory()) {
+                    searchFile(files[i]);
+                }
 
-		// Matches koennen spaeter eventuell entfernt werden
-		ArrayList<File> matches = new ArrayList<File>();
-		if (files != null) {
-			for(String typ: format){
-				for (int i=0; i<files.length; i++) {
-					if (files[i].getName().endsWith(typ)) {
-						pfadSpeicher.add(files[i].getPath());
-						matches.add(files[i]);
-					}
+                for(String typ: format){
+                    if (files[i].getName().endsWith(typ)) {
+                        songs.add(new Song(files[i].getPath()));
+                    }
+                }
+            }
+        } catch(Exception e){
 
-					if (files[i].isDirectory()) {
-						// fuegt der ArrayList die ArrayList mit den Treffern aus dem Unterordner hinzu
-						matches.addAll(searchFile(files[i]));
-					}
-				}
-			}
-		}
-		return matches;
+        }
 	}
 
 
-	private void konverter(String pathInput, String pathOutput){
-
+	private Song convert(Song song){
+        String pathOut = "temp\\" + song.getFileName() + ".mp3";
 		try{
-			Runtime.getRuntime().exec(new String[] {"Main\\ffmpeg", "-vn", "-i", pathInput, "-ab", "128k", pathOutput});
+			Runtime.getRuntime().exec(new String[] {"Main\\ffmpeg", "-vn", "-i", song.getPath(), "-ab", "128k", pathOut});
+			song.setPath(pathOut);
 		}catch(Exception e){
 			System.out.println(e);
 		}
+		return song;
 	}
 
-	private Song getMetadata(String path) {
+	private Song getMetadata(Song song) {
 		boolean converted = false;
 		boolean metadataAvailable = false;
 		Metadata metadata = null;
 		while(!converted || !metadataAvailable){
 			try{
-				File file = new File(path);
+				File file = new File(song.getPath());
+				song.setPath(file.getAbsolutePath());
 				InputStream input = new FileInputStream(file);
 				converted = true;
-
-				path = file.getAbsolutePath();
 
 				ContentHandler handler = new DefaultHandler();
 				metadata = new Metadata();
@@ -169,7 +140,7 @@ public class Main extends Application {
 				parser.parse(input, handler, metadata, parseCtx);
 				input.close();
 
-				if(metadata.size()>2){
+				if(metadata.size()>8){
 					metadataAvailable = true;
 				}
 			}catch(Exception e){
@@ -179,23 +150,35 @@ public class Main extends Application {
 
 		String track = metadata.get("title");
 		String artist = metadata.get("xmpDM:artist");
-
 		if(track != null && artist != null){
-			return ws.fillSongArray(new Song(metadata.get("title"), metadata.get("xmpDM:artist"), path));
+			song.setTrack(track);
+			song.setArtist(artist);
+			song = ws.fillSongArray(song);
 		}
-		else {
-			if(track == null){
-				track = "";
-			}
-			if(artist == null){
-				artist = "";
-			}
-			return new Song(track, artist, path);
-		}
+		else{
+		    if(track != null){
+		        song.setTrack(track);
+            }
+            if(artist != null){
+		        song.setArtist(artist);
+            }
+        }
+		return song;
 	}
 
-	public void start(Stage primaryStage) throws IOException {
+	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
+
+		// Angemeldeter Benutzer
+		File dir = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Music");
+		searchFile(dir);
+		// delete old temp files if exists
+		if(new File("temp").exists()){
+			deleteTemp();
+		}
+		// Lege Temporaere Pfade an
+		new File("temp").mkdir();
+
 		mainWindow();
 	}
 
@@ -220,11 +203,8 @@ public class Main extends Application {
 					// Hier muss der Temp-Ordner geloescht werden
 					System.out.println("Hier Temp loeschen");
 					deleteTemp();
-//					loescheTempZumEnde();
 				}
 			});
-
-			
 		} catch (IOException e) {
 		}
 	}
@@ -242,8 +222,8 @@ public class Main extends Application {
 	
 	@FXML
 	private void ShowClicked(ActionEvent event) {
-		for (int i = 0; i < dateiNamen.size(); i++) {
-			TextLiednamen.getItems().add(dateiNamen.get(i));
+		for(Song song: songs){
+			TextLiednamen.getItems().add(song.getFileName());
 		}
 	}
 
@@ -251,18 +231,14 @@ public class Main extends Application {
 	@FXML
 	private void getIndex(){
 		int index = TextLiednamen.getSelectionModel().getSelectedIndex();
-
-		 String pathOutput = "temp\\" + dateiNamen.get(index) + ".mp3";
-		 konverter(pfadSpeicher.get(index), pathOutput);
-
-		 selectedSong = getMetadata(pathOutput);
-
-		 zeigeDatenInDerGUI(selectedSong);
+        songs.set(index, getMetadata(convert(songs.get(index))));
+        selectedSong = songs.get(index);
+		zeigeDatenInDerGUI(selectedSong);
 	}
 	
 	//Bild?
+    // link zum bild ist als attribut von song gespeichert
 	private void zeigeDatenInDerGUI(Song song) {
-		
 		if(song.getTrack() != "" && song.getTrack() != null) {
 			Titel.setText(song.getTrack());
 		} else {
@@ -292,15 +268,6 @@ public class Main extends Application {
 			Sonstiges.setText(song.getInformation());
 		} else {
 			Sonstiges.setText("kein Eintrag");
-		}
-	}
-
-	// letzter Teil des Pfades soll ausgeschnitten werden
-	private static void zerlegeAltenString() {
-		for(int i=0; i<pfadSpeicher.size(); i++){
-			String path = pfadSpeicher.get(i);
-			String[] split = path.split("\\\\");
-			dateiNamen.add(i, split[split.length-1].replaceAll(".mp3", "").replaceAll(".wma", "").replaceAll(".wav", "".replaceAll("m4a", "").replaceAll("aac", "")));
 		}
 	}
 }

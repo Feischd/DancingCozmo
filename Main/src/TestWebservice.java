@@ -4,8 +4,8 @@ public class TestWebservice {
     public static void main(String[] args){
         Webservice ws = new Webservice();
 
-        Song song = new Song("Believe", "cher", "kein Pfad");
-        Song song2 = new Song("boulevard of broken dreams", "green day", "kein Pfad");
+        Song song = new Song("kein Pfad");
+        Song song2 = new Song("kein Pfad");
         ArrayList<Song> songs = new ArrayList<>();
         song = ws.fillSongArray(song);
         song2 = ws.fillSongArray(song2);
