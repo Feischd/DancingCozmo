@@ -457,31 +457,31 @@ public class Main extends Application {
 		} else {
 			Titel.setText("keinen Titel gefunden");
 		}
-//		if(songs.get(indexDesSongs).getArtist() != "" && songs.get(indexDesSongs).getArtist() != null) {
-//			Kuenstler.setText(songs.get(indexDesSongs).getArtist());
-//		} else {
-//			Kuenstler.setText("kein Kuenstler gefunden");
-//		}
-//		if(songs.get(indexDesSongs).getGenre() != "" && songs.get(indexDesSongs).getGenre() != null) {
-//			Genre.setText(songs.get(indexDesSongs).getGenre());
-//		} else {
-//			Genre.setText("kein Genre gefunden");
-//		}
-//		if(songs.get(indexDesSongs).getPublished() != 0) {
-//			Jahr.setText("" + songs.get(indexDesSongs).getPublished());
-//		} else {
-//			Jahr.setText("keine Jahresangabe gefunden");
-//		}
-//		if(songs.get(indexDesSongs).getAlbum() != "" && songs.get(indexDesSongs).getAlbum() != null) {
-//			Album.setText(songs.get(indexDesSongs).getAlbum());
-//		} else {
-//			Album.setText("kein Album gefunden");
-//		}
-//		if(songs.get(indexDesSongs).getInformation() != "" && songs.get(indexDesSongs).getInformation() != null) {
-//			Sonstiges.setText(songs.get(indexDesSongs).getInformation());
-//		} else {
-//			Sonstiges.setText("keine Zusatzinformationen gefunden");
-//		}
+		if(song.getArtist() != "" && song.getArtist() != null) {
+			Kuenstler.setText(song.getArtist());
+		} else {
+			Kuenstler.setText("kein Kuenstler gefunden");
+		}
+		if(song.getGenre() != "" && song.getGenre() != null) {
+			Genre.setText(song.getGenre());
+		} else {
+			Genre.setText("kein Genre gefunden");
+		}
+		if(song.getPublished() != 0) {
+			Jahr.setText("" + song.getPublished());
+		} else {
+			Jahr.setText("keine Jahresangabe gefunden");
+		}
+		if(song.getAlbum() != "" && song.getAlbum() != null) {
+			Album.setText(song.getAlbum());
+		} else {
+			Album.setText("kein Album gefunden");
+		}
+		if(song.getInformation() != "" && song.getInformation() != null) {
+			Sonstiges.setText(song.getInformation());
+		} else {
+			Sonstiges.setText("keine Zusatzinformationen gefunden");
+		}
 		
 		
 	}
