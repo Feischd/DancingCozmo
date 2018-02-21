@@ -142,23 +142,12 @@ public class Main extends Application {
 	}
 
 	// Pfad speichern
-	private static void savePfad(String text) throws IOException {
+	private static void savePfad(String text){
 		pfadSpeicher.add(i, text);
-		//pfadSpeicher = verlaengere(pfadSpeicher);
-		//pfadSpeicher[i] = text;
 		i = i + 1;
 	}
 
 
-	// Die einzelnen Pfade werden ausgegeben (Ueberpruefung ob alle Dateien gefunden
-	// wurden)
-	private static void testausgabe(String pfadtext[]) {
-		for (int i = 0; i < pfadtext.length - 1; i++) {
-			System.out.println("Der Pfad lautet: " + pfadtext[i]);
-		}
-	}
-
-	// text = eingegebener Pfad
 	private void konverter(String pathInput, String pathOutput){
 
 		try{
