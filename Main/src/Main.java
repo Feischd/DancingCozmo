@@ -208,8 +208,11 @@ public class Main extends Application {
 		Metadata metadata = null;
 		while(!converted || !metadataAvailable){
 			try{
-				InputStream input = new FileInputStream(new File(path));
+				File file = new File(path);
+				InputStream input = new FileInputStream(file);
 				converted = true;
+
+				path = file.getAbsolutePath();
 
 				ContentHandler handler = new DefaultHandler();
 				metadata = new Metadata();
@@ -249,6 +252,7 @@ public class Main extends Application {
 		mainWindow();
 	}
 
+
 	private void mainWindow() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -260,6 +264,7 @@ public class Main extends Application {
 			Scene scene = new Scene(pane);
 			primaryStage.setScene(scene);
 			primaryStage.show();
+
 			
 			primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 				
@@ -271,6 +276,7 @@ public class Main extends Application {
 //					loescheTempZumEnde();
 				}
 			});
+
 			
 		} catch (IOException e) {
 		}
@@ -278,6 +284,7 @@ public class Main extends Application {
 	
 	@FXML
 	private void PlayClicked(ActionEvent event) {
+		System.out.println(selectedSong.getPath());
 		cozmo.play(selectedSong);
 	}
 
@@ -288,14 +295,11 @@ public class Main extends Application {
 	
 	@FXML
 	private void ShowClicked(ActionEvent event) {
-		addToListView();
-	}
-
-	private void addToListView() {
 		for (int i = 0; i < dateiNamen.length; i++) {
 			TextLiednamen.getItems().add(dateiNamen[i]);
 		}
 	}
+
 
 	@FXML
 	private void getIndex() throws IOException {
