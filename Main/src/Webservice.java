@@ -40,7 +40,7 @@ public class Webservice {
         InputStream is = null;
         try
         {
-            URL url = new URL( " http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=e0499e4c41404deb64230e4881e2eb27&artist=" + song.getArtist() + "&track=" + song.getTrack());
+            URL url = new URL( " http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=e0499e4c41404deb64230e4881e2eb27&artist=" + song.getArtist() + "&track=" + song.getTrack().replaceAll(" ", "%20"));
             is = url.openStream();
             songData = new Scanner(is).useDelimiter("Z").next();
         }
@@ -53,7 +53,6 @@ public class Webservice {
             if ( is != null )
                 try { is.close(); } catch ( IOException e ) { }
         }
-
        return songData;
     }
 

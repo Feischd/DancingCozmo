@@ -8,22 +8,32 @@ public class Song {
     private String album;
     private String cover;
     private String information;
+    private String fileName;
 
 
-    public Song(String track, String artist, String path){
-        this.track = track;
-        this.artist = artist;
+    public Song(String path){
         this.path = path;
+        this.track = "";
+        this.artist = "";
+
         genre = "";
         duration = 0;
         published = 0;
         album = "";
         cover = "";
         information = "";
+        setFileName();
     }
 
 
     // setter
+    public void setTrack(String track){
+        this.track = track;
+    }
+
+    public void setArtist(String artist){
+        this.artist = artist;
+    }
     public void setGenre(String genre){
         this.genre = genre;
     }
@@ -46,6 +56,16 @@ public class Song {
 
     public void setInformation(String information){
         this.information = information;
+    }
+
+    public void setPath(String path){
+        this.path = path;
+        setFileName();
+    }
+
+    private void setFileName(){
+        String[] splitArray = path.split("\\\\");
+        this.fileName = splitArray[splitArray.length-1].replaceAll(".mp3", "").replaceAll(".wma", "").replaceAll(".wav", "".replaceAll("m4a", "").replaceAll("aac", ""));
     }
 
     //getter
@@ -83,5 +103,9 @@ public class Song {
 
     public String getInformation(){
         return information;
+    }
+
+    public String getFileName(){
+        return fileName;
     }
 }
