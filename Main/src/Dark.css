@@ -9,6 +9,7 @@
 .root{
     -fx-background-color: #343434;
     -fx-text-fill: #ffffff;
+    -fx-base: #292929;
 }
 .text-area{
     -fx-background-color: #b3b3b3;

@@ -1,0 +1,23 @@
+.button {
+    -fx-background-color: #e6e6e6;
+    -fx-text-fill: #000000;
+    -fx-border-color: #b2b2b2;
+}
+.cell{
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #000000;
+}
+.root{
+    -fx-background-color:  #e6e6e6;
+    -fx-text-fill: #000000;
+}
+.text-area{
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #000000;
+    -fx-border-color: #b2b2b2;
+}
+.text-field{
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #000000;
+    -fx-border-color: #b2b2b2;
+}

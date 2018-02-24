@@ -52,7 +52,12 @@ public class Main extends Application {
 	Button Play;
 	@FXML
 	Button Show;
-	
+	@FXML
+	Button Dark;
+	@FXML
+	Button Light;
+
+
 	Stage primaryStage;
 	private Webservice ws;
 	private static ArrayList<Song> songs = new ArrayList<>();
@@ -192,6 +197,7 @@ public class Main extends Application {
 			primaryStage.setTitle("DancingCozmo");
 
 			Scene scene = new Scene(pane);
+			scene.getStylesheets().add("Light.css");
 			primaryStage.setScene(scene);
 			primaryStage.show();
 
@@ -206,7 +212,21 @@ public class Main extends Application {
 		} catch (IOException e) {
 		}
 	}
-	
+	@FXML
+	void Lightcolor(ActionEvent event) {
+		File file = new File("Light.css");
+		String Light = file.toString();
+		AnchorP.getStylesheets().add(Light);
+		AnchorP.getStylesheets().remove("Dark.css");
+	}
+	@FXML
+	void Darkcolor(ActionEvent event) {
+		File file = new File("Dark.css");
+		String Dark = file.toString();
+		AnchorP.getStylesheets().add(Dark);
+		AnchorP.getStylesheets().remove("Light.css");
+	}
+
 	@FXML
 	private void PlayClicked(ActionEvent event) {
 		cozmo.play(selectedSong);
@@ -223,7 +243,6 @@ public class Main extends Application {
 			TextLiednamen.getItems().add(song.getFileName());
 		}
 	}
-
 
 	@FXML
 	private void getIndex(){
