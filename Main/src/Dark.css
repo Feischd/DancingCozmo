@@ -1,21 +1,26 @@
 .button {
     -fx-background-color: #151515;
     -fx-text-fill: #ffffff;
+    -fx-border-color: #000000;
 }
 .cell{
     -fx-background-color: #343434;
     -fx-text-fill: #ffffff;
+    -fx-border-color: #000000;
 }
 .root{
-    -fx-background-color: #343434;
+    -fx-background-color: #363636;
     -fx-text-fill: #ffffff;
-    -fx-base: #292929;
+    -fx-border-color: #000000;
+    -fx-base: #0d0d0d;
 }
 .text-area{
-    -fx-background-color: #b3b3b3;
-    -fx-text-fill: #000000;
+    -fx-background-color: #000000;
+    -fx-text-fill: #ffffff;
+    -fx-border-color: #000000;
 }
 .text-field{
     -fx-background-color: #151515;
     -fx-text-fill: #ffffff;
+    -fx-border-color: #000000;
 }

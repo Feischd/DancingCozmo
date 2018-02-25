@@ -25,7 +25,7 @@
       <TextField alignment="CENTER_RIGHT" editable="false" layoutX="249.0" layoutY="250.0" prefHeight="25.0" prefWidth="95.0" text="Genre:" />
       <TextField alignment="CENTER_RIGHT" editable="false" layoutX="249.0" layoutY="275.0" prefHeight="25.0" prefWidth="95.0" text="Jahr:" />
       <TextField alignment="CENTER_RIGHT" editable="false" layoutX="249.0" layoutY="299.0" prefHeight="25.0" prefWidth="95.0" text="Album:" />
-      <Button fx:id="Dark" layoutX="250.0" layoutY="2.0" mnemonicParsing="false" onAction="#Darkcolor" prefHeight="25.0" prefWidth="43.0" text="Dark" />
-      <Button fx:id="Light" layoutX="250.0" layoutY="27.0" mnemonicParsing="false" onAction="#Lightcolor" text="Light" />
+      <Button fx:id="Dark" layoutX="250.0" layoutY="2.0" mnemonicParsing="false" onAction="#Darkcolor" prefHeight="25.0" prefWidth="50.0" text="Dark" />
+      <Button fx:id="Light" layoutX="250.0" layoutY="27.0" mnemonicParsing="false" onAction="#Lightcolor" prefHeight="25.0" prefWidth="50.0" text="Light" />
    </children>
 </AnchorPane>
