@@ -249,9 +249,7 @@ public class Main extends Application {
 	
 	@FXML
 	private void Search(ActionEvent event) {
-//		String text = "";
 		String text = Suche.getText();
-//		System.out.println(text);
 		
 		if(text != null) {
 			// Angemeldeter Benutzer
@@ -259,10 +257,8 @@ public class Main extends Application {
 			searchFile(dir);
 		} else {
 			File dir = new File(text);
-
-		}
-		
-		
+			searchFile(dir);
+		}	
 	}
 
 	@FXML
