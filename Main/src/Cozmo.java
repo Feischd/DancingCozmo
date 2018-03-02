@@ -26,6 +26,7 @@ public class Cozmo {
 
     // creates dance for cozmo depending on genre and duration of song
     private void createDance(String genre, int laenge){
+        laenge = laenge / 1000;
         switch(genre){
             case "Blues": new Dances.Blues().createDance(laenge/19);
                 break;
