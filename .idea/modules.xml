@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/Java-Cozmo/Java-Cozmo.iml" filepath="$PROJECT_DIR$/Java-Cozmo/Java-Cozmo.iml" />
       <module fileurl="file://$PROJECT_DIR$/Main/Main.iml" filepath="$PROJECT_DIR$/Main/Main.iml" />
       <module fileurl="file://$PROJECT_DIR$/Python-Cozmo/Python-Cozmo.iml" filepath="$PROJECT_DIR$/Python-Cozmo/Python-Cozmo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spotify-web-api-java-master/spotify-web-api-java-master.iml" filepath="$PROJECT_DIR$/spotify-web-api-java-master/spotify-web-api-java-master.iml" />
     </modules>
   </component>
 </project>

@@ -7,10 +7,13 @@ import java.io.PrintWriter;
 
 public class Pop extends Dance {
 
+
     public void createDance(double laenge){
         PrintWriter pWriter = null;
         try {
             pWriter = new PrintWriter(new BufferedWriter(new FileWriter("temp\\cozmoDance.py")));
+
+            pWriter.println("testPop");
 
             // python code
             pWriter.println("import time");
