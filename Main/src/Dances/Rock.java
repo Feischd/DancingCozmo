@@ -12,6 +12,8 @@ public class Rock extends Dance {
         try {
             pWriter = new PrintWriter(new BufferedWriter(new FileWriter("temp\\cozmoDance.py")));
 
+            pWriter.println("testRock");
+
             // python code
             pWriter.println("import time");
             pWriter.println("import cozmo");
