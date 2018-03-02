@@ -6,7 +6,7 @@ public class Cozmo {
     public void play(Song song){
         createDance(song.getGenre(), song.getDuration());
         try {
-            Runtime.getRuntime().exec("cmd /C start cozmoDance.py");
+            Runtime.getRuntime().exec("cmd /C start temp\\cozmoDance.py");
             Runtime.getRuntime().exec(new String[] {"C:\\Program Files (x86)\\Windows Media Player\\wmplayer.exe", song.getPath()});
         } catch (IOException e) {
             e.printStackTrace();

@@ -13,8 +13,6 @@ public class Pop extends Dance {
         try {
             pWriter = new PrintWriter(new BufferedWriter(new FileWriter("temp\\cozmoDance.py")));
 
-            pWriter.println("testPop");
-
             // python code
             pWriter.println("import time");
             pWriter.println("import cozmo");
