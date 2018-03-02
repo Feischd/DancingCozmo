@@ -61,8 +61,6 @@ public class Main extends Application {
 	Button Light;
 	@FXML
 	Button DurchsuchePfad;
-	@FXML
-	Button SpeicherePfad;
 
 	Stage primaryStage;
 	private Webservice ws;
@@ -78,11 +76,9 @@ public class Main extends Application {
 		selectedSong = new Song("");
 	}
 
-
 	public static void main(String[] args) {
 		launch(args);
 	}
-
 
 	private void deleteTemp(){
 		File path = new File("temp");
@@ -119,7 +115,6 @@ public class Main extends Application {
 
         }
 	}
-
 
 	private Song convert(Song song){
         String pathOut = "temp\\" + song.getFileName() + ".mp3";
@@ -189,7 +184,6 @@ public class Main extends Application {
 
 		mainWindow();
 	}
-
 
 	private void mainWindow() {
 		try {
