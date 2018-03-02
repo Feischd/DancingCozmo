@@ -26,6 +26,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+
 public class Main extends Application {
 
 	@FXML
@@ -45,6 +46,8 @@ public class Main extends Application {
 	@FXML
 	TextField Album;
 	@FXML
+	TextField Suche;
+	@FXML
 	TextArea Sonstiges;
 	@FXML
 	Button Stop;
@@ -56,7 +59,10 @@ public class Main extends Application {
 	Button Dark;
 	@FXML
 	Button Light;
-
+	@FXML
+	Button DurchsuchePfad;
+	@FXML
+	Button SpeicherePfad;
 
 	Stage primaryStage;
 	private Webservice ws;
@@ -174,9 +180,6 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 
-		// Angemeldeter Benutzer
-		File dir = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Music");
-		searchFile(dir);
 		// delete old temp files if exists
 		if(new File("temp").exists()){
 			deleteTemp();
@@ -242,6 +245,24 @@ public class Main extends Application {
 		for(Song song: songs){
 			TextLiednamen.getItems().add(song.getFileName());
 		}
+	}
+	
+	@FXML
+	private void Search(ActionEvent event) {
+//		String text = "";
+		String text = Suche.getText();
+//		System.out.println(text);
+		
+		if(text != null) {
+			// Angemeldeter Benutzer
+			File dir = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Music");
+			searchFile(dir);
+		} else {
+			File dir = new File(text);
+
+		}
+		
+		
 	}
 
 	@FXML
