@@ -46,6 +46,8 @@ public class Main extends Application {
 	@FXML
 	TextField Album;
 	@FXML
+	TextField Suche;
+	@FXML
 	TextArea Sonstiges;
 	@FXML
 	Button Stop;
@@ -57,7 +59,10 @@ public class Main extends Application {
 	Button Dark;
 	@FXML
 	Button Light;
-
+	@FXML
+	Button DurchsuchePfad;
+	@FXML
+	Button SpeicherePfad;
 
 	Stage primaryStage;
 	private Webservice ws;
