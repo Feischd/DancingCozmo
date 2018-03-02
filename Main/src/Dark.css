@@ -18,9 +18,11 @@
     -fx-background-color: #000000;
     -fx-text-fill: #ffffff;
     -fx-border-color: #000000;
+    -fx-prompt-text-fill: #ffffff;
 }
 .text-field{
     -fx-background-color: #151515;
     -fx-text-fill: #ffffff;
     -fx-border-color: #000000;
+    -fx-prompt-text-fill: #ffffff;
 }
