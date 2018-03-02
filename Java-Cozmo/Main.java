@@ -64,6 +64,8 @@ public class Main extends Application {
 	private ArrayList<Song> songs;
 	private Cozmo cozmo;
 	private Song selectedSong;
+	private static String[] format = {".wma", ".mp3", ".m4a", ".aac", ".wav"};
+
 
 	public Main() {
 		cozmo = new Cozmo();
@@ -72,37 +74,23 @@ public class Main extends Application {
 		selectedSong = new Song("", "", "");
 	}
 
-	// Zaehlvariable zum aktuellen speichern der Pfade
-	static int i = 0;
 
 	// Hilfsarray um die einzelnen Pfade der Musikdateien zu speichern
-	private static String[] pfadSpeicher = new String[1];
-	private static String[] dateiNamen;
+	//private static String[] pfadSpeicher = new String[1];
+	private static ArrayList<String> pfadSpeicher = new ArrayList<>();
+	//private static String[] dateiNamen;
+	private static ArrayList<String> dateiNamen = new ArrayList<>();
 
 	public static void main(String[] args) throws IOException {
-
 		// Angemeldeter Benutzer
 		File dir = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Music");
-
-		// 4 Unterschiedliche Dateitypen sollen gefunden werden
-		String findwma = ".wma";
-		String findmp3 = ".mp3";
-		String findm4a = ".m4a";
-		String findaac = ".aac";
-		String findwav = ".wav";
-
-		// Ab hier Methoden aufrufen
-		searchFile(dir, findwma);
-		searchFile(dir, findmp3);
-		searchFile(dir, findm4a);
-		searchFile(dir, findaac);
-		searchFile(dir, findwav);
+		searchFile(dir);
 
 		// noetig um die Liednamen in GUI anzuzeigen
-		dateiNamen = new String[pfadSpeicher.length];
+		//dateiNamen = new String[pfadSpeicher.size()];
 
 		// Lege Temporaere Pfade an
-		legeDateiOrdnerAn();
+		new File("temp").mkdir();
 
 		// legeSongsAn(pfadSpeicher);
 		zerlegeAltenString();
@@ -110,9 +98,6 @@ public class Main extends Application {
 		launch(args);
 	}
 
-	private static void legeDateiOrdnerAn() {
-		new File("temp").mkdir();
-	}
 
 	private static void deleteTemp(){
 		File path = new File("Main\\temp");
@@ -130,69 +115,31 @@ public class Main extends Application {
 	}
 
 	// nach einem bestimmten File in einem bestimmten Verzeichnis suchen
-	private static ArrayList<File> searchFile(File dir, String find) throws IOException {
-
-		String name = "";
-		String pfad = "";
-
+	private static ArrayList<File> searchFile(File dir) throws IOException {
 		// Dateien werden gesucht, gefunden und die Pfade gespeichert
 		File[] files = dir.listFiles();
 
 		// Matches koennen spaeter eventuell entfernt werden
 		ArrayList<File> matches = new ArrayList<File>();
 		if (files != null) {
-			for (int i = 0; i < files.length; i++) {
+			for(String typ: format){
+				for (int i=0; i<files.length; i++) {
+					if (files[i].getName().endsWith(typ)) {
+						pfadSpeicher.add(files[i].getPath());
+						matches.add(files[i]);
+					}
 
-				if (files[i].getName().endsWith(find)) {
-
-					name = name + files[i].getName();
-					pfad = pfad + files[i].getPath();
-
-					savePfad(pfad);
-
-					name = "";
-					pfad = "";
-
-					matches.add(files[i]);
-				}
-
-				if (files[i].isDirectory()) {
-					// fuegt der ArrayList die ArrayList mit den Treffern aus dem Unterordner hinzu
-					matches.addAll(searchFile(files[i], find));
+					if (files[i].isDirectory()) {
+						// fuegt der ArrayList die ArrayList mit den Treffern aus dem Unterordner hinzu
+						matches.addAll(searchFile(files[i]));
+					}
 				}
 			}
 		}
 		return matches;
 	}
 
-	// Pfad speichern
-	private static void savePfad(String text) throws IOException {
-		pfadSpeicher = verlaengere(pfadSpeicher);
-		pfadSpeicher[i] = text;
-		i = i + 1;
-	}
 
-	// Das Array zum Speichern der Pfade um 1 Stelle verlaengern, Array ist flexibel
-	private static String[] verlaengere(String[] array) {
-		String[] hilfe = new String[array.length + 1];
-
-		for (int i = 0; i < array.length; i++) {
-			hilfe[i] = array[i];
-		}
-		hilfe[array.length] = "";
-
-		return hilfe;
-	}
-
-	// Die einzelnen Pfade werden ausgegeben (Ueberpruefung ob alle Dateien gefunden
-	// wurden)
-	private static void testausgabe(String pfadtext[]) {
-		for (int i = 0; i < pfadtext.length - 1; i++) {
-			System.out.println("Der Pfad lautet: " + pfadtext[i]);
-		}
-	}
-
-	// text = eingegebener Pfad
 	private void konverter(String pathInput, String pathOutput){
 
 		try{
@@ -295,8 +242,8 @@ public class Main extends Application {
 	
 	@FXML
 	private void ShowClicked(ActionEvent event) {
-		for (int i = 0; i < dateiNamen.length; i++) {
-			TextLiednamen.getItems().add(dateiNamen[i]);
+		for (int i = 0; i < dateiNamen.size(); i++) {
+			TextLiednamen.getItems().add(dateiNamen.get(i));
 		}
 	}
 
@@ -305,8 +252,8 @@ public class Main extends Application {
 	private void getIndex(){
 		int index = TextLiednamen.getSelectionModel().getSelectedIndex();
 
-		 String pathOutput = "temp\\" + dateiNamen[index] + ".mp3";
-		 konverter(pfadSpeicher[index], pathOutput);
+		 String pathOutput = "temp\\" + dateiNamen.get(index) + ".mp3";
+		 konverter(pfadSpeicher.get(index), pathOutput);
 
 		 selectedSong = getMetadata(pathOutput);
 
@@ -350,10 +297,10 @@ public class Main extends Application {
 
 	// letzter Teil des Pfades soll ausgeschnitten werden
 	private static void zerlegeAltenString() {
-		for(int i=0; i<pfadSpeicher.length; i++){
-			String path = pfadSpeicher[i];
+		for(int i=0; i<pfadSpeicher.size(); i++){
+			String path = pfadSpeicher.get(i);
 			String[] split = path.split("\\\\");
-			dateiNamen[i] = split[split.length-1].replaceAll(".mp3", "").replaceAll(".wma", "").replaceAll(".wav", "".replaceAll("m4a", "").replaceAll("aac", ""));
+			dateiNamen.add(i, split[split.length-1].replaceAll(".mp3", "").replaceAll(".wma", "").replaceAll(".wav", "".replaceAll("m4a", "").replaceAll("aac", "")));
 		}
 	}
 }
