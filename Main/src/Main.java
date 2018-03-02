@@ -21,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -261,6 +262,12 @@ public class Main extends Application {
         songs.set(index, getMetadata(convert(songs.get(index))));
         selectedSong = songs.get(index);
 		zeigeDatenInDerGUI(selectedSong);
+		aktualisiereBild(selectedSong);
+	}
+	
+	@FXML
+	private void aktualisiereBild(Song song) {
+
 	}
 	
 	//Bild?
