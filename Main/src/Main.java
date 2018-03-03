@@ -29,9 +29,10 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 import javax.imageio.ImageIO;
+import java.io.Serializable;
 
 
-public class Main extends Application {
+public class Main extends Application implements Serializable {
 
 	@FXML
 	AnchorPane AnchorP;
@@ -251,7 +252,7 @@ public class Main extends Application {
 	private void ShowClicked(ActionEvent event) {
 
         int index = 0;
-        for(Song song: sort.sort(songs, "nameUp",0, songs.size()-1)){
+        for(Song song: sort.sort(songs, "clicked",0, songs.size()-1)){
             TextLiednamen.getItems().set(index++, song.getFileName());
         }
 

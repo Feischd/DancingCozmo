@@ -2,17 +2,17 @@ import java.util.ArrayList;
 
 public class Sort {
 
-public static ArrayList<Song> sort(ArrayList<Song> songs, String type, int left, int right) {
-    if (left < right) {
-        int i = partition(songs,type, left,right);
-        sort(songs, type, left,i-1);
-        sort(songs,type, i+1,right);
+    public ArrayList<Song> sort(ArrayList<Song> songs, String type, int left, int right) {
+        if (left < right) {
+            int i = partition(songs,type, left,right);
+            sort(songs, type, left,i-1);
+            sort(songs,type, i+1,right);
+        }
+        return songs;
     }
-    return songs;
-}
 
 
-    public static int partition(ArrayList<Song> songs, String type, int left, int right) {
+    private int partition(ArrayList<Song> songs, String type, int left, int right) {
         int i, j;
         Song help;
         i = left;
