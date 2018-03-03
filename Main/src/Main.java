@@ -242,9 +242,9 @@ public class Main extends Application {
 
 
 	/*
-	@Alex: Bitte eine Combo-Box in die Gui einbauen und dort die Kriterien 'Name aufsteigend', 'Name absteigend', 'Meist geclickt'
+	@Alex: Bitte eine Combo-Box in die Gui einbauen und dort die Kriterien 'Name aufsteigend', 'Name absteigend', 'Meist geklickt'
 	hinzufügen. Der Code für die jeweiligen Ereignisse ist wie bei ShowClicked implementiert. Hier für Name aufsteigend.
-	Für Meist geclickt und Name absteigend analog mit 'clicked' und 'nameDown'.
+	Für Meist geklickt und Name absteigend analog mit 'clicked' und 'nameDown'.
 	Wenn das soweit funktioniert, kannst du den ShowClicked-Button entfernen.
 	 */
 	@FXML
