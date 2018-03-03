@@ -68,6 +68,7 @@ public class Main extends Application {
 
 	Stage primaryStage;
 	private Webservice ws;
+	private Sort sort;
 	private static ArrayList<Song> songs = new ArrayList<>();
 	private Cozmo cozmo;
 	private Song selectedSong;
@@ -77,6 +78,7 @@ public class Main extends Application {
 	public Main() {
 		cozmo = new Cozmo();
 		ws = new Webservice();
+		sort = new Sort();
 		selectedSong = new Song("");
 	}
 
@@ -245,6 +247,12 @@ public class Main extends Application {
 		/*for(Song song: songs){
 			TextLiednamen.getItems().add(song.getFileName());
 		}*/
+
+        int index = 0;
+        for(Song song: sort.sort(songs, "clicked", 0, songs.size()-1)){
+            TextLiednamen.getItems().set(index++, song.getFileName());
+        }
+
 	}
 
 
@@ -262,9 +270,34 @@ public class Main extends Application {
 			searchFile(dir);
 		}
 
+        // show search result
         for(Song song: songs){
             TextLiednamen.getItems().add(song.getFileName());
         }
+
+        // there should be possibility to order the list on different criteria
+        // order by clicked -> favourite list
+        // order by name
+        // order by genre
+
+
+
+        // sort by clicked
+
+
+
+/*
+        // sort by name
+        for(Song song: sort.sort(songs, "name", 0, songs.size()-1)){
+            TextLiednamen.getItems().add(song.getFileName());
+        }
+        */
+/*
+        // sort by genre
+        for(Song song: sort.sort(songs, "genre", 0, songs.size()-1)){
+            TextLiednamen.getItems().add(song.getFileName());
+        }
+        */
 	}
 
 	@FXML
@@ -272,6 +305,7 @@ public class Main extends Application {
 		int index = TextLiednamen.getSelectionModel().getSelectedIndex();
         songs.set(index, getMetadata(convert(songs.get(index))));
         selectedSong = songs.get(index);
+        selectedSong.raiseClicked();
 		zeigeDatenInDerGUI(selectedSong);
 		aktualisiereBild(selectedSong);
 	}

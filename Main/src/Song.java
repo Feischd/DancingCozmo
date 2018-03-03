@@ -9,6 +9,7 @@ public class Song {
     private String cover;
     private String information;
     private String fileName;
+    private int clicked;
 
 
     public Song(String path){
@@ -23,6 +24,7 @@ public class Song {
         cover = "";
         information = "";
         setFileName();
+        clicked = 0;
     }
 
 
@@ -68,6 +70,10 @@ public class Song {
         this.fileName = splitArray[splitArray.length-1].replaceAll(".mp3", "").replaceAll(".wma", "").replaceAll(".wav", "".replaceAll("m4a", "").replaceAll("aac", ""));
     }
 
+    public void raiseClicked(){
+        this.clicked++;
+    }
+
     //getter
     public String getTrack(){
         return track;
@@ -107,5 +113,9 @@ public class Song {
 
     public String getFileName(){
         return fileName;
+    }
+
+    public int getClicked(){
+        return clicked;
     }
 }
