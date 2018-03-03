@@ -58,8 +58,6 @@ public class Main extends Application {
 	@FXML
 	Button Play;
 	@FXML
-	Button Show;
-	@FXML
 	Button Dark;
 	@FXML
 	Button Light;
@@ -238,17 +236,6 @@ public class Main extends Application {
 		cozmo.stop();
 	}
 
-
-	// button zeige daten kann entfernt werden!
-	@FXML
-	private void ShowClicked(ActionEvent event) {
-		/*for(Song song: songs){
-			TextLiednamen.getItems().add(song.getFileName());
-		}*/
-	}
-
-
-
 	@FXML
 	private void Search(ActionEvent event) {
 		String text = Suche.getText();
@@ -273,16 +260,8 @@ public class Main extends Application {
         songs.set(index, getMetadata(convert(songs.get(index))));
         selectedSong = songs.get(index);
 		zeigeDatenInDerGUI(selectedSong);
-		aktualisiereBild(selectedSong);
 	}
 	
-	@FXML
-	private void aktualisiereBild(Song song) {
-
-	}
-	
-	//Bild?
-    // link zum bild ist als attribut von song gespeichert
 	private void zeigeDatenInDerGUI(Song song) {
 		if(song.getTrack() != "" && song.getTrack() != null) {
 			Titel.setText(song.getTrack());
@@ -323,10 +302,10 @@ public class Main extends Application {
 				e.printStackTrace();
 			}
 			if(cover){
-				// hier würde das Cover in die Gui geladen werden.
+				// hier wuerde das Cover in die Gui geladen werden.
 			}
 		} else {
-			// hier würde das Cover auf 'kein Cover' o.ä. gesetzt werden.
+			// hier wuerde das Cover auf 'kein Cover' o.Ae. gesetzt werden.
 		}
 	}
 }
