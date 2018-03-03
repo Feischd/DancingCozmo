@@ -2,7 +2,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
 
 import org.apache.tika.metadata.Metadata;
@@ -27,8 +26,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-
-import javax.imageio.ImageIO;
 
 
 public class Main extends Application {
@@ -57,6 +54,8 @@ public class Main extends Application {
 	Button Stop;
 	@FXML
 	Button Play;
+	@FXML
+	Button Show;
 	@FXML
 	Button Dark;
 	@FXML
@@ -235,7 +234,14 @@ public class Main extends Application {
 	private void StopClicked(ActionEvent event) {
 		cozmo.stop();
 	}
-
+	
+	@FXML
+	private void ShowClicked(ActionEvent event) {
+		for(Song song: songs){
+			TextLiednamen.getItems().add(song.getFileName());
+		}
+	}
+	
 	@FXML
 	private void Search(ActionEvent event) {
 		String text = Suche.getText();
@@ -247,11 +253,7 @@ public class Main extends Application {
 		} else {
 			File dir = new File(text);
 			searchFile(dir);
-		}
-
-        for(Song song: songs){
-            TextLiednamen.getItems().add(song.getFileName());
-        }
+		}	
 	}
 
 	@FXML
@@ -260,8 +262,16 @@ public class Main extends Application {
         songs.set(index, getMetadata(convert(songs.get(index))));
         selectedSong = songs.get(index);
 		zeigeDatenInDerGUI(selectedSong);
+		aktualisiereBild(selectedSong);
 	}
 	
+	@FXML
+	private void aktualisiereBild(Song song) {
+
+	}
+	
+	//Bild?
+    // link zum bild ist als attribut von song gespeichert
 	private void zeigeDatenInDerGUI(Song song) {
 		if(song.getTrack() != "" && song.getTrack() != null) {
 			Titel.setText(song.getTrack());
@@ -292,20 +302,6 @@ public class Main extends Application {
 			Sonstiges.setText(song.getInformation());
 		} else {
 			Sonstiges.setText("kein Eintrag");
-		}
-		if(song.getCover() != "" && song.getCover() != null){
-			boolean cover = false;
-			try {
-				ImageIO.write(ImageIO.read(new URL(song.getCover())),"jpg", new File("temp/cover.jpg"));
-				cover = true;
-			} catch(Exception e) {
-				e.printStackTrace();
-			}
-			if(cover){
-				// hier wuerde das Cover in die Gui geladen werden.
-			}
-		} else {
-			// hier wuerde das Cover auf 'kein Cover' o.Ae. gesetzt werden.
 		}
 	}
 }
