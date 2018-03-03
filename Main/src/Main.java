@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 
 import org.apache.tika.metadata.Metadata;
@@ -26,6 +27,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+
+import javax.imageio.ImageIO;
 
 
 public class Main extends Application {
@@ -65,6 +68,7 @@ public class Main extends Application {
 
 	Stage primaryStage;
 	private Webservice ws;
+	private Sort sort;
 	private static ArrayList<Song> songs = new ArrayList<>();
 	private Cozmo cozmo;
 	private Song selectedSong;
@@ -74,6 +78,7 @@ public class Main extends Application {
 	public Main() {
 		cozmo = new Cozmo();
 		ws = new Webservice();
+		sort = new Sort();
 		selectedSong = new Song("");
 	}
 
@@ -234,14 +239,24 @@ public class Main extends Application {
 	private void StopClicked(ActionEvent event) {
 		cozmo.stop();
 	}
-	
+
+
+	// button zeige daten kann entfernt werden!
 	@FXML
 	private void ShowClicked(ActionEvent event) {
-		for(Song song: songs){
+		/*for(Song song: songs){
 			TextLiednamen.getItems().add(song.getFileName());
-		}
+		}*/
+
+        int index = 0;
+        for(Song song: sort.sort(songs, "clicked", 0, songs.size()-1)){
+            TextLiednamen.getItems().set(index++, song.getFileName());
+        }
+
 	}
-	
+
+
+
 	@FXML
 	private void Search(ActionEvent event) {
 		String text = Suche.getText();
@@ -253,7 +268,36 @@ public class Main extends Application {
 		} else {
 			File dir = new File(text);
 			searchFile(dir);
-		}	
+		}
+
+        // show search result
+        for(Song song: songs){
+            TextLiednamen.getItems().add(song.getFileName());
+        }
+
+        // there should be possibility to order the list on different criteria
+        // order by clicked -> favourite list
+        // order by name
+        // order by genre
+
+
+
+        // sort by clicked
+
+
+
+/*
+        // sort by name
+        for(Song song: sort.sort(songs, "name", 0, songs.size()-1)){
+            TextLiednamen.getItems().add(song.getFileName());
+        }
+        */
+/*
+        // sort by genre
+        for(Song song: sort.sort(songs, "genre", 0, songs.size()-1)){
+            TextLiednamen.getItems().add(song.getFileName());
+        }
+        */
 	}
 
 	@FXML
@@ -261,17 +305,10 @@ public class Main extends Application {
 		int index = TextLiednamen.getSelectionModel().getSelectedIndex();
         songs.set(index, getMetadata(convert(songs.get(index))));
         selectedSong = songs.get(index);
+        selectedSong.raiseClicked();
 		zeigeDatenInDerGUI(selectedSong);
-		aktualisiereBild(selectedSong);
 	}
 	
-	@FXML
-	private void aktualisiereBild(Song song) {
-
-	}
-	
-	//Bild?
-    // link zum bild ist als attribut von song gespeichert
 	private void zeigeDatenInDerGUI(Song song) {
 		if(song.getTrack() != "" && song.getTrack() != null) {
 			Titel.setText(song.getTrack());
@@ -302,6 +339,20 @@ public class Main extends Application {
 			Sonstiges.setText(song.getInformation());
 		} else {
 			Sonstiges.setText("kein Eintrag");
+		}
+		if(song.getCover() != "" && song.getCover() != null){
+			boolean cover = false;
+			try {
+				ImageIO.write(ImageIO.read(new URL(song.getCover())),"jpg", new File("temp/cover.jpg"));
+				cover = true;
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			if(cover){
+				// hier wuerde das Cover in die Gui geladen werden.
+			}
+		} else {
+			// hier wuerde das Cover auf 'kein Cover' o.ae. gesetzt werden.
 		}
 	}
 }
