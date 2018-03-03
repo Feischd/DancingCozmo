@@ -237,14 +237,18 @@ public class Main extends Application {
 	private void StopClicked(ActionEvent event) {
 		cozmo.stop();
 	}
-	
+
+
+	// button zeige daten kann entfernt werden!
 	@FXML
 	private void ShowClicked(ActionEvent event) {
-		for(Song song: songs){
+		/*for(Song song: songs){
 			TextLiednamen.getItems().add(song.getFileName());
-		}
+		}*/
 	}
-	
+
+
+
 	@FXML
 	private void Search(ActionEvent event) {
 		String text = Suche.getText();
@@ -256,7 +260,11 @@ public class Main extends Application {
 		} else {
 			File dir = new File(text);
 			searchFile(dir);
-		}	
+		}
+
+        for(Song song: songs){
+            TextLiednamen.getItems().add(song.getFileName());
+        }
 	}
 
 	@FXML
