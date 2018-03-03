@@ -241,15 +241,17 @@ public class Main extends Application {
 	}
 
 
-	// button zeige daten kann entfernt werden!
+	/*
+	@Alex: Bitte eine Combo-Box in die Gui einbauen und dort die Kriterien 'Name aufsteigend', 'Name absteigend', 'Meist geclickt'
+	hinzufügen. Der Code für die jeweiligen Ereignisse ist wie bei ShowClicked implementiert. Hier für Name aufsteigend.
+	Für Meist geclickt und Name absteigend analog mit 'clicked' und 'nameDown'.
+	Wenn das soweit funktioniert, kannst du den ShowClicked-Button entfernen.
+	 */
 	@FXML
 	private void ShowClicked(ActionEvent event) {
-		/*for(Song song: songs){
-			TextLiednamen.getItems().add(song.getFileName());
-		}*/
 
         int index = 0;
-        for(Song song: sort.sort(songs, "clicked", 0, songs.size()-1)){
+        for(Song song: sort.sort(songs, "nameUp",0, songs.size()-1)){
             TextLiednamen.getItems().set(index++, song.getFileName());
         }
 
@@ -274,30 +276,6 @@ public class Main extends Application {
         for(Song song: songs){
             TextLiednamen.getItems().add(song.getFileName());
         }
-
-        // there should be possibility to order the list on different criteria
-        // order by clicked -> favourite list
-        // order by name
-        // order by genre
-
-
-
-        // sort by clicked
-
-
-
-/*
-        // sort by name
-        for(Song song: sort.sort(songs, "name", 0, songs.size()-1)){
-            TextLiednamen.getItems().add(song.getFileName());
-        }
-        */
-/*
-        // sort by genre
-        for(Song song: sort.sort(songs, "genre", 0, songs.size()-1)){
-            TextLiednamen.getItems().add(song.getFileName());
-        }
-        */
 	}
 
 	@FXML
