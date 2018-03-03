@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 
 import org.apache.tika.metadata.Metadata;
@@ -26,6 +27,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+
+import javax.imageio.ImageIO;
 
 
 public class Main extends Application {
@@ -302,6 +305,20 @@ public class Main extends Application {
 			Sonstiges.setText(song.getInformation());
 		} else {
 			Sonstiges.setText("kein Eintrag");
+		}
+		if(song.getCover() != "" && song.getCover() != null){
+			boolean cover = false;
+			try {
+				ImageIO.write(ImageIO.read(new URL(song.getCover())),"jpg", new File("temp/cover.jpg"));
+				cover = true;
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			if(cover){
+				// hier würde das Cover in die Gui geladen werden.
+			}
+		} else {
+			// hier würde das Cover auf 'kein Cover' o.ä. gesetzt werden.
 		}
 	}
 }
