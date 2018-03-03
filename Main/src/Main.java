@@ -285,16 +285,8 @@ public class Main extends Application {
         selectedSong = songs.get(index);
         selectedSong.raiseClicked();
 		zeigeDatenInDerGUI(selectedSong);
-		aktualisiereBild(selectedSong);
 	}
 	
-	@FXML
-	private void aktualisiereBild(Song song) {
-
-	}
-	
-	//Bild?
-    // link zum bild ist als attribut von song gespeichert
 	private void zeigeDatenInDerGUI(Song song) {
 		if(song.getTrack() != "" && song.getTrack() != null) {
 			Titel.setText(song.getTrack());
@@ -335,10 +327,10 @@ public class Main extends Application {
 				e.printStackTrace();
 			}
 			if(cover){
-				// hier würde das Cover in die Gui geladen werden.
+				// hier wuerde das Cover in die Gui geladen werden.
 			}
 		} else {
-			// hier würde das Cover auf 'kein Cover' o.ä. gesetzt werden.
+			// hier wuerde das Cover auf 'kein Cover' o.ae. gesetzt werden.
 		}
 	}
 }
