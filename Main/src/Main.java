@@ -151,6 +151,7 @@ public class Main extends Application {
 
 		String track = metadata.get("title");
 		String artist = metadata.get("xmpDM:artist");
+
 		if (track != null && artist != null) {
 			song.setTrack(track);
 			song.setArtist(artist);
@@ -163,6 +164,11 @@ public class Main extends Application {
 				song.setArtist(artist);
 			}
 		}
+
+		if (song.getDuration() == 0.0){
+		    song.setDuration((int) Double.parseDouble(metadata.get("xmpDM:duration")));
+        }
+
 		return song;
 	}
 
