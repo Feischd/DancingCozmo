@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
-//import java.util.List;
 
 import org.apache.tika.metadata.Metadata;
 import org.apache.tika.parser.ParseContext;
@@ -20,7 +19,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-//import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -34,6 +32,7 @@ import javax.imageio.ImageIO;
 
 public class Main extends Application {
 
+	//FXML-Controller
 	@FXML
 	AnchorPane AnchorP;
 	@FXML
@@ -93,9 +92,8 @@ public class Main extends Application {
 		path.delete();
 	}
 
-	// nach einem bestimmten File in einem bestimmten Verzeichnis suchen
+	// searching files recursively
 	private void searchFile(File dir) {
-		// Dateien werden gesucht, gefunden und die Pfade gespeichert
 		try {
 			File[] files = dir.listFiles();
 			for (int i = 0; i < files.length; i++) {
@@ -109,20 +107,17 @@ public class Main extends Application {
 					}
 				}
 			}
-		} catch (Exception e) {
-
-		}
+		} catch (Exception e) { }
 	}
 
 	private Song convert(Song song) {
 		String pathOut = "temp\\" + song.getFileName() + ".mp3";
 		try {
+			//open the converter
 			Runtime.getRuntime()
 					.exec(new String[] { "Main\\ffmpeg", "-vn", "-i", song.getPath(), "-ab", "128k", pathOut });
 			song.setPath(pathOut);
-		} catch (Exception e) {
-			System.out.println(e);
-		}
+		} catch (Exception e) { }
 		return song;
 	}
 
@@ -148,14 +143,13 @@ public class Main extends Application {
 				if (metadata.size() > 8) {
 					metadataAvailable = true;
 				}
-			} catch (Exception e) {
-
-			}
+			} catch (Exception e) { }
 		}
 
 		String track = metadata.get("title");
 		String artist = metadata.get("xmpDM:artist");
 
+		//titel and artist are needed for the websearch
 		if (track != null && artist != null) {
 			song.setTrack(track);
 			song.setArtist(artist);
@@ -183,7 +177,7 @@ public class Main extends Application {
 		if (new File("temp").exists()) {
 			deleteTemp();
 		}
-		// Lege Temporaere Pfade an
+		// make a new temp-folder for the converted songs
 		new File("temp").mkdir();
 
 		mainWindow();
@@ -209,10 +203,10 @@ public class Main extends Application {
 					deleteTemp();
 				}
 			});
-		} catch (IOException e) {
-		}
+		} catch (IOException e) { }
 	}
 
+	//FXML-Controller for the different Buttons when they are clicked
 	@FXML
 	void Lightcolor(ActionEvent event) {
 		File file = new File("Light.css");
@@ -239,6 +233,7 @@ public class Main extends Application {
 		cozmo.stop();
 	}
 
+	//sort the listView
 	@FXML
 	private void down(ActionEvent event) {
 		int index = 0;
@@ -266,12 +261,12 @@ public class Main extends Application {
 		selectedSort = "clicked";
 	}
 
+	//User can search an individual path
 	@FXML
 	private void Search(ActionEvent event) {
 		String text = UserSearch.getText();
 
 		if (text.equals("")) {
-			// Angemeldeter Benutzer
 			File dir = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Music");
 			searchFile(dir);
 		} else {
@@ -284,10 +279,11 @@ public class Main extends Application {
 			listNames.getItems().add(song.getFileName());
 		}
 		
-		//Button deaktivieren
+		//disabels Button for Bug-Fixing, Button can only be clicked once
 		SearchButton.setDisable(true);
 	}
 
+	//selecting one song to show the details
 	@FXML
 	private void getIndex() {
 		int index = listNames.getSelectionModel().getSelectedIndex();
@@ -332,6 +328,7 @@ public class Main extends Application {
 			General.setText("kein Eintrag");
 		}
 
+		//add the cover from the selected song to the GUI
 		boolean cover = false;
 		if(!song.getCover().equals("") && song.getCover()!=null){
 			cover = true;
