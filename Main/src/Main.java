@@ -14,8 +14,6 @@ import org.xml.sax.ContentHandler;
 import org.xml.sax.helpers.DefaultHandler;
 
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -268,7 +266,7 @@ public class Main extends Application {
 	@FXML
 	private void Search(ActionEvent event) {
 		String text = UserSearch.getText();
-		
+
 		if (text.equals("")) {
 			// Angemeldeter Benutzer
 			File dir = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Music");
