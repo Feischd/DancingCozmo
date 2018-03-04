@@ -249,29 +249,40 @@ public class Main extends Application implements Serializable {
 	 * und 'nameDown'. Wenn das soweit funktioniert, kannst du den
 	 * ShowClicked-Button entfernen.
 	 */
+//	@FXML
+//	private void ShowClicked(ActionEvent event) {
+//
+//		int index = 0;
+//		for (Song song : sort.sort(songs, "clicked", 0, songs.size() - 1)) {
+//			TextLiednamen.getItems().set(index++, song.getFileName());
+//		}
+//	}
+	
 	@FXML
-	private void ShowClicked(ActionEvent event) {
-
+	private void absteigend(ActionEvent event) {
+		//System.out.println("absteigend");
 		int index = 0;
-		for (Song song : sort.sort(songs, "clicked", 0, songs.size() - 1)) {
+		for (Song song : sort.sort(songs, "nameDown", 0, songs.size() - 1)) {
 			TextLiednamen.getItems().set(index++, song.getFileName());
 		}
 	}
 	
-	//Noch implementieren
-	@FXML
-	private void absteigend(ActionEvent event) {
-		System.out.println("absteigend");
-	}
-	
 	@FXML
 	private void aufsteigend(ActionEvent event) {
-		System.out.println("aufsteigend");
+		//System.out.println("aufsteigend");
+		int index = 0;
+		for (Song song : sort.sort(songs, "nameUp", 0, songs.size() - 1)) {
+			TextLiednamen.getItems().set(index++, song.getFileName());
+		}
 	}
 	
 	@FXML
 	private void meistens(ActionEvent event) {
-		System.out.println("am meisten geklickt");
+		//System.out.println("am meisten geklickt");
+		int index = 0;
+		for (Song song : sort.sort(songs, "clicked", 0, songs.size() - 1)) {
+			TextLiednamen.getItems().set(index++, song.getFileName());
+		}
 	}
 
 	@FXML
