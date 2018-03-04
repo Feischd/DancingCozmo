@@ -14,6 +14,8 @@ import org.xml.sax.ContentHandler;
 import org.xml.sax.helpers.DefaultHandler;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -266,47 +268,6 @@ public class Main extends Application {
 	@FXML
 	private void Search(ActionEvent event) {
 		String text = UserSearch.getText();
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		//Test, Liste loeschen falls neu geklickt
-		
-//		if(listNames.getItems().size() > 0) {
-//		
-//		for(Song song : songs) {
-//			listNames.getSelectionModel().getSelectedItems().remove(song);
-//		}
-//
-//		}
-		
-		//listNames.getItems().clear();
-		
-//		List<Integer> selectedItemsCopy = new ArrayList<>(listNames.getSelectionModel().getSelectedItems());
-//		listNames.getItems().removeAll(selectedItemsCopy);
-		
-		//Selbes resultat wie ohne
-		while(listNames.getItems().size() > 0) {
-			listNames.getItems().remove(0);
-		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		if (text.equals("")) {
 			// Angemeldeter Benutzer
