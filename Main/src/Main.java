@@ -260,7 +260,7 @@ public class Main extends Application {
 	private void Search(ActionEvent event) {
 		String text = UserSearch.getText();
 
-		if (text != null) {
+		if (text.equals("")) {
 			// Angemeldeter Benutzer
 			File dir = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Music");
 			searchFile(dir);
