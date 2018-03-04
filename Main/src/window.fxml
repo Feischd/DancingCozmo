@@ -10,28 +10,27 @@
 
 <AnchorPane fx:id="AnchorP" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main">
    <children>
-      <ImageView fx:id="Bild" fitHeight="199.0" fitWidth="200.0" layoutX="500.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true" >
-      </ImageView>
+      <ImageView fx:id="Cover" fitHeight="199.0" fitWidth="200.0" layoutX="500.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true" />
       <TextField fx:id="Titel" editable="false" layoutX="482.0" layoutY="300.0" prefHeight="25.0" prefWidth="218.0" promptText="Titel" />
-      <TextField fx:id="Kuenstler" editable="false" layoutX="482.0" layoutY="325.0" prefHeight="25.0" prefWidth="218.0" promptText="Künstler" />
+      <TextField fx:id="Artist" editable="false" layoutX="482.0" layoutY="325.0" prefHeight="25.0" prefWidth="218.0" promptText="Künstler" />
       <TextField fx:id="Genre" editable="false" layoutX="482.0" layoutY="350.0" prefHeight="25.0" prefWidth="218.0" promptText="Genre" />
-      <TextField fx:id="Jahr" editable="false" layoutX="482.0" layoutY="375.0" prefHeight="25.0" prefWidth="218.0" promptText="Jahr" />
+      <TextField fx:id="Year" editable="false" layoutX="482.0" layoutY="375.0" prefHeight="25.0" prefWidth="218.0" promptText="Jahr" />
       <TextField fx:id="Album" editable="false" layoutX="482.0" layoutY="400.0" prefHeight="25.0" prefWidth="218.0" promptText="Album" />
-      <TextArea fx:id="Sonstiges" editable="false" layoutX="402.0" layoutY="425.0" prefHeight="140.0" prefWidth="298.0" promptText="sonstige Informationen" />
+      <TextArea fx:id="General" editable="false" layoutX="402.0" layoutY="425.0" prefHeight="140.0" prefWidth="298.0" promptText="sonstige Informationen" />
       <Button fx:id="Stop" layoutX="402.0" layoutY="565.0" mnemonicParsing="false" onAction="#StopClicked" prefHeight="34.0" prefWidth="149.0" text="Stop" />
       <Button fx:id="Play" layoutX="551.0" layoutY="565.0" mnemonicParsing="false" onAction="#PlayClicked" prefHeight="34.0" prefWidth="149.0" text="Play" />
-      <ListView fx:id="TextLiednamen" layoutY="77.0" onMouseClicked="#getIndex" prefHeight="523.0" prefWidth="403.0" />
+      <ListView fx:id="listNames" layoutY="77.0" onMouseClicked="#getIndex" prefHeight="523.0" prefWidth="403.0" />
       <TextField fx:id="Titel1" alignment="CENTER_RIGHT" editable="false" layoutX="402.0" layoutY="300.0" prefHeight="25.0" prefWidth="81.0" text="Titel:" />
-      <TextField fx:id="Kuenstler1" alignment="CENTER_RIGHT" editable="false" layoutX="402.0" layoutY="325.0" prefHeight="25.0" prefWidth="81.0" text="Künstler:" />
+      <TextField fx:id="Artist1" alignment="CENTER_RIGHT" editable="false" layoutX="402.0" layoutY="325.0" prefHeight="25.0" prefWidth="81.0" text="Künstler:" />
       <TextField fx:id="Genre1" alignment="CENTER_RIGHT" editable="false" layoutX="402.0" layoutY="350.0" prefHeight="25.0" prefWidth="81.0" text="Genre:" />
-      <TextField fx:id="Jahr1" alignment="CENTER_RIGHT" editable="false" layoutX="402.0" layoutY="375.0" prefHeight="25.0" prefWidth="81.0" text="Jahr:" />
+      <TextField fx:id="Year1" alignment="CENTER_RIGHT" editable="false" layoutX="402.0" layoutY="375.0" prefHeight="25.0" prefWidth="81.0" text="Jahr:" />
       <TextField fx:id="Album1" alignment="CENTER_RIGHT" editable="false" layoutX="402.0" layoutY="400.0" prefHeight="25.0" prefWidth="81.0" text="Album:" />
       <Button fx:id="Day" layoutX="619.0" layoutY="2.0" mnemonicParsing="false" onAction="#Lightcolor" prefHeight="25.0" prefWidth="81.0" text="Day" />
       <Button fx:id="Night" layoutX="536.0" layoutY="2.0" mnemonicParsing="false" onAction="#Darkcolor" prefHeight="25.0" prefWidth="81.0" text="Night" />
-      <TextField fx:id="Suche" layoutY="2.0" prefHeight="25.0" prefWidth="535.0" promptText="Hier den Pfad eingeben in dem Musikdateien gesucht werden sollen (ansonsten Standardpfad)" />
-      <Button fx:id="DurchsuchePfad" layoutY="27.0" mnemonicParsing="false" onAction="#Search" prefHeight="25.0" prefWidth="403.0" text="Durchsuche Pfad" />
-      <Button layoutY="52.0" mnemonicParsing="false" onAction="#aufsteigend" prefHeight="25.0" prefWidth="135.0" text="Name aufsteigend" />
-      <Button layoutX="134.0" layoutY="52.0" mnemonicParsing="false" onAction="#absteigend" prefHeight="25.0" prefWidth="135.0" text="Name absteigend" />
-      <Button layoutX="269.0" layoutY="52.0" mnemonicParsing="false" onAction="#meistens" prefHeight="25.0" prefWidth="135.0" text="Meist geklickt" />
+      <TextField fx:id="UserSearch" layoutY="2.0" prefHeight="25.0" prefWidth="535.0" promptText="Hier den Pfad eingeben in dem Musikdateien gesucht werden sollen (ansonsten Standardpfad)" />
+      <Button fx:id="SearchButton" layoutY="27.0" mnemonicParsing="false" onAction="#Search" prefHeight="25.0" prefWidth="403.0" text="Durchsuche Pfad" />
+      <Button layoutY="52.0" mnemonicParsing="false" onAction="#up" prefHeight="25.0" prefWidth="135.0" text="Name aufsteigend" />
+      <Button layoutX="134.0" layoutY="52.0" mnemonicParsing="false" onAction="#down" prefHeight="25.0" prefWidth="135.0" text="Name absteigend" />
+      <Button layoutX="269.0" layoutY="52.0" mnemonicParsing="false" onAction="#clicked" prefHeight="25.0" prefWidth="135.0" text="Meist geklickt" />
    </children>
 </AnchorPane>
