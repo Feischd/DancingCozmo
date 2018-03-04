@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.Scanner;
 
-
 public class Webservice {
     private ArrayList<ArrayList> genres;
 
@@ -38,25 +37,20 @@ public class Webservice {
     private String getSongData(Song song){
         String songData = "";
         InputStream is = null;
-        try
-        {
+        try {
             URL url = new URL( " http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=e0499e4c41404deb64230e4881e2eb27&artist=" + song.getArtist() + "&track=" + song.getTrack().replaceAll(" ", "%20"));
             is = url.openStream();
             songData = new Scanner(is).useDelimiter("Z").next();
-        }
-
-        catch ( Exception e ) {
-            e.printStackTrace();
-        }
-
+        } catch (Exception e) { }
         finally {
-            if ( is != null )
-                try { is.close(); } catch ( IOException e ) { }
+            if (is != null){
+                try {
+                    is.close();
+                } catch (IOException e) { }
+            }
         }
        return songData;
     }
-
-
 
 
 
@@ -65,9 +59,7 @@ public class Webservice {
         int duration = 0;
         try{
             duration = Integer.parseInt(songData.substring(songData.indexOf("<duration>")+10, songData.indexOf("</duration>")));
-        } catch(Exception e){
-
-        }
+        } catch(Exception e){ }
         return duration;
     }
 
@@ -81,9 +73,7 @@ public class Webservice {
             // get year of release
             String[] releaseSplit = release.split(" ");
             published = Integer.parseInt(releaseSplit[2]);
-        } catch(Exception e){
-
-        }
+        } catch(Exception e){ }
         return published;
     }
 
@@ -94,9 +84,7 @@ public class Webservice {
             // get general album information
             album = songData.substring(songData.indexOf("<album"));
             album = album.substring(album.indexOf("<title>")+7, album.indexOf("</title>"));
-        } catch(Exception e){
-
-        }
+        } catch(Exception e){ }
         return album;
     }
 
@@ -107,9 +95,7 @@ public class Webservice {
             // select image size large
             cover = songData.substring(songData.indexOf("<image size=\"large\">"));
             cover = cover.substring(20, cover.indexOf("</image>"));
-        } catch(Exception e){
-
-        }
+        } catch(Exception e){ }
         return cover;
     }
 
@@ -118,9 +104,7 @@ public class Webservice {
         String info = "";
         try {
             info = songData.substring(songData.indexOf("<summary>")+9, songData.indexOf("</summary>"));
-        } catch(Exception e){
-
-        }
+        } catch(Exception e){ }
         return info;
     }
 
@@ -176,24 +160,14 @@ public class Webservice {
 
             String[] genreArray = genresTemp.get(i1).split(" ");
             genre = genreArray[1];
-        } catch(Exception e){
-
-        }
+        } catch(Exception e){ }
         return genre;
     }
 
 
 
 
-
-
-
-
-
-
     // Methods to fill Genre-Array
-
-    // get Genres into the Genre-ArrayList
     private void fillGenreArray(){
         genres.add(getBlues());
         genres.add(getClassic());

@@ -8,9 +8,7 @@ public class Cozmo {
         try {
             Runtime.getRuntime().exec("cmd /C start temp\\cozmoDance.py");
             Runtime.getRuntime().exec(new String[] {"C:\\Program Files (x86)\\Windows Media Player\\wmplayer.exe", song.getPath()});
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        } catch (IOException e) { }
     }
 
     // stops cozmo and music
@@ -19,9 +17,7 @@ public class Cozmo {
             Runtime.getRuntime().exec("taskkill /f /im wmplayer.exe");
             Runtime.getRuntime().exec("taskkill /f /im py.exe") ;
         }
-        catch(IOException e){
-            e.printStackTrace();
-        }
+        catch(IOException e){ }
     }
 
     // creates dance for cozmo depending on genre and duration of song

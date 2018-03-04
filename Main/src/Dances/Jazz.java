@@ -50,7 +50,6 @@ public class Jazz extends Dance {
             pWriter.println("   cozmo.run_program(cozmo_program)");
             pWriter.println("   i = i + 1");
         } catch (IOException ioe) {
-            ioe.printStackTrace();
         } finally {
             if (pWriter != null){
                 pWriter.flush();
