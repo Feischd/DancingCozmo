@@ -353,9 +353,24 @@ public class Main extends Application implements Serializable {
 				e.printStackTrace();
 			}
 			if (cover) {
+				//Versuch
+//				Image bild = new Image(Bild.getClass().getResource("test2.png").toExternalForm());
+//				Bild.setImage(bild);
+				
+				ImageView img = new ImageView();
+				img.setId("test2.jpg");
+				
+				
+				
+				
+//				Image bild = new Image(getClass().getResource("test.jpg").toExternalForm());
+//				Bild = new ImageView(bild);
+				
 				// hier wuerde das Cover in die Gui geladen werden.
 			}
 		} else {
+			ImageView img = new ImageView();
+			img.setId("test2.jpg");
 			// hier wuerde das Cover auf 'kein Cover' o.ae. gesetzt werden.
 		}
 	}
