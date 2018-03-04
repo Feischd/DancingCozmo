@@ -55,7 +55,7 @@ public class Rap extends Dance {
             pWriter.println("   robot.move_lift(-5)");
             pWriter.println("   time.sleep(0.5)");
             // Turn 360 degrees to the right
-            pWriter.println(" robot.turn_in_place(degrees(-360)).wait_for_completed()");
+            pWriter.println("   robot.turn_in_place(degrees(-360)).wait_for_completed()");
             pWriter.println();
 
             pWriter.println("i = 0");
