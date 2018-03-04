@@ -18,7 +18,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+//import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -29,44 +29,29 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 import javax.imageio.ImageIO;
-import java.io.Serializable;
 
-
-public class Main extends Application implements Serializable {
+public class Main extends Application {
 
 	@FXML
 	AnchorPane AnchorP;
 	@FXML
-	ListView TextLiednamen;
+	ListView listNames;
 	@FXML
-	ImageView Bild;
+	ImageView Cover;
 	@FXML
 	TextField Titel;
 	@FXML
-	TextField Kuenstler;
+	TextField Artist;
 	@FXML
 	TextField Genre;
 	@FXML
-	TextField Jahr;
+	TextField Year;
 	@FXML
 	TextField Album;
 	@FXML
-	TextField Suche;
+	TextField UserSearch;
 	@FXML
-	TextArea Sonstiges;
-
-//	@FXML
-//	Button Stop;
-//	@FXML
-//	Button Play;
-//	@FXML
-//	Button Show;
-//	@FXML
-//	Button Dark;
-//	@FXML
-//	Button Light;
-//	@FXML
-//	Button DurchsuchePfad;
+	TextArea General;
 
 	Stage primaryStage;
 	private Webservice ws;
@@ -245,35 +230,35 @@ public class Main extends Application implements Serializable {
 	}
 
 	@FXML
-	private void absteigend(ActionEvent event) {
+	private void down(ActionEvent event) {
 		int index = 0;
 		for (Song song : sort.sort(songs, "nameDown", 0, songs.size() - 1)) {
-			TextLiednamen.getItems().set(index++, song.getFileName());
+			listNames.getItems().set(index++, song.getFileName());
 		}
 		selectedSort = "nameDown";
 	}
 	
 	@FXML
-	private void aufsteigend(ActionEvent event) {
+	private void up(ActionEvent event) {
 		int index = 0;
 		for (Song song : sort.sort(songs, "nameUp", 0, songs.size() - 1)) {
-			TextLiednamen.getItems().set(index++, song.getFileName());
+			listNames.getItems().set(index++, song.getFileName());
 		}
 		selectedSort = "nameUp";
 	}
 	
 	@FXML
-	private void meistens(ActionEvent event) {
+	private void clicked(ActionEvent event) {
 		int index = 0;
 		for (Song song : sort.sort(songs, "clicked", 0, songs.size() - 1)) {
-			TextLiednamen.getItems().set(index++, song.getFileName());
+			listNames.getItems().set(index++, song.getFileName());
 		}
 		selectedSort = "clicked";
 	}
 
 	@FXML
 	private void Search(ActionEvent event) {
-		String text = Suche.getText();
+		String text = UserSearch.getText();
 
 		if (text != null) {
 			// Angemeldeter Benutzer
@@ -286,32 +271,32 @@ public class Main extends Application implements Serializable {
 
 		// show search result
 		for (Song song : songs) {
-			TextLiednamen.getItems().add(song.getFileName());
+			listNames.getItems().add(song.getFileName());
 		}
 	}
 
 	@FXML
 	private void getIndex() {
-		int index = TextLiednamen.getSelectionModel().getSelectedIndex();
+		int index = listNames.getSelectionModel().getSelectedIndex();
 		songs.set(index, getMetadata(convert(songs.get(index))));
 		selectedSong = songs.get(index);
 		selectedSong.raiseClicked();
 		if(selectedSort.equals("clicked")){
-		    meistens(new ActionEvent());
+		    clicked(new ActionEvent());
         }
-		zeigeDatenInDerGUI(selectedSong);
+		showDataInGUI(selectedSong);
 	}
 
-	private void zeigeDatenInDerGUI(Song song) {
+	private void showDataInGUI(Song song) {
 		if (song.getTrack() != "" && song.getTrack() != null) {
 			Titel.setText(song.getTrack());
 		} else {
 			Titel.setText("kein Eintrag");
 		}
 		if (song.getArtist() != "" && song.getArtist() != null) {
-			Kuenstler.setText(song.getArtist());
+			Artist.setText(song.getArtist());
 		} else {
-			Kuenstler.setText("kein Eintrag");
+			Artist.setText("kein Eintrag");
 		}
 		if (song.getGenre() != "" && song.getGenre() != null) {
 			Genre.setText(song.getGenre());
@@ -319,9 +304,9 @@ public class Main extends Application implements Serializable {
 			Genre.setText("kein Eintrag");
 		}
 		if (song.getPublished() != 0) {
-			Jahr.setText("" + song.getPublished());
+			Year.setText("" + song.getPublished());
 		} else {
-			Jahr.setText("kein Eintrag");
+			Year.setText("kein Eintrag");
 		}
 		if (song.getAlbum() != "" && song.getAlbum() != null) {
 			Album.setText(song.getAlbum());
@@ -329,9 +314,9 @@ public class Main extends Application implements Serializable {
 			Album.setText("kein Eintrag");
 		}
 		if (song.getInformation() != "" && song.getInformation() != null) {
-			Sonstiges.setText(song.getInformation());
+			General.setText(song.getInformation());
 		} else {
-			Sonstiges.setText("kein Eintrag");
+			General.setText("kein Eintrag");
 		}
 
 		boolean cover = false;
@@ -343,7 +328,7 @@ public class Main extends Application implements Serializable {
 				ImageIO.write(ImageIO.read(new URL(song.getCover())), "jpg", new File("temp/cover.jpg"));
 				FileInputStream stream = new FileInputStream("temp\\cover.jpg");
 				Image image = new Image(stream);
-				Bild.setImage(image);
+				Cover.setImage(image);
 			} catch (Exception e) {
 				cover = false;
 			}
@@ -353,7 +338,7 @@ public class Main extends Application implements Serializable {
 			try {
 				//FileInputStream stream = new FileInputStream("test.jpg");
 				Image image = new Image("test.jpg");
-				Bild.setImage(image);
+				Cover.setImage(image);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
