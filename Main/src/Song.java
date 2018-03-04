@@ -36,6 +36,7 @@ public class Song {
     public void setArtist(String artist){
         this.artist = artist;
     }
+
     public void setGenre(String genre){
         this.genre = genre;
     }
@@ -74,6 +75,7 @@ public class Song {
         this.clicked++;
     }
 
+    
     //getter
     public String getTrack(){
         return track;
