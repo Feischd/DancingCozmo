@@ -19,7 +19,6 @@
       <Button fx:id="Stop" layoutX="402.0" layoutY="565.0" mnemonicParsing="false" onAction="#StopClicked" prefHeight="34.0" prefWidth="149.0" text="Stop" />
       <Button fx:id="Play" layoutX="551.0" layoutY="565.0" mnemonicParsing="false" onAction="#PlayClicked" prefHeight="34.0" prefWidth="149.0" text="Play" />
       <ListView fx:id="TextLiednamen" layoutY="77.0" onMouseClicked="#getIndex" prefHeight="523.0" prefWidth="403.0" />
-      <Button fx:id="Show" layoutX="419.0" layoutY="136.0" mnemonicParsing="false" onAction="#ShowClicked" prefHeight="25.0" prefWidth="81.0" text="2. Zeige die gefundenen Dateien an" />
       <TextField fx:id="Titel1" alignment="CENTER_RIGHT" editable="false" layoutX="402.0" layoutY="300.0" prefHeight="25.0" prefWidth="81.0" text="Titel:" />
       <TextField fx:id="Kuenstler1" alignment="CENTER_RIGHT" editable="false" layoutX="402.0" layoutY="325.0" prefHeight="25.0" prefWidth="81.0" text="Künstler:" />
       <TextField fx:id="Genre1" alignment="CENTER_RIGHT" editable="false" layoutX="402.0" layoutY="350.0" prefHeight="25.0" prefWidth="81.0" text="Genre:" />
