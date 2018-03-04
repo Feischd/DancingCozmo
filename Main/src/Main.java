@@ -31,6 +31,7 @@ import javafx.stage.WindowEvent;
 import javax.imageio.ImageIO;
 import java.io.Serializable;
 
+
 public class Main extends Application implements Serializable {
 
 	@FXML
@@ -53,6 +54,7 @@ public class Main extends Application implements Serializable {
 	TextField Suche;
 	@FXML
 	TextArea Sonstiges;
+
 //	@FXML
 //	Button Stop;
 //	@FXML
@@ -72,6 +74,7 @@ public class Main extends Application implements Serializable {
 	private static ArrayList<Song> songs = new ArrayList<>();
 	private Cozmo cozmo;
 	private Song selectedSong;
+	private String selectedSort;
 	private static String[] format = new String[] { ".wma", ".mp3", ".m4a", ".aac", ".wav" };
 
 	public Main() {
@@ -79,6 +82,7 @@ public class Main extends Application implements Serializable {
 		ws = new Webservice();
 		sort = new Sort();
 		selectedSong = new Song("");
+		selectedSort = "unsorted";
 	}
 
 	public static void main(String[] args) {
@@ -240,49 +244,31 @@ public class Main extends Application implements Serializable {
 		cozmo.stop();
 	}
 
-	/*
-	 * @Alex: Bitte eine Combo-Box in die Gui einbauen und dort die Kriterien 'Name
-	 * aufsteigend', 'Name absteigend', 'Meist geklickt' hinzufügen. 
-	 * 
-	 * Der Code für die jeweiligen Ereignisse ist wie bei ShowClicked implementiert. Hier für
-	 * Name aufsteigend. Für Meist geklickt und Name absteigend analog mit 'clicked'
-	 * und 'nameDown'. Wenn das soweit funktioniert, kannst du den
-	 * ShowClicked-Button entfernen.
-	 */
-//	@FXML
-//	private void ShowClicked(ActionEvent event) {
-//
-//		int index = 0;
-//		for (Song song : sort.sort(songs, "clicked", 0, songs.size() - 1)) {
-//			TextLiednamen.getItems().set(index++, song.getFileName());
-//		}
-//	}
-	
 	@FXML
 	private void absteigend(ActionEvent event) {
-		//System.out.println("absteigend");
 		int index = 0;
 		for (Song song : sort.sort(songs, "nameDown", 0, songs.size() - 1)) {
 			TextLiednamen.getItems().set(index++, song.getFileName());
 		}
+		selectedSort = "nameDown";
 	}
 	
 	@FXML
 	private void aufsteigend(ActionEvent event) {
-		//System.out.println("aufsteigend");
 		int index = 0;
 		for (Song song : sort.sort(songs, "nameUp", 0, songs.size() - 1)) {
 			TextLiednamen.getItems().set(index++, song.getFileName());
 		}
+		selectedSort = "nameUp";
 	}
 	
 	@FXML
 	private void meistens(ActionEvent event) {
-		//System.out.println("am meisten geklickt");
 		int index = 0;
 		for (Song song : sort.sort(songs, "clicked", 0, songs.size() - 1)) {
 			TextLiednamen.getItems().set(index++, song.getFileName());
 		}
+		selectedSort = "clicked";
 	}
 
 	@FXML
@@ -310,6 +296,9 @@ public class Main extends Application implements Serializable {
 		songs.set(index, getMetadata(convert(songs.get(index))));
 		selectedSong = songs.get(index);
 		selectedSong.raiseClicked();
+		if(selectedSort.equals("clicked")){
+		    meistens(new ActionEvent());
+        }
 		zeigeDatenInDerGUI(selectedSong);
 	}
 
@@ -344,34 +333,30 @@ public class Main extends Application implements Serializable {
 		} else {
 			Sonstiges.setText("kein Eintrag");
 		}
-		if (song.getCover() != "" && song.getCover() != null) {
-			boolean cover = false;
+
+		boolean cover = false;
+		if(!song.getCover().equals("") && song.getCover()!=null){
+			cover = true;
+		}
+		if(cover) {
 			try {
 				ImageIO.write(ImageIO.read(new URL(song.getCover())), "jpg", new File("temp/cover.jpg"));
-				cover = true;
+				FileInputStream stream = new FileInputStream("temp\\cover.jpg");
+				Image image = new Image(stream);
+				Bild.setImage(image);
+			} catch (Exception e) {
+				cover = false;
+			}
+		}
+		if(!cover) {
+			// hier wuerde das Cover auf 'kein Cover' o.ae. gesetzt werden.
+			try {
+				//FileInputStream stream = new FileInputStream("test.jpg");
+				Image image = new Image("test.jpg");
+				Bild.setImage(image);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			if (cover) {
-				//Versuch
-//				Image bild = new Image(Bild.getClass().getResource("test2.png").toExternalForm());
-//				Bild.setImage(bild);
-				
-				ImageView img = new ImageView();
-				img.setId("test2.jpg");
-				
-				
-				
-				
-//				Image bild = new Image(getClass().getResource("test.jpg").toExternalForm());
-//				Bild = new ImageView(bild);
-				
-				// hier wuerde das Cover in die Gui geladen werden.
-			}
-		} else {
-			ImageView img = new ImageView();
-			img.setId("test2.jpg");
-			// hier wuerde das Cover auf 'kein Cover' o.ae. gesetzt werden.
 		}
 	}
 }
