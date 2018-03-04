@@ -265,6 +265,11 @@ public class Main extends Application {
 	@FXML
 	private void Search(ActionEvent event) {
 		String text = UserSearch.getText();
+		
+		//Test, Liste loeschen falls neu geklickt
+		for(Song song : songs) {
+			listNames.getSelectionModel().getSelectedItems().remove(song);
+		}
 
 		if (text.equals("")) {
 			// Angemeldeter Benutzer
