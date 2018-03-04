@@ -31,6 +31,8 @@ import javafx.stage.WindowEvent;
 import javax.imageio.ImageIO;
 import java.io.Serializable;
 
+import javafx.scene.layout.StackPane;
+
 public class Main extends Application implements Serializable {
 
 	@FXML
@@ -53,6 +55,7 @@ public class Main extends Application implements Serializable {
 	TextField Suche;
 	@FXML
 	TextArea Sonstiges;
+
 //	@FXML
 //	Button Stop;
 //	@FXML
@@ -242,10 +245,10 @@ public class Main extends Application implements Serializable {
 
 	/*
 	 * @Alex: Bitte eine Combo-Box in die Gui einbauen und dort die Kriterien 'Name
-	 * aufsteigend', 'Name absteigend', 'Meist geklickt' hinzufügen. 
+	 * aufsteigend', 'Name absteigend', 'Meist geklickt' hinzufuegen.
 	 * 
-	 * Der Code für die jeweiligen Ereignisse ist wie bei ShowClicked implementiert. Hier für
-	 * Name aufsteigend. Für Meist geklickt und Name absteigend analog mit 'clicked'
+	 * Der Code fuer die jeweiligen Ereignisse ist wie bei ShowClicked implementiert. Hier fuer
+	 * Name aufsteigend. Fuer Meist geklickt und Name absteigend analog mit 'clicked'
 	 * und 'nameDown'. Wenn das soweit funktioniert, kannst du den
 	 * ShowClicked-Button entfernen.
 	 */
@@ -313,6 +316,11 @@ public class Main extends Application implements Serializable {
 		zeigeDatenInDerGUI(selectedSong);
 	}
 
+	@FXML
+	private void setCover(Image cover) {
+		Bild.setImage(cover);
+	}
+
 	private void zeigeDatenInDerGUI(Song song) {
 		if (song.getTrack() != "" && song.getTrack() != null) {
 			Titel.setText(song.getTrack());
@@ -344,34 +352,30 @@ public class Main extends Application implements Serializable {
 		} else {
 			Sonstiges.setText("kein Eintrag");
 		}
-		if (song.getCover() != "" && song.getCover() != null) {
-			boolean cover = false;
+
+		boolean cover = false;
+		if(!song.getCover().equals("") && song.getCover()!=null){
+			cover = true;
+		}
+		if(cover) {
 			try {
 				ImageIO.write(ImageIO.read(new URL(song.getCover())), "jpg", new File("temp/cover.jpg"));
-				cover = true;
+				FileInputStream stream = new FileInputStream("temp\\cover.jpg");
+				Image image = new Image(stream);
+				Bild.setImage(image);
+			} catch (Exception e) {
+				cover = false;
+			}
+		}
+		if(!cover) {
+			// hier wuerde das Cover auf 'kein Cover' o.ae. gesetzt werden.
+			try {
+				//FileInputStream stream = new FileInputStream("test.jpg");
+				Image image = new Image("test.jpg");
+				Bild.setImage(image);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			if (cover) {
-				//Versuch
-//				Image bild = new Image(Bild.getClass().getResource("test2.png").toExternalForm());
-//				Bild.setImage(bild);
-				
-				ImageView img = new ImageView();
-				img.setId("test2.jpg");
-				
-				
-				
-				
-//				Image bild = new Image(getClass().getResource("test.jpg").toExternalForm());
-//				Bild = new ImageView(bild);
-				
-				// hier wuerde das Cover in die Gui geladen werden.
-			}
-		} else {
-			ImageView img = new ImageView();
-			img.setId("test2.jpg");
-			// hier wuerde das Cover auf 'kein Cover' o.ae. gesetzt werden.
 		}
 	}
 }
