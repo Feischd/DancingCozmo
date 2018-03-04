@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
+//import java.util.List;
 
 import org.apache.tika.metadata.Metadata;
 import org.apache.tika.parser.ParseContext;
@@ -19,6 +19,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 //import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
@@ -53,6 +54,8 @@ public class Main extends Application {
 	TextField UserSearch;
 	@FXML
 	TextArea General;
+	@FXML
+	Button SearchButton;
 
 	Stage primaryStage;
 	private Webservice ws;
@@ -280,6 +283,9 @@ public class Main extends Application {
 		for (Song song : songs) {
 			listNames.getItems().add(song.getFileName());
 		}
+		
+		//Button deaktivieren
+		SearchButton.setDisable(true);
 	}
 
 	@FXML
