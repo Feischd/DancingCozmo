@@ -26,7 +26,7 @@ public class Folk extends Dance {
             // Drive forwards for 150 millimeters at 50 millimeters-per-second
             pWriter.println("   robot.drive_straight(distance_mm(150), speed_mmps(150)).wait_for_completed()");
             // Turn 180 degrees to the right
-            pWriter.println("robot.turn_in_place(degrees(-180)).wait_for_completed()");
+            pWriter.println("   robot.turn_in_place(degrees(-180)).wait_for_completed()");
             // The lift is first raising and then lowering (at 5 radians per second)
             pWriter.println("   robot.move_lift(5)");
             pWriter.println("   time.sleep(0.5)");
