@@ -30,9 +30,11 @@ import javafx.stage.WindowEvent;
 
 import javax.imageio.ImageIO;
 
+
+
 public class Main extends Application {
 
-	//FXML-Controller
+	// FXML-Controller
 	@FXML
 	AnchorPane AnchorP;
 	@FXML
@@ -113,9 +115,8 @@ public class Main extends Application {
 	private Song convert(Song song) {
 		String pathOut = "temp\\" + song.getFileName() + ".mp3";
 		try {
-			//open the converter
-			Runtime.getRuntime()
-					.exec(new String[] { "Main\\ffmpeg", "-vn", "-i", song.getPath(), "-ab", "128k", pathOut });
+			// open converter
+			Runtime.getRuntime().exec(new String[] { "Main\\ffmpeg", "-vn", "-i", song.getPath(), "-ab", "128k", pathOut });
 			song.setPath(pathOut);
 		} catch (Exception e) { }
 		return song;
@@ -149,7 +150,7 @@ public class Main extends Application {
 		String track = metadata.get("title");
 		String artist = metadata.get("xmpDM:artist");
 
-		//titel and artist are needed for the websearch
+		// title and artist required for websearch
 		if (track != null && artist != null) {
 			song.setTrack(track);
 			song.setArtist(artist);
@@ -177,7 +178,7 @@ public class Main extends Application {
 		if (new File("temp").exists()) {
 			deleteTemp();
 		}
-		// make a new temp-folder for the converted songs
+		// creates temp-folder
 		new File("temp").mkdir();
 
 		mainWindow();
@@ -206,7 +207,7 @@ public class Main extends Application {
 		} catch (IOException e) { }
 	}
 
-	//FXML-Controller for the different Buttons when they are clicked
+	// FXML-Controller to handle 'click-'Events of the Buttons
 	@FXML
 	void Lightcolor(ActionEvent event) {
 		File file = new File("Light.css");
@@ -233,7 +234,7 @@ public class Main extends Application {
 		cozmo.stop();
 	}
 
-	//sort the listView
+	// sort listView
 	@FXML
 	private void down(ActionEvent event) {
 		int index = 0;
@@ -261,7 +262,7 @@ public class Main extends Application {
 		selectedSort = "clicked";
 	}
 
-	//User can search an individual path
+	// User can search by individual or usually path
 	@FXML
 	private void Search(ActionEvent event) {
 		String text = UserSearch.getText();
@@ -279,11 +280,11 @@ public class Main extends Application {
 			listNames.getItems().add(song.getFileName());
 		}
 		
-		//disabels Button for Bug-Fixing, Button can only be clicked once
+		// Button only can be clicked once -> disables Button to prevent Bugs
 		SearchButton.setDisable(true);
 	}
 
-	//selecting one song to show the details
+	// selecting song, which is selected in GUI, to show details
 	@FXML
 	private void getIndex() {
 		int index = listNames.getSelectionModel().getSelectedIndex();
@@ -328,7 +329,7 @@ public class Main extends Application {
 			General.setText("kein Eintrag");
 		}
 
-		//add the cover from the selected song to the GUI
+		// add cover of selected song to GUI
 		boolean cover = false;
 		if(!song.getCover().equals("") && song.getCover()!=null){
 			cover = true;
