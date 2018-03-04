@@ -275,7 +275,7 @@ public class Main extends Application {
 			searchFile(dir);
 		}
 
-		// show search result
+        // show search result
 		for (Song song : songs) {
 			listNames.getItems().add(song.getFileName());
 		}
