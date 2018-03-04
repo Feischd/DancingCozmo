@@ -16,7 +16,7 @@
       <TextField fx:id="Genre" editable="false" layoutX="482.0" layoutY="350.0" prefHeight="25.0" prefWidth="218.0" promptText="Genre" />
       <TextField fx:id="Year" editable="false" layoutX="482.0" layoutY="375.0" prefHeight="25.0" prefWidth="218.0" promptText="Jahr" />
       <TextField fx:id="Album" editable="false" layoutX="482.0" layoutY="400.0" prefHeight="25.0" prefWidth="218.0" promptText="Album" />
-      <TextArea fx:id="General" editable="false" layoutX="402.0" layoutY="425.0" prefHeight="140.0" prefWidth="298.0" promptText="sonstige Informationen" />
+      <TextArea fx:id="General" editable="false" layoutX="402.0" layoutY="425.0" prefHeight="140.0" prefWidth="298.0" promptText="sonstige Informationen" wrapText="true" />
       <Button fx:id="Stop" layoutX="402.0" layoutY="565.0" mnemonicParsing="false" onAction="#StopClicked" prefHeight="34.0" prefWidth="149.0" text="Stop" />
       <Button fx:id="Play" layoutX="551.0" layoutY="565.0" mnemonicParsing="false" onAction="#PlayClicked" prefHeight="34.0" prefWidth="149.0" text="Play" />
       <ListView fx:id="listNames" layoutY="77.0" onMouseClicked="#getIndex" prefHeight="523.0" prefWidth="403.0" />
