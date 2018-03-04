@@ -19,7 +19,7 @@
       <Button fx:id="Stop" layoutX="402.0" layoutY="565.0" mnemonicParsing="false" onAction="#StopClicked" prefHeight="34.0" prefWidth="149.0" text="Stop" />
       <Button fx:id="Play" layoutX="551.0" layoutY="565.0" mnemonicParsing="false" onAction="#PlayClicked" prefHeight="34.0" prefWidth="149.0" text="Play" />
       <ListView fx:id="TextLiednamen" layoutY="78.0" onMouseClicked="#getIndex" prefHeight="522.0" prefWidth="403.0" />
-      <Button fx:id="Show" layoutX="402.0" layoutY="201.0" mnemonicParsing="false" onAction="#ShowClicked" prefHeight="25.0" prefWidth="81.0" text="2. Zeige die gefundenen Dateien an" />
+      <Button fx:id="Show" layoutY="52.0" mnemonicParsing="false" onAction="#ShowClicked" prefHeight="25.0" prefWidth="403.0" text="2. Zeige die gefundenen Dateien an" />
       <TextField fx:id="Titel1" alignment="CENTER_RIGHT" editable="false" layoutX="402.0" layoutY="300.0" prefHeight="25.0" prefWidth="81.0" text="Titel:" />
       <TextField fx:id="Kuenstler1" alignment="CENTER_RIGHT" editable="false" layoutX="402.0" layoutY="325.0" prefHeight="25.0" prefWidth="81.0" text="Künstler:" />
       <TextField fx:id="Genre1" alignment="CENTER_RIGHT" editable="false" layoutX="402.0" layoutY="350.0" prefHeight="25.0" prefWidth="81.0" text="Genre:" />
@@ -28,9 +28,6 @@
       <Button fx:id="Day" layoutX="619.0" layoutY="2.0" mnemonicParsing="false" onAction="#Lightcolor" prefHeight="25.0" prefWidth="81.0" text="Day" />
       <Button fx:id="Night" layoutX="536.0" layoutY="2.0" mnemonicParsing="false" onAction="#Darkcolor" prefHeight="25.0" prefWidth="81.0" text="Night" />
       <TextField fx:id="Suche" layoutY="2.0" prefHeight="25.0" prefWidth="535.0" promptText="Hier den Pfad eingeben in dem Musikdateien gesucht werden sollen (ansonsten Standardpfad)" />
-      <Button fx:id="DurchsuchePfad" layoutY="27.0" mnemonicParsing="false" onAction="#Search" prefHeight="25.0" prefWidth="403.0" text="Durchsuche Pfad" />
-      <Button fx:id="Most" layoutX="268.0" layoutY="52.0" mnemonicParsing="false" onAction="#mostClicked" prefHeight="25.0" prefWidth="134.0" text="Meist geklickt" />
-      <Button fx:id="Up" layoutY="52.0" mnemonicParsing="false" onAction="#nameUp" prefHeight="25.0" prefWidth="134.0" text="Name aufsteigend" />
-      <Button fx:id="Down" layoutX="134.0" layoutY="52.0" mnemonicParsing="false" onAction="#nameDown" prefHeight="25.0" prefWidth="134.0" text="Name absteigend" />
+      <Button fx:id="DurchsuchePfad" layoutY="27.0" mnemonicParsing="false" onAction="#Search" prefHeight="25.0" prefWidth="403.0" text="1. Durchsuche Pfad" />
    </children>
 </AnchorPane>
