@@ -336,7 +336,6 @@ public class Main extends Application {
 		if(!song.getCover().equals("") && song.getCover()!=null){
 			cover = true;
 		}
-		
 		if(cover) {
 			try {
 				ImageIO.write(ImageIO.read(new URL(song.getCover())), "jpg", new File("temp/cover.jpg"));
@@ -347,12 +346,9 @@ public class Main extends Application {
 				cover = false;
 			}
 		}
-		
 		if(!cover) {
-			// hier wuerde das Cover auf 'kein Cover' o.ae. gesetzt werden.
 			try {
-				//FileInputStream stream = new FileInputStream("test.jpg");
-				Image image = new Image("test.jpg");
+				Image image = new Image("noImage.jpg");
 				Cover.setImage(image);
 			} catch (Exception e) {
 				e.printStackTrace();
