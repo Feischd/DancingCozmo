@@ -1,9 +1,0 @@
-In diesem Package befinden sich alle Choreographien zu den verschieden Genres als Textdateien
-Die Lichter der Wuerfel und des Cozmo wurden noch nicht mit einbezogen.
-
-H ist die Abkuerzung fuer den Heber
-Einmal rueckwaerts bzw. vorwaerts fahren enspricht ca 15 cm
-
-Die Choreo wird solange das Lied laeuft wiederholt. Wenn das Lied zuende ist. Geht der Hebel nochmal hoch und wieder runter.
-
-Ein paar der Choreos wurden in Python geaendert (stimmen nicht mit den Textdateien  ueberein)
