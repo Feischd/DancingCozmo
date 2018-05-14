@@ -30,8 +30,6 @@ import javafx.stage.WindowEvent;
 
 import javax.imageio.ImageIO;
 
-
-
 public class Main extends Application {
 
 	// FXML-Controller
@@ -109,16 +107,19 @@ public class Main extends Application {
 					}
 				}
 			}
-		} catch (Exception e) { }
+		} catch (Exception e) {
+		}
 	}
 
 	private Song convert(Song song) {
 		String pathOut = "temp\\" + song.getFileName() + ".mp3";
 		try {
 			// open converter
-			Runtime.getRuntime().exec(new String[] { "Main\\ffmpeg", "-vn", "-i", song.getPath(), "-ab", "128k", pathOut });
+			Runtime.getRuntime()
+					.exec(new String[] { "Main\\ffmpeg", "-vn", "-i", song.getPath(), "-ab", "128k", pathOut });
 			song.setPath(pathOut);
-		} catch (Exception e) { }
+		} catch (Exception e) {
+		}
 		return song;
 	}
 
@@ -144,7 +145,8 @@ public class Main extends Application {
 				if (metadata.size() > 8) {
 					metadataAvailable = true;
 				}
-			} catch (Exception e) { }
+			} catch (Exception e) {
+			}
 		}
 
 		String track = metadata.get("title");
@@ -164,9 +166,9 @@ public class Main extends Application {
 			}
 		}
 
-		if (song.getDuration() == 0.0){
-		    song.setDuration((int) Double.parseDouble(metadata.get("xmpDM:duration")));
-        }
+		if (song.getDuration() == 0.0) {
+			song.setDuration((int) Double.parseDouble(metadata.get("xmpDM:duration")));
+		}
 
 		return song;
 	}
@@ -204,7 +206,8 @@ public class Main extends Application {
 					deleteTemp();
 				}
 			});
-		} catch (IOException e) { }
+		} catch (IOException e) {
+		}
 	}
 
 	// FXML-Controller to handle 'click-'Events of the Buttons
@@ -243,7 +246,7 @@ public class Main extends Application {
 		}
 		selectedSort = "nameDown";
 	}
-	
+
 	@FXML
 	private void up(ActionEvent event) {
 		int index = 0;
@@ -252,7 +255,7 @@ public class Main extends Application {
 		}
 		selectedSort = "nameUp";
 	}
-	
+
 	@FXML
 	private void clicked(ActionEvent event) {
 		int index = 0;
@@ -275,11 +278,11 @@ public class Main extends Application {
 			searchFile(dir);
 		}
 
-        // show search result
+		// show search result
 		for (Song song : songs) {
 			listNames.getItems().add(song.getFileName());
 		}
-		
+
 		// Button only can be clicked once -> disables Button to prevent Bugs
 		SearchButton.setDisable(true);
 	}
@@ -291,9 +294,9 @@ public class Main extends Application {
 		songs.set(index, getMetadata(convert(songs.get(index))));
 		selectedSong = songs.get(index);
 		selectedSong.raiseClicked();
-		if(selectedSort.equals("clicked")){
-		    clicked(new ActionEvent());
-        }
+		if (selectedSort.equals("clicked")) {
+			clicked(new ActionEvent());
+		}
 		showDataInGUI(selectedSong);
 	}
 
@@ -331,10 +334,10 @@ public class Main extends Application {
 
 		// add cover of selected song to GUI
 		boolean cover = false;
-		if(!song.getCover().equals("") && song.getCover()!=null){
+		if (!song.getCover().equals("") && song.getCover() != null) {
 			cover = true;
 		}
-		if(cover) {
+		if (cover) {
 			try {
 				ImageIO.write(ImageIO.read(new URL(song.getCover())), "jpg", new File("temp/cover.jpg"));
 				FileInputStream stream = new FileInputStream("temp\\cover.jpg");
@@ -344,7 +347,7 @@ public class Main extends Application {
 				cover = false;
 			}
 		}
-		if(!cover) {
+		if (!cover) {
 			try {
 				Image image = new Image("noImage.jpg");
 				Cover.setImage(image);
